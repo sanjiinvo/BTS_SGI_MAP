@@ -91,7 +91,7 @@ const SvgViewBoxZoom = (() => {
   }
 
   function findMarkerTarget(target) {
-    return target?.closest?.('.map-marker') || null;
+    return target?.closest?.('.map-object, .map-marker, .map-line') || null;
   }
 
   function init(svgElement, containerElement, customOptions = {}) {

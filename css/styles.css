@@ -1113,3 +1113,111 @@ body,
     width: min(380px, 94vw);
   }
 }
+
+/* ===== Interactive railway lines ===== */
+.map-object {
+  pointer-events: auto;
+}
+
+.map-line {
+  cursor: pointer;
+  outline: none;
+}
+
+.map-line-hitarea {
+  pointer-events: stroke;
+}
+
+.map-line-visible,
+.map-line-glow,
+.map-line-endpoint {
+  pointer-events: none;
+  transition: stroke-width var(--transition-fast), opacity var(--transition-fast), filter var(--transition-fast), r var(--transition-fast);
+}
+
+.map-line:hover .map-line-visible,
+.map-line:focus .map-line-visible,
+.map-line.line-active .map-line-visible {
+  filter: drop-shadow(0 0 10px currentColor);
+}
+
+.map-line:hover .map-line-glow,
+.map-line:focus .map-line-glow,
+.map-line.line-active .map-line-glow {
+  opacity: 0.38;
+}
+
+.map-line.line-active .map-line-visible {
+  stroke-width: 10;
+}
+
+.map-line.line-active .map-line-endpoint {
+  r: 9;
+}
+
+/* ===== Editor object type switch ===== */
+.editor-mode-switch {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  padding: 4px;
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.editor-mode-btn {
+  min-height: 38px;
+  border-radius: 8px;
+  font-size: 0.84rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+  background: transparent;
+  border: 1px solid transparent;
+}
+
+.editor-mode-btn.active {
+  color: #06121f;
+  background: var(--accent-secondary);
+  border-color: rgba(255, 255, 255, 0.18);
+}
+
+.editor-line-tools {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.editor-line-count {
+  min-height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  color: var(--accent-secondary);
+  background: rgba(0, 212, 255, 0.08);
+  border: 1px solid rgba(0, 212, 255, 0.16);
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+#editor-line-width {
+  padding: 0;
+  accent-color: var(--accent-secondary);
+}
+
+.editor-temp-line,
+.editor-temp-line-glow,
+.editor-line-node {
+  pointer-events: none;
+}
+
+.editor-line-node {
+  stroke: #ffffff;
+  stroke-width: 2;
+  filter: drop-shadow(0 0 6px rgba(0, 0, 0, 0.65));
+}
+
+#map-container.editor-active::after {
+  content: 'Редактор: выбери «Точка» или «Линия», затем нажимай по карте';
+}

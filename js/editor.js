@@ -1,10 +1,13 @@
 const MapEditor = (() => {
   let enabled = false;
+  let mode = 'point';
   let svg = null;
   let mapContainer = null;
-  let pendingPoint = null;
   let selectedColor = '#00d4ff';
-  let tempMarker = null;
+  let selectedWidth = 7;
+  let pendingPoint = null;
+  let linePoints = [];
+  let tempLayer = null;
   let onProjectsChangedCallback = null;
 
   const elements = {};
@@ -16,6 +19,7 @@ const MapEditor = (() => {
     onProjectsChangedCallback = options.onProjectsChanged || null;
     createToolbarButton();
     createPanel();
+    ensureTempLayer();
     bindEvents();
   }
 
@@ -26,12 +30,12 @@ const MapEditor = (() => {
     const btn = document.createElement('button');
     btn.id = 'editor-toggle';
     btn.className = 'editor-toggle';
-    btn.title = 'Режим редактирования точек';
+    btn.title = 'Редактор точек и линий';
     btn.innerHTML = `
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
         <path d="M12 5v14M5 12h14"/>
       </svg>
-      <span>Точки</span>
+      <span>Редактор</span>
     `;
     headerRight.insertBefore(btn, headerRight.firstChild);
     elements.toggle = btn;
@@ -46,8 +50,8 @@ const MapEditor = (() => {
     panel.innerHTML = `
       <div class="editor-header">
         <div>
-          <h2>Редактор точек</h2>
-          <p>Включи режим, выбери цвет и нажимай по карте.</p>
+          <h2>Редактор объектов</h2>
+          <p>Ставь точки или трассируй участки железной дороги ломаной линией.</p>
         </div>
         <button id="editor-close" class="editor-icon-btn" title="Закрыть">×</button>
       </div>
@@ -58,8 +62,13 @@ const MapEditor = (() => {
           <span id="editor-coords">x: —, y: —</span>
         </div>
 
+        <div class="editor-mode-switch">
+          <button id="editor-mode-point" class="editor-mode-btn active" type="button">Точка</button>
+          <button id="editor-mode-line" class="editor-mode-btn" type="button">Линия</button>
+        </div>
+
         <label class="editor-field">
-          <span>Цвет точки</span>
+          <span>Цвет объекта</span>
           <div class="editor-color-row">
             <input id="editor-color" type="color" value="#00d4ff">
             <button class="editor-color-preset" data-color="#00d4ff" style="--preset:#00d4ff"></button>
@@ -70,14 +79,19 @@ const MapEditor = (() => {
           </div>
         </label>
 
-        <label class="editor-field">
-          <span>Название проекта</span>
-          <input id="editor-title" type="text" placeholder="Например: Проект Астана">
+        <label class="editor-field editor-line-width-field">
+          <span>Толщина линии</span>
+          <input id="editor-line-width" type="range" min="3" max="16" value="7">
         </label>
 
         <label class="editor-field">
-          <span>Локация / город</span>
-          <input id="editor-location" type="text" placeholder="Например: г. Астана">
+          <span>Название объекта</span>
+          <input id="editor-title" type="text" placeholder="Например: Участок Астана — Караганда">
+        </label>
+
+        <label class="editor-field">
+          <span>Локация / участок</span>
+          <input id="editor-location" type="text" placeholder="Например: Астана — Караганда">
         </label>
 
         <div class="editor-grid">
@@ -107,6 +121,14 @@ const MapEditor = (() => {
           <textarea id="editor-description" rows="3" placeholder="Краткая информация для правой плашки"></textarea>
         </label>
 
+        <div class="editor-line-tools">
+          <div id="editor-line-count" class="editor-line-count">Точек линии: 0</div>
+          <div class="editor-actions">
+            <button id="editor-line-undo" class="editor-secondary" disabled>Убрать узел</button>
+            <button id="editor-line-clear" class="editor-secondary" disabled>Очистить</button>
+          </div>
+        </div>
+
         <div class="editor-actions">
           <button id="editor-save" class="editor-primary" disabled>Сохранить точку</button>
           <button id="editor-cancel" class="editor-secondary" disabled>Отмена</button>
@@ -119,8 +141,8 @@ const MapEditor = (() => {
           <button id="editor-copy" class="editor-secondary">Скопировать JSON</button>
         </div>
 
-        <p class="editor-hint">
-          В режиме редактирования обычный tap по пустому месту карты создаёт черновую точку. Если двигаешь карту пальцем — точка не создаётся.
+        <p class="editor-hint" id="editor-hint">
+          Точка: включи режим, выбери цвет и нажми по карте. Линия: нажимай вдоль железной дороги, каждый tap добавляет узел, затем нажми «Сохранить линию».
         </p>
       </div>
     `;
@@ -131,7 +153,11 @@ const MapEditor = (() => {
     elements.close = panel.querySelector('#editor-close');
     elements.badge = panel.querySelector('#editor-mode-badge');
     elements.coords = panel.querySelector('#editor-coords');
+    elements.modePoint = panel.querySelector('#editor-mode-point');
+    elements.modeLine = panel.querySelector('#editor-mode-line');
     elements.color = panel.querySelector('#editor-color');
+    elements.lineWidth = panel.querySelector('#editor-line-width');
+    elements.lineWidthField = panel.querySelector('.editor-line-width-field');
     elements.title = panel.querySelector('#editor-title');
     elements.location = panel.querySelector('#editor-location');
     elements.region = panel.querySelector('#editor-region');
@@ -139,12 +165,18 @@ const MapEditor = (() => {
     elements.category = panel.querySelector('#editor-category');
     elements.year = panel.querySelector('#editor-year');
     elements.description = panel.querySelector('#editor-description');
+    elements.lineTools = panel.querySelector('.editor-line-tools');
+    elements.lineCount = panel.querySelector('#editor-line-count');
+    elements.lineUndo = panel.querySelector('#editor-line-undo');
+    elements.lineClear = panel.querySelector('#editor-line-clear');
     elements.save = panel.querySelector('#editor-save');
     elements.cancel = panel.querySelector('#editor-cancel');
     elements.export = panel.querySelector('#editor-export');
     elements.copy = panel.querySelector('#editor-copy');
+    elements.hint = panel.querySelector('#editor-hint');
 
     populateSelects();
+    updateModeUI();
   }
 
   function populateSelects() {
@@ -170,28 +202,36 @@ const MapEditor = (() => {
   function bindEvents() {
     elements.toggle.addEventListener('click', toggle);
     elements.close.addEventListener('click', closePanel);
+    elements.modePoint.addEventListener('click', () => setMode('point'));
+    elements.modeLine.addEventListener('click', () => setMode('line'));
+
     elements.color.addEventListener('input', (e) => {
       selectedColor = e.target.value;
-      updateTempMarkerColor();
+      renderDraft();
+    });
+
+    elements.lineWidth.addEventListener('input', (e) => {
+      selectedWidth = Number(e.target.value) || 7;
+      renderDraft();
     });
 
     document.querySelectorAll('.editor-color-preset').forEach(btn => {
       btn.addEventListener('click', () => {
         selectedColor = btn.dataset.color;
         elements.color.value = selectedColor;
-        updateTempMarkerColor();
+        renderDraft();
       });
     });
 
-    elements.save.addEventListener('click', savePendingPoint);
-    elements.cancel.addEventListener('click', clearPendingPoint);
+    elements.save.addEventListener('click', savePendingObject);
+    elements.cancel.addEventListener('click', clearDraft);
+    elements.lineUndo.addEventListener('click', undoLinePoint);
+    elements.lineClear.addEventListener('click', clearLinePoints);
     elements.export.addEventListener('click', downloadJson);
     elements.copy.addEventListener('click', copyJson);
   }
 
-  function toggle() {
-    enabled ? disable() : enable();
-  }
+  function toggle() { enabled ? disable() : enable(); }
 
   function enable() {
     enabled = true;
@@ -201,11 +241,12 @@ const MapEditor = (() => {
     elements.badge.classList.remove('off');
     elements.badge.classList.add('on');
     mapContainer.classList.add('editor-active');
+    updateModeUI();
   }
 
   function disable() {
     enabled = false;
-    clearPendingPoint();
+    clearDraft();
     elements.toggle.classList.remove('active');
     elements.badge.textContent = 'Режим выключен';
     elements.badge.classList.remove('on');
@@ -218,50 +259,105 @@ const MapEditor = (() => {
     disable();
   }
 
-  function isEnabled() {
-    return enabled;
+  function isEnabled() { return enabled; }
+
+  function setMode(nextMode) {
+    if (mode === nextMode) return;
+    clearDraft();
+    mode = nextMode;
+    updateModeUI();
+  }
+
+  function updateModeUI() {
+    elements.modePoint.classList.toggle('active', mode === 'point');
+    elements.modeLine.classList.toggle('active', mode === 'line');
+    elements.lineTools.style.display = mode === 'line' ? '' : 'none';
+    elements.lineWidthField.style.display = mode === 'line' ? '' : 'none';
+    elements.save.textContent = mode === 'line' ? 'Сохранить линию' : 'Сохранить точку';
+    elements.hint.textContent = mode === 'line'
+      ? 'Линия: нажимай вдоль железной дороги. Каждый tap добавляет узел. Для красивого поворота ставь больше узлов.'
+      : 'Точка: нажми по пустому месту карты, заполни данные и сохрани объект.';
+    refreshActions();
+  }
+
+  function ensureTempLayer() {
+    if (!svg) return null;
+    let layer = svg.querySelector('#editor-temp-layer');
+    if (!layer) {
+      layer = document.createElementNS(SVG_NS, 'g');
+      layer.setAttribute('id', 'editor-temp-layer');
+      layer.setAttribute('pointer-events', 'none');
+      svg.appendChild(layer);
+    }
+    tempLayer = layer;
+    return layer;
   }
 
   function handleMapTap(payload) {
     if (!enabled || !payload?.svgPoint) return;
     const target = payload.originalEvent?.target;
-    if (target?.closest?.('.map-marker')) return;
+    if (target?.closest?.('.map-object, .map-marker, .map-line')) return;
 
     const x = Math.round(payload.svgPoint.x * 10) / 10;
     const y = Math.round(payload.svgPoint.y * 10) / 10;
-    pendingPoint = { x, y };
     elements.coords.textContent = `x: ${x}, y: ${y}`;
 
+    if (mode === 'line') {
+      addLinePoint(x, y);
+    } else {
+      setPendingPoint(x, y);
+    }
+  }
+
+  function setPendingPoint(x, y) {
+    pendingPoint = { x, y };
+    linePoints = [];
+    prefillDefaults('point');
+    renderDraft();
+    refreshActions();
+  }
+
+  function addLinePoint(x, y) {
+    pendingPoint = null;
+    linePoints.push([x, y]);
+    if (linePoints.length === 1) prefillDefaults('line');
+    renderDraft();
+    refreshActions();
+  }
+
+  function prefillDefaults(type) {
     const n = DataLoader.getProjects().length + 1;
-    elements.title.value = `Проект ${n}`;
-    elements.location.value = '';
-    elements.description.value = '';
+    if (!elements.title.value.trim()) {
+      elements.title.value = type === 'line' ? `Участок ${n}` : `Проект ${n}`;
+    }
+    if (!elements.description.value.trim()) elements.description.value = '';
     elements.year.value = new Date().getFullYear();
-    elements.save.disabled = false;
-    elements.cancel.disabled = false;
-    renderTempMarker(x, y);
   }
 
-  function getMarkerLayer() {
-    return svg?.querySelector('#interactive-markers-layer');
+  function renderDraft() {
+    clearTempLayer();
+    ensureTempLayer();
+    if (!tempLayer) return;
+
+    if (mode === 'line') {
+      renderTempLine();
+    } else if (pendingPoint) {
+      renderTempPoint(pendingPoint.x, pendingPoint.y);
+    }
   }
 
-  function renderTempMarker(x, y) {
-    clearTempMarkerOnly();
-    const layer = getMarkerLayer();
-    if (!layer) return;
-
+  function renderTempPoint(x, y) {
     const g = document.createElementNS(SVG_NS, 'g');
     g.setAttribute('class', 'map-marker editor-temp-marker marker-pulsing active-pulse');
     g.setAttribute('transform', `translate(${x}, ${y})`);
 
     const ring = document.createElementNS(SVG_NS, 'circle');
     ring.setAttribute('class', 'map-marker-ring');
-    ring.setAttribute('r', '16');
+    ring.setAttribute('r', '13');
 
     const circle = document.createElementNS(SVG_NS, 'circle');
     circle.setAttribute('class', 'map-marker-circle');
-    circle.setAttribute('r', '10');
+    circle.setAttribute('r', '9');
     circle.setAttribute('fill', selectedColor);
 
     const dot = document.createElementNS(SVG_NS, 'circle');
@@ -271,41 +367,121 @@ const MapEditor = (() => {
     g.appendChild(ring);
     g.appendChild(circle);
     g.appendChild(dot);
-    layer.appendChild(g);
-    tempMarker = g;
+    tempLayer.appendChild(g);
   }
 
-  function updateTempMarkerColor() {
-    if (!tempMarker) return;
-    const circle = tempMarker.querySelector('.map-marker-circle');
-    if (circle) circle.setAttribute('fill', selectedColor);
+  function renderTempLine() {
+    elements.lineCount.textContent = `Точек линии: ${linePoints.length}`;
+    if (linePoints.length === 0) return;
+
+    if (linePoints.length >= 2) {
+      const pointString = linePoints.map(p => `${p[0]},${p[1]}`).join(' ');
+      const glow = document.createElementNS(SVG_NS, 'polyline');
+      glow.setAttribute('class', 'editor-temp-line-glow');
+      glow.setAttribute('points', pointString);
+      glow.setAttribute('fill', 'none');
+      glow.setAttribute('stroke', selectedColor);
+      glow.setAttribute('stroke-width', String(selectedWidth + 8));
+      glow.setAttribute('stroke-linecap', 'round');
+      glow.setAttribute('stroke-linejoin', 'round');
+      glow.setAttribute('opacity', '0.22');
+
+      const line = document.createElementNS(SVG_NS, 'polyline');
+      line.setAttribute('class', 'editor-temp-line');
+      line.setAttribute('points', pointString);
+      line.setAttribute('fill', 'none');
+      line.setAttribute('stroke', selectedColor);
+      line.setAttribute('stroke-width', String(selectedWidth));
+      line.setAttribute('stroke-linecap', 'round');
+      line.setAttribute('stroke-linejoin', 'round');
+
+      tempLayer.appendChild(glow);
+      tempLayer.appendChild(line);
+    }
+
+    linePoints.forEach((point, index) => {
+      const node = document.createElementNS(SVG_NS, 'circle');
+      node.setAttribute('class', 'editor-line-node');
+      node.setAttribute('cx', point[0]);
+      node.setAttribute('cy', point[1]);
+      node.setAttribute('r', index === linePoints.length - 1 ? '8' : '6');
+      node.setAttribute('fill', selectedColor);
+      tempLayer.appendChild(node);
+    });
   }
 
-  function clearTempMarkerOnly() {
-    if (tempMarker) tempMarker.remove();
-    tempMarker = null;
+  function clearTempLayer() {
+    if (tempLayer) tempLayer.innerHTML = '';
   }
 
-  function clearPendingPoint() {
+  function clearDraft() {
     pendingPoint = null;
-    clearTempMarkerOnly();
+    linePoints = [];
+    clearTempLayer();
     elements.coords.textContent = 'x: —, y: —';
-    elements.save.disabled = true;
-    elements.cancel.disabled = true;
+    elements.lineCount.textContent = 'Точек линии: 0';
+    refreshActions();
+  }
+
+  function clearLinePoints() {
+    linePoints = [];
+    clearTempLayer();
+    elements.coords.textContent = 'x: —, y: —';
+    elements.lineCount.textContent = 'Точек линии: 0';
+    refreshActions();
+  }
+
+  function undoLinePoint() {
+    linePoints.pop();
+    renderDraft();
+    refreshActions();
+  }
+
+  function refreshActions() {
+    const canSavePoint = mode === 'point' && !!pendingPoint;
+    const canSaveLine = mode === 'line' && linePoints.length >= 2;
+    const canCancel = !!pendingPoint || linePoints.length > 0;
+    elements.save.disabled = !(canSavePoint || canSaveLine);
+    elements.cancel.disabled = !canCancel;
+    elements.lineUndo.disabled = linePoints.length === 0;
+    elements.lineClear.disabled = linePoints.length === 0;
+    elements.lineCount.textContent = `Точек линии: ${linePoints.length}`;
+  }
+
+  function savePendingObject() {
+    if (mode === 'line') savePendingLine();
+    else savePendingPoint();
   }
 
   function savePendingPoint() {
     if (!pendingPoint) return;
+    const project = buildBaseProject('point');
+    project.x = pendingPoint.x;
+    project.y = pendingPoint.y;
 
-    const title = elements.title.value.trim() || `Проект ${DataLoader.getProjects().length + 1}`;
-    const location = elements.location.value.trim() || 'Локация не указана';
+    DataLoader.addProject(project);
+    afterSave(project);
+  }
+
+  function savePendingLine() {
+    if (linePoints.length < 2) return;
+    const project = buildBaseProject('line');
+    project.points = linePoints.map(p => [Number(p[0]), Number(p[1])]);
+    project.width = selectedWidth;
+    project.hitWidth = Math.max(34, selectedWidth + 30);
+
+    DataLoader.addProject(project);
+    afterSave(project);
+  }
+
+  function buildBaseProject(type) {
+    const title = elements.title.value.trim() || (type === 'line' ? `Участок ${DataLoader.getProjects().length + 1}` : `Проект ${DataLoader.getProjects().length + 1}`);
+    const location = elements.location.value.trim() || (type === 'line' ? 'Участок не указан' : 'Локация не указана');
     const description = elements.description.value.trim() || 'Описание будет добавлено позже.';
-    const id = makeId(title);
 
-    const project = {
-      id,
-      x: pendingPoint.x,
-      y: pendingPoint.y,
+    return {
+      id: makeId(title),
+      type,
       color: selectedColor,
       region: elements.region.value,
       status: elements.status.value,
@@ -316,18 +492,16 @@ const MapEditor = (() => {
       description: { ru: description, kk: description, en: description },
       indicators: [],
       images: [],
-      additional: { ru: '', kk: '', en: '' }
+      additional: { ru: type === 'line' ? 'Интерактивный железнодорожный участок.' : '', kk: type === 'line' ? 'Интерактивті теміржол учаскесі.' : '', en: type === 'line' ? 'Interactive railway section.' : '' }
     };
+  }
 
-    DataLoader.addProject(project);
-    clearPendingPoint();
+  function afterSave(project) {
+    clearDraft();
     Markers.refresh();
     Markers.highlightMarker(project.id);
     ProjectCard.open(project.id);
-
-    if (typeof onProjectsChangedCallback === 'function') {
-      onProjectsChangedCallback();
-    }
+    if (typeof onProjectsChangedCallback === 'function') onProjectsChangedCallback();
   }
 
   function makeId(title) {
@@ -336,12 +510,10 @@ const MapEditor = (() => {
       .replace(/[а-яё]/g, ch => translit[ch] || ch)
       .replace(/[^a-z0-9]+/g, '-')
       .replace(/^-+|-+$/g, '')
-      .slice(0, 40) || 'project';
+      .slice(0, 40) || (mode === 'line' ? 'line' : 'project');
 
-    let id = `${base}-${Date.now().toString(36)}`;
-    while (DataLoader.getProjectById(id)) {
-      id = `${base}-${Math.random().toString(36).slice(2, 8)}`;
-    }
+    let id = `${mode === 'line' ? 'line' : 'obj'}-${base}-${Date.now().toString(36)}`;
+    while (DataLoader.getProjectById(id)) id = `${base}-${Math.random().toString(36).slice(2, 8)}`;
     return id;
   }
 
