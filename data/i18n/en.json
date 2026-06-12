@@ -1,0 +1,29 @@
+{
+  "app": {
+    "title": "Project Map",
+    "subtitle": "Interactive map of completed and ongoing projects",
+    "toggleFilters": "Filters",
+    "language": "Language",
+    "close": "Close",
+    "filter": "Filter",
+    "clear": "Reset",
+    "noResults": "No projects found",
+    "showingProjects": "Projects shown",
+    "demoMode": "Demo Mode"
+  },
+  "filter": {
+    "region": "Region",
+    "year": "Year",
+    "status": "Status",
+    "category": "Category",
+    "all": "All"
+  },
+  "project": {
+    "indicators": "Key Indicators",
+    "additional": "Additional Information",
+    "photos": "Photos",
+    "location": "Location",
+    "status": "Status",
+    "year": "Year"
+  }
+}

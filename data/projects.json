@@ -1,0 +1,916 @@
+{
+  "regions": [
+    {
+      "id": "astana",
+      "ru": "Астана",
+      "kk": "Астана",
+      "en": "Astana"
+    },
+    {
+      "id": "almaty",
+      "ru": "Алматы",
+      "kk": "Алматы",
+      "en": "Almaty"
+    },
+    {
+      "id": "atyrau",
+      "ru": "Атырау",
+      "kk": "Атырау",
+      "en": "Atyrau"
+    },
+    {
+      "id": "mangystau",
+      "ru": "Мангистау",
+      "kk": "Маңғыстау",
+      "en": "Mangystau"
+    },
+    {
+      "id": "karaganda",
+      "ru": "Караганда",
+      "kk": "Қарағанды",
+      "en": "Karaganda"
+    },
+    {
+      "id": "pavlodar",
+      "ru": "Павлодар",
+      "kk": "Павлодар",
+      "en": "Pavlodar"
+    },
+    {
+      "id": "shymkent",
+      "ru": "Шымкент",
+      "kk": "Шымкент",
+      "en": "Shymkent"
+    },
+    {
+      "id": "aktobe",
+      "ru": "Актобе",
+      "kk": "Ақтөбе",
+      "en": "Aktobe"
+    },
+    {
+      "id": "kostanay",
+      "ru": "Костанай",
+      "kk": "Қостанай",
+      "en": "Kostanay"
+    },
+    {
+      "id": "kyzylorda",
+      "ru": "Кызылорда",
+      "kk": "Қызылорда",
+      "en": "Kyzylorda"
+    },
+    {
+      "id": "east-kz",
+      "ru": "Восточный Казахстан",
+      "kk": "Шығыс Қазақстан",
+      "en": "East Kazakhstan"
+    },
+    {
+      "id": "zhambyl",
+      "ru": "Жамбыл",
+      "kk": "Жамбыл",
+      "en": "Zhambyl"
+    }
+  ],
+  "statuses": [
+    {
+      "id": "completed",
+      "ru": "Завершён",
+      "kk": "Аяқталды",
+      "en": "Completed"
+    },
+    {
+      "id": "in-progress",
+      "ru": "В процессе",
+      "kk": "Жүріп жатыр",
+      "en": "In Progress"
+    },
+    {
+      "id": "planning",
+      "ru": "Планирование",
+      "kk": "Жоспарлау",
+      "en": "Planning"
+    }
+  ],
+  "categories": [
+    {
+      "id": "energy",
+      "ru": "Энергетика",
+      "kk": "Энергетика",
+      "en": "Energy"
+    },
+    {
+      "id": "transport",
+      "ru": "Транспорт",
+      "kk": "Көлік",
+      "en": "Transport"
+    },
+    {
+      "id": "industry",
+      "ru": "Промышленность",
+      "kk": "Өнеркәсіп",
+      "en": "Industry"
+    },
+    {
+      "id": "digital",
+      "ru": "Цифровизация",
+      "kk": "Цифрландыру",
+      "en": "Digitalization"
+    },
+    {
+      "id": "ecology",
+      "ru": "Экология",
+      "kk": "Экология",
+      "en": "Ecology"
+    },
+    {
+      "id": "social",
+      "ru": "Социальные проекты",
+      "kk": "Әлеуметтік жобалар",
+      "en": "Social Projects"
+    }
+  ],
+  "projects": [
+    {
+      "id": "proj-001",
+      "x": 2430.4,
+      "y": 871.4,
+      "region": "astana",
+      "status": "completed",
+      "category": "digital",
+      "year": 2024,
+      "name": {
+        "ru": "Цифровой хаб Астана",
+        "kk": "Астана цифрлық хабы",
+        "en": "Astana Digital Hub"
+      },
+      "location": {
+        "ru": "г. Астана, район Есиль",
+        "kk": "Астана қ., Есіл ауданы",
+        "en": "Astana, Yesil District"
+      },
+      "description": {
+        "ru": "Создание крупнейшего в регионе IT-хаба с центром обработки данных и образовательным кластером. Проект включает строительство трёх дата-центров и бизнес-инкубатора.",
+        "kk": "Аймақтағы ең ірі IT-хабты деректерді өңдеу орталығымен және білім беру кластерімен құру. Жоба үш деректер орталығы мен бизнес-инкубаторды салуды қамтиды.",
+        "en": "Creation of the largest IT hub in the region with a data center and educational cluster. The project includes construction of three data centers and a business incubator."
+      },
+      "indicators": [
+        {
+          "label": {
+            "ru": "Площадь",
+            "kk": "Ауданы",
+            "en": "Area"
+          },
+          "value": {
+            "ru": "45 000 м²",
+            "kk": "45 000 м²",
+            "en": "45,000 m²"
+          }
+        },
+        {
+          "label": {
+            "ru": "Инвестиции",
+            "kk": "Инвестициялар",
+            "en": "Investment"
+          },
+          "value": {
+            "ru": "120 млрд ₸",
+            "kk": "120 млрд ₸",
+            "en": "120 billion KZT"
+          }
+        },
+        {
+          "label": {
+            "ru": "Рабочие места",
+            "kk": "Жұмыс орындары",
+            "en": "Jobs"
+          },
+          "value": {
+            "ru": "2 500",
+            "kk": "2 500",
+            "en": "2,500"
+          }
+        }
+      ],
+      "images": [],
+      "additional": {
+        "ru": "Проект реализован в рамках государственной программы «Цифровой Казахстан»",
+        "kk": "Жоба «Цифрлық Қазақстан» мемлекеттік бағдарламасы аясында жүзеге асырылды",
+        "en": "The project was implemented under the state program 'Digital Kazakhstan'"
+      }
+    },
+    {
+      "id": "proj-002",
+      "x": 3393.4,
+      "y": 1452.4,
+      "region": "almaty",
+      "status": "in-progress",
+      "category": "transport",
+      "year": 2025,
+      "name": {
+        "ru": "Реконструкция аэропорта Алматы",
+        "kk": "Алматы әуежайын қайта жаңғырту",
+        "en": "Almaty Airport Reconstruction"
+      },
+      "location": {
+        "ru": "г. Алматы",
+        "kk": "Алматы қ.",
+        "en": "Almaty"
+      },
+      "description": {
+        "ru": "Комплексная реконструкция международного терминала аэропорта Алматы с увеличением пропускной способности до 14 миллионов пассажиров в год.",
+        "kk": "Алматы әуежайының халықаралық терминалын жылдық өткізу қабілетін 14 миллион жолаушыға дейін арттыра отырып, кешенді қайта жаңғырту.",
+        "en": "Comprehensive reconstruction of the Almaty airport international terminal, increasing capacity to 14 million passengers per year."
+      },
+      "indicators": [
+        {
+          "label": {
+            "ru": "Пропускная способность",
+            "kk": "Өткізу қабілеті",
+            "en": "Capacity"
+          },
+          "value": {
+            "ru": "14 млн/год",
+            "kk": "14 млн/жыл",
+            "en": "14M/year"
+          }
+        },
+        {
+          "label": {
+            "ru": "Срок завершения",
+            "kk": "Аяқталу мерзімі",
+            "en": "Completion"
+          },
+          "value": {
+            "ru": "2026 год",
+            "kk": "2026 жыл",
+            "en": "2026"
+          }
+        }
+      ],
+      "images": [],
+      "additional": {
+        "ru": "Проект соответствует международным стандартам ICAO",
+        "kk": "Жоба ICAO халықаралық стандарттарына сәйкес келеді",
+        "en": "The project complies with ICAO international standards"
+      }
+    },
+    {
+      "id": "proj-003",
+      "x": 779.6,
+      "y": 1418.2,
+      "region": "mangystau",
+      "status": "completed",
+      "category": "energy",
+      "year": 2023,
+      "name": {
+        "ru": "Ветровая электростанция «Шах-даг»",
+        "kk": "«Шах-даг» жел электр станциясы",
+        "en": "Shakh-Dag Wind Power Plant"
+      },
+      "location": {
+        "ru": "Мангистауская область, 50 км от г. Актау",
+        "kk": "Маңғыстау облысы, Ақтау қ. 50 км",
+        "en": "Mangystau region, 50 km from Aktau"
+      },
+      "description": {
+        "ru": "Крупнейшая ветровая электростанция в регионе мощностью 150 МВт. Состоит из 60 ветрогенераторов, обеспечивает электроэнергией более 100 000 домохозяйств.",
+        "kk": "Аймақтағы қуаты 150 МВт ең ірі жел электр станциясы. 60 жел генераторынан тұрады, 100 000-нан астам үй шаруашылығын электр энергиясымен қамтамасыз етеді.",
+        "en": "The largest wind farm in the region with a capacity of 150 MW. Consists of 60 wind turbines, providing electricity to over 100,000 households."
+      },
+      "indicators": [
+        {
+          "label": {
+            "ru": "Мощность",
+            "kk": "Қуаты",
+            "en": "Capacity"
+          },
+          "value": {
+            "ru": "150 МВт",
+            "kk": "150 МВт",
+            "en": "150 MW"
+          }
+        },
+        {
+          "label": {
+            "ru": "Турбины",
+            "kk": "Турбиналар",
+            "en": "Turbines"
+          },
+          "value": {
+            "ru": "60 ед.",
+            "kk": "60 дана",
+            "en": "60 units"
+          }
+        },
+        {
+          "label": {
+            "ru": "Снижение CO₂",
+            "kk": "CO₂ төмендеуі",
+            "en": "CO₂ Reduction"
+          },
+          "value": {
+            "ru": "250 000 т/год",
+            "kk": "250 000 т/жыл",
+            "en": "250,000 t/year"
+          }
+        }
+      ],
+      "images": [],
+      "additional": {
+        "ru": "Проект поддерживает стратегию Казахстана по достижению углеродной нейтральности к 2060 году",
+        "kk": "Жоба Қазақстанның 2060 жылға қарай көміртекті бейтараптыққа қол жеткізу стратегиясын қолдайды",
+        "en": "The project supports Kazakhstan's strategy to achieve carbon neutrality by 2060"
+      }
+    },
+    {
+      "id": "proj-004",
+      "x": 1031.8,
+      "y": 1179.0,
+      "region": "atyrau",
+      "status": "in-progress",
+      "category": "industry",
+      "year": 2025,
+      "name": {
+        "ru": "Нефтехимический комплекс KPI",
+        "kk": "KPI мұнай-химия кешені",
+        "en": "KPI Petrochemical Complex"
+      },
+      "location": {
+        "ru": "Атырауская область",
+        "kk": "Атырау облысы",
+        "en": "Atyrau region"
+      },
+      "description": {
+        "ru": "Строительство интегрированного нефтехимического комплекса по производству полиэтилена и полипропилена мощностью 1,5 млн тонн в год.",
+        "kk": "Жылына 1,5 млн тонна полиэтилен мен полипропилен өндіретін интеграцияланған мұнай-химия кешенін салу.",
+        "en": "Construction of an integrated petrochemical complex for the production of polyethylene and polypropylene with a capacity of 1.5 million tons per year."
+      },
+      "indicators": [
+        {
+          "label": {
+            "ru": "Мощность",
+            "kk": "Қуаты",
+            "en": "Capacity"
+          },
+          "value": {
+            "ru": "1,5 млн т/год",
+            "kk": "1,5 млн т/жыл",
+            "en": "1.5M t/year"
+          }
+        },
+        {
+          "label": {
+            "ru": "Инвестиции",
+            "kk": "Инвестициялар",
+            "en": "Investment"
+          },
+          "value": {
+            "ru": "$6.5 млрд",
+            "kk": "$6.5 млрд",
+            "en": "$6.5 billion"
+          }
+        },
+        {
+          "label": {
+            "ru": "Рабочие места",
+            "kk": "Жұмыс орындары",
+            "en": "Jobs"
+          },
+          "value": {
+            "ru": "8 000",
+            "kk": "8 000",
+            "en": "8,000"
+          }
+        }
+      ],
+      "images": [],
+      "additional": {
+        "ru": "Совместный проект с международными партнёрами",
+        "kk": "Халықаралық серіктестермен бірлескен жоба",
+        "en": "Joint project with international partners"
+      }
+    },
+    {
+      "id": "proj-005",
+      "x": 3347.6,
+      "y": 717.6,
+      "region": "pavlodar",
+      "status": "completed",
+      "category": "industry",
+      "year": 2022,
+      "name": {
+        "ru": "Модернизация алюминиевого завода",
+        "kk": "Алюминий зауытын жаңғырту",
+        "en": "Aluminum Plant Modernization"
+      },
+      "location": {
+        "ru": "г. Павлодар",
+        "kk": "Павлодар қ.",
+        "en": "Pavlodar"
+      },
+      "description": {
+        "ru": "Полная модернизация производственных линий алюминиевого завода с внедрением энергосберегающих технологий и увеличением выпуска продукции на 40%.",
+        "kk": "Алюминий зауытының өндірістік желілерін энергия үнемдеу технологияларын енгізе отырып, толық жаңғырту және өнім шығаруды 40%-ға арттыру.",
+        "en": "Complete modernization of aluminum plant production lines with energy-saving technologies and 40% increase in output."
+      },
+      "indicators": [
+        {
+          "label": {
+            "ru": "Рост производства",
+            "kk": "Өндірістің өсуі",
+            "en": "Production Growth"
+          },
+          "value": {
+            "ru": "+40%",
+            "kk": "+40%",
+            "en": "+40%"
+          }
+        },
+        {
+          "label": {
+            "ru": "Энергоэффективность",
+            "kk": "Энергия тиімділігі",
+            "en": "Energy Efficiency"
+          },
+          "value": {
+            "ru": "+25%",
+            "kk": "+25%",
+            "en": "+25%"
+          }
+        },
+        {
+          "label": {
+            "ru": "Срок эксплуатации",
+            "kk": "Пайдалану мерзімі",
+            "en": "Service Life"
+          },
+          "value": {
+            "ru": "30 лет",
+            "kk": "30 жыл",
+            "en": "30 years"
+          }
+        }
+      ],
+      "images": [],
+      "additional": {
+        "ru": "Применены лучшие доступные технологии (НДТ)",
+        "kk": "Үздік қолжетімді технологиялар (ҚҚТ) қолданылды",
+        "en": "Best available techniques (BAT) applied"
+      }
+    },
+    {
+      "id": "proj-006",
+      "x": 1971.9,
+      "y": 1537.8,
+      "region": "shymkent",
+      "status": "in-progress",
+      "category": "ecology",
+      "year": 2025,
+      "name": {
+        "ru": "Рекультивация полигона ТБО",
+        "kk": "ҚҚТ полигонын рекультивациялау",
+        "en": "Landfill Recultivation"
+      },
+      "location": {
+        "ru": "г. Шымкент",
+        "kk": "Шымкент қ.",
+        "en": "Shymkent"
+      },
+      "description": {
+        "ru": "Экологическая реабилитация городского полигона твёрдых бытовых отходов с внедрением системы сбора и утилизации свалочного газа.",
+        "kk": "Қатты тұрмыстық қалдықтар полигонын экологиялық оңалту және полигон газын жинау мен кәдеге жарату жүйесін енгізу.",
+        "en": "Environmental rehabilitation of the municipal solid waste landfill with implementation of landfill gas collection and utilization system."
+      },
+      "indicators": [
+        {
+          "label": {
+            "ru": "Площадь",
+            "kk": "Ауданы",
+            "en": "Area"
+          },
+          "value": {
+            "ru": "45 га",
+            "kk": "45 га",
+            "en": "45 ha"
+          }
+        },
+        {
+          "label": {
+            "ru": "Снижение выбросов",
+            "kk": "Шығарындыларды азайту",
+            "en": "Emission Reduction"
+          },
+          "value": {
+            "ru": "70%",
+            "kk": "70%",
+            "en": "70%"
+          }
+        }
+      ],
+      "images": [],
+      "additional": {
+        "ru": "Проект соответствует целям устойчивого развития ООН",
+        "kk": "Жоба БҰҰ-ның тұрақты даму мақсаттарына сәйкес келеді",
+        "en": "The project aligns with UN Sustainable Development Goals"
+      }
+    },
+    {
+      "id": "proj-007",
+      "x": 2613.9,
+      "y": 1025.2,
+      "region": "karaganda",
+      "status": "planning",
+      "category": "social",
+      "year": 2026,
+      "name": {
+        "ru": "Многофункциональный спортивный комплекс",
+        "kk": "Көпфункционалды спорт кешені",
+        "en": "Multifunctional Sports Complex"
+      },
+      "location": {
+        "ru": "г. Караганда",
+        "kk": "Қарағанды қ.",
+        "en": "Karaganda"
+      },
+      "description": {
+        "ru": "Проект современного спортивного комплекса международного уровня с универсальным залом на 15 000 зрителей, бассейном и тренировочными базами.",
+        "kk": "15 000 көрерменге арналған әмбебап залы, бассейні және жаттығу базалары бар халықаралық деңгейдегі заманауи спорт кешенінің жобасы.",
+        "en": "A project for a modern international-level sports complex with a 15,000-seat universal hall, swimming pool, and training facilities."
+      },
+      "indicators": [
+        {
+          "label": {
+            "ru": "Вместимость",
+            "kk": "Сыйымдылығы",
+            "en": "Capacity"
+          },
+          "value": {
+            "ru": "15 000 мест",
+            "kk": "15 000 орын",
+            "en": "15,000 seats"
+          }
+        },
+        {
+          "label": {
+            "ru": "Общая площадь",
+            "kk": "Жалпы ауданы",
+            "en": "Total Area"
+          },
+          "value": {
+            "ru": "65 000 м²",
+            "kk": "65 000 м²",
+            "en": "65,000 m²"
+          }
+        },
+        {
+          "label": {
+            "ru": "Плановый срок",
+            "kk": "Жоспарлы мерзім",
+            "en": "Planned"
+          },
+          "value": {
+            "ru": "2026-2028",
+            "kk": "2026-2028",
+            "en": "2026-2028"
+          }
+        }
+      ],
+      "images": [],
+      "additional": {
+        "ru": "Проект будет претендовать на проведение международных соревнований",
+        "kk": "Жоба халықаралық жарыстарды өткізуге үміткер болады",
+        "en": "The project will bid to host international competitions"
+      }
+    },
+    {
+      "id": "proj-008",
+      "x": 1605.0,
+      "y": 1076.5,
+      "region": "aktobe",
+      "status": "completed",
+      "category": "transport",
+      "year": 2023,
+      "name": {
+        "ru": "Автомагистраль Западный Казахстан",
+        "kk": "Батыс Қазақстан автомобиль жолы",
+        "en": "West Kazakhstan Highway"
+      },
+      "location": {
+        "ru": "Актюбинская область, трасса Актобе — Атырау",
+        "kk": "Ақтөбе облысы, Ақтөбе — Атырау трассасы",
+        "en": "Aktobe region, Aktobe — Atyrau highway"
+      },
+      "description": {
+        "ru": "Строительство современной автомагистрали I категории протяжённостью 520 км с 6 мостами и 4 транспортными развязками.",
+        "kk": "Ұзындығы 520 км, 6 көпірі және 4 көлік айрығы бар I санатты заманауи автомобиль жолын салу.",
+        "en": "Construction of a modern first-category highway of 520 km with 6 bridges and 4 transport interchanges."
+      },
+      "indicators": [
+        {
+          "label": {
+            "ru": "Протяжённость",
+            "kk": "Ұзындығы",
+            "en": "Length"
+          },
+          "value": {
+            "ru": "520 км",
+            "kk": "520 км",
+            "en": "520 km"
+          }
+        },
+        {
+          "label": {
+            "ru": "Мостов",
+            "kk": "Көпірлер",
+            "en": "Bridges"
+          },
+          "value": {
+            "ru": "6",
+            "kk": "6",
+            "en": "6"
+          }
+        },
+        {
+          "label": {
+            "ru": "Время в пути",
+            "kk": "Жол жүру уақыты",
+            "en": "Travel Time"
+          },
+          "value": {
+            "ru": "снижено на 40%",
+            "kk": "40%-ға қысқарды",
+            "en": "reduced by 40%"
+          }
+        }
+      ],
+      "images": [],
+      "additional": {
+        "ru": "Является частью международного транспортного коридора",
+        "kk": "Халықаралық көлік дәлізінің бөлігі болып табылады",
+        "en": "Part of the international transport corridor"
+      }
+    },
+    {
+      "id": "proj-009",
+      "x": 1421.6,
+      "y": 786.0,
+      "region": "kostanay",
+      "status": "completed",
+      "category": "energy",
+      "year": 2024,
+      "name": {
+        "ru": "Солнечная электростанция «Сары-Арка»",
+        "kk": "«Сары-Арқа» күн электр станциясы",
+        "en": "Sary-Arka Solar Power Plant"
+      },
+      "location": {
+        "ru": "Костанайская область",
+        "kk": "Қостанай облысы",
+        "en": "Kostanay region"
+      },
+      "description": {
+        "ru": "Солнечная фотоэлектрическая станция мощностью 100 МВт на площади 250 га. Станция оснащена двусторонними солнечными панелями с системой слежения за солнцем.",
+        "kk": "Қуаты 100 МВт, ауданы 250 га күн фотоэлектрлік станциясы. Станция күн трекинг жүйесі бар екі жақты күн панельдерімен жабдықталған.",
+        "en": "100 MW solar photovoltaic plant on 250 hectares. Equipped with bifacial solar panels with solar tracking system."
+      },
+      "indicators": [
+        {
+          "label": {
+            "ru": "Мощность",
+            "kk": "Қуаты",
+            "en": "Capacity"
+          },
+          "value": {
+            "ru": "100 МВт",
+            "kk": "100 МВт",
+            "en": "100 MW"
+          }
+        },
+        {
+          "label": {
+            "ru": "Панели",
+            "kk": "Панельдер",
+            "en": "Panels"
+          },
+          "value": {
+            "ru": "200 000",
+            "kk": "200 000",
+            "en": "200,000"
+          }
+        },
+        {
+          "label": {
+            "ru": "Домохозяйства",
+            "kk": "Үй шаруашылықтары",
+            "en": "Households"
+          },
+          "value": {
+            "ru": "70 000",
+            "kk": "70 000",
+            "en": "70,000"
+          }
+        }
+      ],
+      "images": [],
+      "additional": {
+        "ru": "Крупнейший проект ВИЭ в Северном Казахстане",
+        "kk": "Солтүстік Қазақстандағы ең ірі ЖЭК жобасы",
+        "en": "Largest renewable energy project in Northern Kazakhstan"
+      }
+    },
+    {
+      "id": "proj-010",
+      "x": 2843.2,
+      "y": 1315.7,
+      "region": "kyzylorda",
+      "status": "in-progress",
+      "category": "digital",
+      "year": 2025,
+      "name": {
+        "ru": "Волоконно-оптическая линия «Шёлковый путь»",
+        "kk": "«Жібек жолы» талшықты-оптикалық желісі",
+        "en": "Silk Road Fiber Optic Line"
+      },
+      "location": {
+        "ru": "Кызылординская область",
+        "kk": "Қызылорда облысы",
+        "en": "Kyzylorda region"
+      },
+      "description": {
+        "ru": "Прокладка ВОЛС протяжённостью 850 км вдоль международного транспортного коридора с пропускной способностью 100 Гбит/с.",
+        "kk": "Халықаралық көлік дәлізі бойымен өткізу қабілеті 100 Гбит/с болатын ұзындығы 850 км талшықты-оптикалық байланыс желісін тарту.",
+        "en": "Installation of an 850 km fiber optic line along the international transport corridor with 100 Gbps capacity."
+      },
+      "indicators": [
+        {
+          "label": {
+            "ru": "Протяжённость",
+            "kk": "Ұзындығы",
+            "en": "Length"
+          },
+          "value": {
+            "ru": "850 км",
+            "kk": "850 км",
+            "en": "850 km"
+          }
+        },
+        {
+          "label": {
+            "ru": "Скорость",
+            "kk": "Жылдамдық",
+            "en": "Speed"
+          },
+          "value": {
+            "ru": "100 Гбит/с",
+            "kk": "100 Гбит/с",
+            "en": "100 Gbps"
+          }
+        },
+        {
+          "label": {
+            "ru": "Населённых пунктов",
+            "kk": "Елді мекендер",
+            "en": "Localities"
+          },
+          "value": {
+            "ru": "45",
+            "kk": "45",
+            "en": "45"
+          }
+        }
+      ],
+      "images": [],
+      "additional": {
+        "ru": "Обеспечит высокоскоростным интернетом отдалённые населённые пункты",
+        "kk": "Шалғайдағы елді мекендерді жылдамдығы жоғары интернетпен қамтамасыз етеді",
+        "en": "Will provide high-speed internet to remote settlements"
+      }
+    },
+    {
+      "id": "proj-011",
+      "x": 3576.9,
+      "y": 1213.2,
+      "region": "east-kz",
+      "status": "completed",
+      "category": "industry",
+      "year": 2023,
+      "name": {
+        "ru": "Горно-обогатительный комбинат «Алтай»",
+        "kk": "«Алтай» кен-байыту комбинаты",
+        "en": "Altai Mining and Processing Plant"
+      },
+      "location": {
+        "ru": "Восточно-Казахстанская область",
+        "kk": "Шығыс Қазақстан облысы",
+        "en": "East Kazakhstan region"
+      },
+      "description": {
+        "ru": "Строительство современного ГОКа по переработке полиметаллических руд мощностью 5 млн тонн руды в год с извлечением меди, цинка и свинца.",
+        "kk": "Құрамында мыс, мырыш және қорғасын бар жылына 5 млн тонна полиметалл кенін өңдейтін заманауи кен-байыту комбинатын салу.",
+        "en": "Construction of a modern processing plant for polymetallic ores with 5 million tons annual capacity, extracting copper, zinc, and lead."
+      },
+      "indicators": [
+        {
+          "label": {
+            "ru": "Мощность",
+            "kk": "Қуаты",
+            "en": "Capacity"
+          },
+          "value": {
+            "ru": "5 млн т/год",
+            "kk": "5 млн т/жыл",
+            "en": "5M t/year"
+          }
+        },
+        {
+          "label": {
+            "ru": "Инвестиции",
+            "kk": "Инвестициялар",
+            "en": "Investment"
+          },
+          "value": {
+            "ru": "$2.8 млрд",
+            "kk": "$2.8 млрд",
+            "en": "$2.8 billion"
+          }
+        },
+        {
+          "label": {
+            "ru": "Металлов",
+            "kk": "Металдар",
+            "en": "Metals"
+          },
+          "value": {
+            "ru": "3 вида",
+            "kk": "3 түрі",
+            "en": "3 types"
+          }
+        }
+      ],
+      "images": [],
+      "additional": {
+        "ru": "Оснащён системой замкнутого водоснабжения",
+        "kk": "Тұйық сумен жабдықтау жүйесімен жабдықталған",
+        "en": "Equipped with a closed-loop water supply system"
+      }
+    },
+    {
+      "id": "proj-012",
+      "x": 2109.4,
+      "y": 1623.2,
+      "region": "zhambyl",
+      "status": "planning",
+      "category": "energy",
+      "year": 2026,
+      "name": {
+        "ru": "Гидроаккумулирующая электростанция",
+        "kk": "Гидроаккумуляциялық электр станциясы",
+        "en": "Pumped Storage Hydroelectric Plant"
+      },
+      "location": {
+        "ru": "Жамбылская область, Кордайский район",
+        "kk": "Жамбыл облысы, Қордай ауданы",
+        "en": "Zhambyl region, Korday district"
+      },
+      "description": {
+        "ru": "Проект ГАЭС мощностью 300 МВт для регулирования пиковых нагрузок в энергосистеме южного региона. Включает два водохранилища и подземный машинный зал.",
+        "kk": "Оңтүстік аймақтың энергия жүйесіндегі шың жүктемелерін реттеу үшін қуаты 300 МВт ГАЭС жобасы. Екі су қоймасы мен жер асты машина залын қамтиды.",
+        "en": "300 MW pumped storage project for peak load regulation in the southern region's power system. Includes two reservoirs and an underground machine hall."
+      },
+      "indicators": [
+        {
+          "label": {
+            "ru": "Мощность",
+            "kk": "Қуаты",
+            "en": "Capacity"
+          },
+          "value": {
+            "ru": "300 МВт",
+            "kk": "300 МВт",
+            "en": "300 MW"
+          }
+        },
+        {
+          "label": {
+            "ru": "Выработка",
+            "kk": "Өндіріс",
+            "en": "Generation"
+          },
+          "value": {
+            "ru": "1 200 ГВт·ч/год",
+            "kk": "1 200 ГВт·с/жыл",
+            "en": "1,200 GWh/year"
+          }
+        }
+      ],
+      "images": [],
+      "additional": {
+        "ru": "Первый проект ГАЭС в истории Казахстана",
+        "kk": "Қазақстан тарихындағы алғашқы ГАЭС жобасы",
+        "en": "First pumped storage project in Kazakhstan's history"
+      }
+    }
+  ]
+}

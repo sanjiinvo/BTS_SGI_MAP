@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SVG Point Picker</title>
+  <style>
+    * { box-sizing: border-box; }
+    html, body { margin: 0; width: 100%; height: 100%; overflow: hidden; font-family: Arial, sans-serif; background: #111827; color: #fff; }
+    #toolbar { position: fixed; left: 12px; top: 12px; z-index: 10; display: flex; gap: 8px; align-items: center; flex-wrap: wrap; max-width: calc(100vw - 24px); padding: 10px; border-radius: 10px; background: rgba(17, 24, 39, .92); box-shadow: 0 10px 30px rgba(0,0,0,.35); }
+    button { border: 0; border-radius: 8px; padding: 8px 12px; background: #2563eb; color: white; cursor: pointer; font-weight: 700; }
+    button:hover { background: #1d4ed8; }
+    #result { padding: 8px 10px; border-radius: 8px; background: #0f172a; color: #93c5fd; font-family: Consolas, monospace; }
+    #stage { width: 100vw; height: 100vh; overflow: auto; padding: 90px 40px 40px; }
+    #mapBox { transform-origin: top left; display: inline-block; background: #fff; }
+    #mapBox svg { display: block; width: 4127.1641px; height: 2050.417px; }
+    .hint { color: #cbd5e1; font-size: 13px; }
+  </style>
+</head>
+<body>
+  <div id="toolbar">
+    <button id="zoomOut">−</button>
+    <button id="zoomIn">+</button>
+    <button id="resetZoom">100%</button>
+    <span class="hint">Кликни по карте — координаты скопируются в буфер</span>
+    <span id="result">x: —, y: —</span>
+  </div>
+  <div id="stage">
+    <div id="mapBox"></div>
+  </div>
+
+  <script>
+    const mapBox = document.getElementById('mapBox');
+    const result = document.getElementById('result');
+    let zoom = 1;
+
+    function applyZoom() {
+      mapBox.style.transform = `scale(${zoom})`;
+    }
+
+    document.getElementById('zoomOut').onclick = () => { zoom = Math.max(0.25, +(zoom - 0.25).toFixed(2)); applyZoom(); };
+    document.getElementById('zoomIn').onclick = () => { zoom = Math.min(5, +(zoom + 0.25).toFixed(2)); applyZoom(); };
+    document.getElementById('resetZoom').onclick = () => { zoom = 1; applyZoom(); };
+
+    fetch('assets/map.svg')
+      .then(r => r.text())
+      .then(svgText => {
+        mapBox.innerHTML = svgText;
+        const svg = mapBox.querySelector('svg');
+        svg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
+        svg.style.width = '4127.1641px';
+        svg.style.height = '2050.417px';
+
+        svg.addEventListener('click', async (e) => {
+          const pt = svg.createSVGPoint();
+          pt.x = e.clientX;
+          pt.y = e.clientY;
+          const svgPoint = pt.matrixTransform(svg.getScreenCTM().inverse());
+          const x = Math.round(svgPoint.x * 10) / 10;
+          const y = Math.round(svgPoint.y * 10) / 10;
+          const text = `"x": ${x}, "y": ${y}`;
+          result.textContent = text;
+          try { await navigator.clipboard.writeText(text); } catch (_) {}
+          console.log(text);
+        });
+      })
+      .catch(err => {
+        result.textContent = 'Ошибка загрузки assets/map.svg. Запусти через локальный сервер.';
+        console.error(err);
+      });
+  </script>
+</body>
+</html>
