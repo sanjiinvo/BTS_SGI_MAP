@@ -2,16 +2,14 @@ const DataLoader = (() => {
   let data = null;
   let regions = [];
   let statuses = [];
-  let categories = [];
   let projects = [];
 
   async function init() {
     try {
-      const res = await fetch('data/projects.json');
+      const res = await fetch(`data/projects.json?v=${Date.now()}`, { cache: 'no-store' });
       data = await res.json();
       regions = data.regions || [];
       statuses = data.statuses || [];
-      categories = data.categories || [];
       projects = data.projects || [];
       return true;
     } catch (e) {
@@ -22,7 +20,6 @@ const DataLoader = (() => {
 
   function getRegions() { return regions; }
   function getStatuses() { return statuses; }
-  function getCategories() { return categories; }
   function getProjects() { return projects; }
 
   function getProjectById(id) {
@@ -59,7 +56,6 @@ const DataLoader = (() => {
     return JSON.stringify({
       regions,
       statuses,
-      categories,
       projects
     }, null, 2);
   }
@@ -77,10 +73,9 @@ const DataLoader = (() => {
         if (filters.year === '2026' && p.year !== 2026) return false;
       }
       if (filters.status && filters.status !== 'all' && p.status !== filters.status) return false;
-      if (filters.category && filters.category !== 'all' && p.category !== filters.category) return false;
       return true;
     });
   }
 
-  return { init, getRegions, getStatuses, getCategories, getProjects, getProjectById, getFilteredProjects, addProject, updateProject, removeProject, getData, exportJson };
+  return { init, getRegions, getStatuses, getProjects, getProjectById, getFilteredProjects, addProject, updateProject, removeProject, getData, exportJson };
 })();

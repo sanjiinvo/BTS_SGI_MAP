@@ -22,8 +22,12 @@ const DemoMode = (() => {
       if (isActive) stop();
       resetTimer();
     };
+    // Capture phase: this must run BEFORE the click's own target handler
+    // (e.g. opening the project list or a marker), otherwise stop() below
+    // would call ProjectCard.close() right after that handler just opened it,
+    // making the very first click after idle appear to do nothing.
     events.forEach(evt => {
-      document.addEventListener(evt, resetHandler, { passive: true });
+      document.addEventListener(evt, resetHandler, { passive: true, capture: true });
     });
 
     resetTimer();
@@ -87,6 +91,7 @@ const DemoMode = (() => {
   }
 
   function stop() {
+    const wasActive = isActive;
     isActive = false;
     isRunning = false;
     if (intervalId) {
@@ -102,7 +107,11 @@ const DemoMode = (() => {
       demoIndicator.classList.add('hidden');
       demoIndicator.classList.remove('demo-visible');
     }
-    ProjectCard.close();
+    // Only close the card if demo mode itself put it on screen. stop() is also
+    // called defensively by unrelated user actions (opening the project list,
+    // clicking a marker) that are about to show their own card right after -
+    // unconditionally closing here would undo that in the same tick.
+    if (wasActive) ProjectCard.close();
     resetTimer();
   }
 

@@ -1,6 +1,6 @@
 const FilterManager = (() => {
   let isOpen = false;
-  let currentFilters = { region: 'all', year: 'all', status: 'all', category: 'all' };
+  let currentFilters = { region: 'all', year: 'all', status: 'all' };
   let onFilterCallback = null;
 
   const elements = {
@@ -11,11 +11,9 @@ const FilterManager = (() => {
     region: null,
     year: null,
     status: null,
-    category: null,
     regionLabel: null,
     yearLabel: null,
     statusLabel: null,
-    categoryLabel: null,
     title: null,
     countLabel: null,
     countValue: null,
@@ -31,11 +29,9 @@ const FilterManager = (() => {
     elements.region = document.getElementById('filter-region');
     elements.year = document.getElementById('filter-year');
     elements.status = document.getElementById('filter-status');
-    elements.category = document.getElementById('filter-category');
     elements.regionLabel = document.getElementById('filter-label-region');
     elements.yearLabel = document.getElementById('filter-label-year');
     elements.statusLabel = document.getElementById('filter-label-status');
-    elements.categoryLabel = document.getElementById('filter-label-category');
     elements.title = document.getElementById('filter-title');
     elements.countLabel = document.getElementById('count-label');
     elements.countValue = document.getElementById('count-value');
@@ -82,22 +78,12 @@ const FilterManager = (() => {
       opt.textContent = I18n.tr(s);
       elements.status.appendChild(opt);
     });
-
-    // Categories
-    const cats = DataLoader.getCategories();
-    cats.forEach(c => {
-      const opt = document.createElement('option');
-      opt.value = c.id;
-      opt.textContent = I18n.tr(c);
-      elements.category.appendChild(opt);
-    });
   }
 
   function updateLabels() {
     elements.regionLabel.textContent = I18n.t('filter.region');
     elements.yearLabel.textContent = I18n.t('filter.year');
     elements.statusLabel.textContent = I18n.t('filter.status');
-    elements.categoryLabel.textContent = I18n.t('filter.category');
     elements.title.textContent = I18n.t('app.toggleFilters');
     elements.clear.textContent = I18n.t('app.clear');
     const allText = I18n.t('filter.all');
@@ -131,18 +117,6 @@ const FilterManager = (() => {
       statusSelect.appendChild(opt);
     });
     statusSelect.value = currentStatus;
-
-    // Categories
-    const catSelect = elements.category;
-    const currentCat = catSelect.value;
-    while (catSelect.options.length > 1) catSelect.remove(1);
-    DataLoader.getCategories().forEach(c => {
-      const opt = document.createElement('option');
-      opt.value = c.id;
-      opt.textContent = I18n.tr(c);
-      catSelect.appendChild(opt);
-    });
-    catSelect.value = currentCat;
   }
 
   function updateCount(count) {
@@ -170,7 +144,6 @@ const FilterManager = (() => {
       region: elements.region.value,
       year: elements.year.value,
       status: elements.status.value,
-      category: elements.category.value,
     };
     if (onFilterCallback) onFilterCallback(currentFilters);
     close();
@@ -180,7 +153,6 @@ const FilterManager = (() => {
     elements.region.value = 'all';
     elements.year.value = 'all';
     elements.status.value = 'all';
-    elements.category.value = 'all';
     applyFilters();
   }
 

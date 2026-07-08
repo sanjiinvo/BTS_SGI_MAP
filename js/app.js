@@ -61,7 +61,7 @@
     }
 
     // Step 3: Load SVG map
-    const mapRes = await fetch('assets/map.svg');
+    const mapRes = await fetch(`assets/map.svg?v=${Date.now()}`);
     const mapSvg = await mapRes.text();
     const mapContainer = document.getElementById('map-svg-container');
     mapContainer.innerHTML = mapSvg;
@@ -102,7 +102,10 @@
 
     // Step 5: Initialize modules
     Markers.init(mapContainer, onMarkerClick);
-    ProjectCard.init(onCardClose);
+    ProjectCard.init(onCardClose, {
+      onProjectSelect: focusProject,
+      onShowList: showAllProjectsFromCard
+    });
     FilterManager.init(onFilterChange);
     if (window.MapEditor) {
       MapEditor.init(svgEl, document.getElementById('map-container'), {
@@ -140,6 +143,9 @@
 
     // Step 10: Fullscreen button
     document.getElementById('fullscreen-btn').addEventListener('click', toggleFullscreen);
+    document.getElementById('project-count').addEventListener('click', () => {
+      ProjectCard.showProjectList();
+    });
 
     // Step 11: Handle resize for responsive behavior
     let resizeTimer;
@@ -194,8 +200,19 @@
 
   // ===== Callbacks =====
   function onMarkerClick(projectId) {
+    if (window.MapEditor?.isEnabled?.() && window.MapEditor?.editProject?.(projectId)) {
+      return;
+    }
+
+    const project = DataLoader.getProjectById(projectId);
+    if (project?.type === 'label') {
+      Markers.highlightMarker(projectId);
+      return;
+    }
+
     DemoMode.stop();
     Markers.highlightMarker(projectId);
+    zoomToProject(projectId);
     ProjectCard.open(projectId);
   }
 
@@ -220,6 +237,25 @@
 
   function onDemoShowProject(projectId) {
     ProjectCard.open(projectId);
+  }
+
+  function focusProject(projectId) {
+    DemoMode.stop();
+    Markers.showAll();
+    Markers.highlightMarker(projectId);
+    zoomToProject(projectId);
+  }
+
+  function zoomToProject(projectId) {
+    const point = Markers.getMarkerSvgPoint(projectId);
+    if (point) SvgViewBoxZoom.zoomToPoint(point, 5.5);
+  }
+
+  function showAllProjectsFromCard() {
+    DemoMode.stop();
+    Markers.highlightMarker(null);
+    Markers.showAll();
+    SvgViewBoxZoom.reset();
   }
 
   function applyInitialFilters() {

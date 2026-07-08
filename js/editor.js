@@ -7,6 +7,7 @@ const MapEditor = (() => {
   let selectedWidth = 7;
   let pendingPoint = null;
   let linePoints = [];
+  let editingProjectId = null;
   let tempLayer = null;
   let onProjectsChangedCallback = null;
 
@@ -64,6 +65,7 @@ const MapEditor = (() => {
 
         <div class="editor-mode-switch">
           <button id="editor-mode-point" class="editor-mode-btn active" type="button">Точка</button>
+          <button id="editor-mode-label" class="editor-mode-btn" type="button">Метка</button>
           <button id="editor-mode-line" class="editor-mode-btn" type="button">Линия</button>
         </div>
 
@@ -85,14 +87,85 @@ const MapEditor = (() => {
         </label>
 
         <label class="editor-field">
-          <span>Название объекта</span>
-          <input id="editor-title" type="text" placeholder="Например: Участок Астана — Караганда">
+          <span>Слой (z-index) — чем больше, тем выше объект отрисуется поверх других</span>
+          <div class="editor-zindex-row">
+            <button id="editor-zindex-down" type="button" class="editor-icon-btn" title="На задний план">−</button>
+            <input id="editor-zindex" type="number" step="1" value="0">
+            <button id="editor-zindex-up" type="button" class="editor-icon-btn" title="На передний план">+</button>
+          </div>
         </label>
 
+        <div class="editor-grid editor-line-endpoint-fields">
+          <label class="editor-field">
+            <span>Начальная точка RU</span>
+            <input id="editor-line-start-name" type="text" placeholder="Например: Астана">
+          </label>
+          <label class="editor-field">
+            <span>Конечная точка RU</span>
+            <input id="editor-line-end-name" type="text" placeholder="Например: Караганда">
+          </label>
+          <label class="editor-field">
+            <span>Начальная точка EN</span>
+            <input id="editor-line-start-name-en" type="text" placeholder="Astana">
+          </label>
+          <label class="editor-field">
+            <span>Конечная точка EN</span>
+            <input id="editor-line-end-name-en" type="text" placeholder="Karaganda">
+          </label>
+          <label class="editor-field">
+            <span>Начальная точка KZ</span>
+            <input id="editor-line-start-name-kk" type="text" placeholder="Астана">
+          </label>
+          <label class="editor-field">
+            <span>Конечная точка KZ</span>
+            <input id="editor-line-end-name-kk" type="text" placeholder="Қарағанды">
+          </label>
+        </div>
+
         <label class="editor-field">
-          <span>Локация / участок</span>
-          <input id="editor-location" type="text" placeholder="Например: Астана — Караганда">
+          <span>Проект RU</span>
+          <input id="editor-title" type="text" placeholder="Например: Модернизация участка Астана — Караганда">
         </label>
+        <div class="editor-grid">
+          <label class="editor-field">
+            <span>Проект EN</span>
+            <input id="editor-title-en" type="text" placeholder="Astana — Karaganda section upgrade">
+          </label>
+          <label class="editor-field">
+            <span>Проект KZ</span>
+            <input id="editor-title-kk" type="text" placeholder="Астана — Қарағанды учаскесін жаңғырту">
+          </label>
+        </div>
+
+        <label class="editor-field">
+          <span>Отрезок RU (два названия через тире для линии, одно — для точки)</span>
+          <input id="editor-segment" type="text" placeholder="Например: Астана — Караганда, либо просто Алматы">
+        </label>
+        <div class="editor-grid">
+          <label class="editor-field">
+            <span>Отрезок EN</span>
+            <input id="editor-segment-en" type="text" placeholder="Astana — Karaganda">
+          </label>
+          <label class="editor-field">
+            <span>Отрезок KZ</span>
+            <input id="editor-segment-kk" type="text" placeholder="Астана — Қарағанды">
+          </label>
+        </div>
+
+        <label class="editor-field">
+          <span>Вид работ RU</span>
+          <input id="editor-work-type" type="text" placeholder="Например: Строительно-монтажные работы">
+        </label>
+        <div class="editor-grid">
+          <label class="editor-field">
+            <span>Вид работ EN</span>
+            <input id="editor-work-type-en" type="text" placeholder="Construction and installation works">
+          </label>
+          <label class="editor-field">
+            <span>Вид работ KZ</span>
+            <input id="editor-work-type-kk" type="text" placeholder="Құрылыс-монтаж жұмыстары">
+          </label>
+        </div>
 
         <div class="editor-grid">
           <label class="editor-field">
@@ -100,26 +173,54 @@ const MapEditor = (() => {
             <select id="editor-status"></select>
           </label>
           <label class="editor-field">
-            <span>Категория</span>
-            <select id="editor-category"></select>
+            <span>Сроки реализации RU</span>
+            <input id="editor-period" type="text" placeholder="Например: 2023 или 2023-2025">
+          </label>
+        </div>
+        <div class="editor-grid">
+          <label class="editor-field">
+            <span>Сроки реализации EN</span>
+            <input id="editor-period-en" type="text" placeholder="2023 or 2023-2025">
+          </label>
+          <label class="editor-field">
+            <span>Сроки реализации KZ</span>
+            <input id="editor-period-kk" type="text" placeholder="2023 немесе 2023-2025">
           </label>
         </div>
 
+        <div class="editor-grid" style="display:none;">
+          <select id="editor-region"></select>
+        </div>
+
+        <label class="editor-field">
+          <span>Краткое описание выполненных работ RU</span>
+          <textarea id="editor-description" rows="3" placeholder="Кратко опиши, что было выполнено"></textarea>
+        </label>
         <div class="editor-grid">
           <label class="editor-field">
-            <span>Регион</span>
-            <select id="editor-region"></select>
+            <span>Описание EN</span>
+            <textarea id="editor-description-en" rows="3" placeholder="Briefly describe completed works"></textarea>
           </label>
           <label class="editor-field">
-            <span>Год</span>
-            <input id="editor-year" type="number" min="2000" max="2100" value="2026">
+            <span>Описание KZ</span>
+            <textarea id="editor-description-kk" rows="3" placeholder="Орындалған жұмыстарды қысқаша сипатта"></textarea>
           </label>
         </div>
 
         <label class="editor-field">
-          <span>Краткое описание</span>
-          <textarea id="editor-description" rows="3" placeholder="Краткая информация для правой плашки"></textarea>
+          <span>Объем работ RU</span>
+          <input id="editor-volume" type="text" placeholder="Например: 12 км кабеля, 4 станции, 36 шкафов">
         </label>
+        <div class="editor-grid">
+          <label class="editor-field">
+            <span>Объем работ EN</span>
+            <input id="editor-volume-en" type="text" placeholder="12 km of cable, 4 stations, 36 cabinets">
+          </label>
+          <label class="editor-field">
+            <span>Объем работ KZ</span>
+            <input id="editor-volume-kk" type="text" placeholder="12 км кабель, 4 станция, 36 шкаф">
+          </label>
+        </div>
 
         <div class="editor-line-tools">
           <div id="editor-line-count" class="editor-line-count">Точек линии: 0</div>
@@ -133,6 +234,7 @@ const MapEditor = (() => {
           <button id="editor-save" class="editor-primary" disabled>Сохранить точку</button>
           <button id="editor-cancel" class="editor-secondary" disabled>Отмена</button>
         </div>
+        <button id="editor-delete" class="editor-danger hidden" type="button">Удалить объект</button>
 
         <div class="editor-divider"></div>
 
@@ -154,23 +256,48 @@ const MapEditor = (() => {
     elements.badge = panel.querySelector('#editor-mode-badge');
     elements.coords = panel.querySelector('#editor-coords');
     elements.modePoint = panel.querySelector('#editor-mode-point');
+    elements.modeLabel = panel.querySelector('#editor-mode-label');
     elements.modeLine = panel.querySelector('#editor-mode-line');
     elements.color = panel.querySelector('#editor-color');
+    elements.zIndex = panel.querySelector('#editor-zindex');
+    elements.zIndexUp = panel.querySelector('#editor-zindex-up');
+    elements.zIndexDown = panel.querySelector('#editor-zindex-down');
     elements.lineWidth = panel.querySelector('#editor-line-width');
     elements.lineWidthField = panel.querySelector('.editor-line-width-field');
+    elements.lineEndpointFields = panel.querySelector('.editor-line-endpoint-fields');
+    elements.lineStartName = panel.querySelector('#editor-line-start-name');
+    elements.lineEndName = panel.querySelector('#editor-line-end-name');
+    elements.lineStartNameEn = panel.querySelector('#editor-line-start-name-en');
+    elements.lineEndNameEn = panel.querySelector('#editor-line-end-name-en');
+    elements.lineStartNameKk = panel.querySelector('#editor-line-start-name-kk');
+    elements.lineEndNameKk = panel.querySelector('#editor-line-end-name-kk');
     elements.title = panel.querySelector('#editor-title');
-    elements.location = panel.querySelector('#editor-location');
+    elements.titleEn = panel.querySelector('#editor-title-en');
+    elements.titleKk = panel.querySelector('#editor-title-kk');
+    elements.segment = panel.querySelector('#editor-segment');
+    elements.segmentEn = panel.querySelector('#editor-segment-en');
+    elements.segmentKk = panel.querySelector('#editor-segment-kk');
+    elements.workType = panel.querySelector('#editor-work-type');
+    elements.workTypeEn = panel.querySelector('#editor-work-type-en');
+    elements.workTypeKk = panel.querySelector('#editor-work-type-kk');
     elements.region = panel.querySelector('#editor-region');
     elements.status = panel.querySelector('#editor-status');
-    elements.category = panel.querySelector('#editor-category');
-    elements.year = panel.querySelector('#editor-year');
+    elements.period = panel.querySelector('#editor-period');
+    elements.periodEn = panel.querySelector('#editor-period-en');
+    elements.periodKk = panel.querySelector('#editor-period-kk');
     elements.description = panel.querySelector('#editor-description');
+    elements.descriptionEn = panel.querySelector('#editor-description-en');
+    elements.descriptionKk = panel.querySelector('#editor-description-kk');
+    elements.volume = panel.querySelector('#editor-volume');
+    elements.volumeEn = panel.querySelector('#editor-volume-en');
+    elements.volumeKk = panel.querySelector('#editor-volume-kk');
     elements.lineTools = panel.querySelector('.editor-line-tools');
     elements.lineCount = panel.querySelector('#editor-line-count');
     elements.lineUndo = panel.querySelector('#editor-line-undo');
     elements.lineClear = panel.querySelector('#editor-line-clear');
     elements.save = panel.querySelector('#editor-save');
     elements.cancel = panel.querySelector('#editor-cancel');
+    elements.delete = panel.querySelector('#editor-delete');
     elements.export = panel.querySelector('#editor-export');
     elements.copy = panel.querySelector('#editor-copy');
     elements.hint = panel.querySelector('#editor-hint');
@@ -182,7 +309,6 @@ const MapEditor = (() => {
   function populateSelects() {
     fillSelect(elements.region, DataLoader.getRegions(), 'region');
     fillSelect(elements.status, DataLoader.getStatuses(), 'status');
-    fillSelect(elements.category, DataLoader.getCategories(), 'category');
   }
 
   function fillSelect(select, items, type) {
@@ -195,14 +321,33 @@ const MapEditor = (() => {
     });
 
     if (type === 'status') select.value = 'completed';
-    if (type === 'category') select.value = items[0]?.id || '';
     if (type === 'region') select.value = items[0]?.id || '';
   }
 
+  function localizedValue(ruEl, enEl, kkEl, fallback = '') {
+    const ru = ruEl?.value.trim() || '';
+    const en = enEl?.value.trim() || '';
+    const kk = kkEl?.value.trim() || '';
+    const hasAny = !!(ru || en || kk);
+    return { ru: hasAny ? ru : fallback, en, kk };
+  }
+
+  function setLocalizedValue(ruEl, enEl, kkEl, value) {
+    const obj = typeof value === 'object' && value ? value : { ru: value || '' };
+    if (ruEl) ruEl.value = obj.ru || '';
+    if (enEl) enEl.value = obj.en || '';
+    if (kkEl) kkEl.value = obj.kk || '';
+  }
+
+  function setFieldVisible(input, visible) {
+    input?.closest?.('.editor-field')?.style.setProperty('display', visible ? '' : 'none');
+  }
+
   function bindEvents() {
-    elements.toggle.addEventListener('click', toggle);
+    elements.toggle.addEventListener('click', onToggleClick);
     elements.close.addEventListener('click', closePanel);
     elements.modePoint.addEventListener('click', () => setMode('point'));
+    elements.modeLabel.addEventListener('click', () => setMode('label'));
     elements.modeLine.addEventListener('click', () => setMode('line'));
 
     elements.color.addEventListener('input', (e) => {
@@ -215,6 +360,13 @@ const MapEditor = (() => {
       renderDraft();
     });
 
+    elements.zIndexUp.addEventListener('click', () => {
+      elements.zIndex.value = (Number(elements.zIndex.value) || 0) + 1;
+    });
+    elements.zIndexDown.addEventListener('click', () => {
+      elements.zIndex.value = (Number(elements.zIndex.value) || 0) - 1;
+    });
+
     document.querySelectorAll('.editor-color-preset').forEach(btn => {
       btn.addEventListener('click', () => {
         selectedColor = btn.dataset.color;
@@ -225,6 +377,7 @@ const MapEditor = (() => {
 
     elements.save.addEventListener('click', savePendingObject);
     elements.cancel.addEventListener('click', clearDraft);
+    elements.delete.addEventListener('click', deleteEditingProject);
     elements.lineUndo.addEventListener('click', undoLinePoint);
     elements.lineClear.addEventListener('click', clearLinePoints);
     elements.export.addEventListener('click', downloadJson);
@@ -232,6 +385,20 @@ const MapEditor = (() => {
   }
 
   function toggle() { enabled ? disable() : enable(); }
+
+  // If a project card is currently open (e.g. the user just picked it from
+  // the "Показано проектов" list), jump straight into editing that exact
+  // object instead of a blank editor - this is the only reliable way to
+  // select a project whose line overlaps another one on the map.
+  function onToggleClick() {
+    if (enabled) {
+      disable();
+      return;
+    }
+    const currentId = (typeof ProjectCard !== 'undefined') ? ProjectCard.getCurrentProjectId() : null;
+    if (currentId) editProject(currentId);
+    else enable();
+  }
 
   function enable() {
     enabled = true;
@@ -270,13 +437,39 @@ const MapEditor = (() => {
 
   function updateModeUI() {
     elements.modePoint.classList.toggle('active', mode === 'point');
+    elements.modeLabel.classList.toggle('active', mode === 'label');
     elements.modeLine.classList.toggle('active', mode === 'line');
     elements.lineTools.style.display = mode === 'line' ? '' : 'none';
     elements.lineWidthField.style.display = mode === 'line' ? '' : 'none';
-    elements.save.textContent = mode === 'line' ? 'Сохранить линию' : 'Сохранить точку';
+    elements.lineEndpointFields.style.display = mode === 'line' ? '' : 'none';
+    [
+      elements.workType,
+      elements.workTypeEn,
+      elements.workTypeKk,
+      elements.period,
+      elements.periodEn,
+      elements.periodKk,
+      elements.description,
+      elements.descriptionEn,
+      elements.descriptionKk,
+      elements.volume,
+      elements.volumeEn,
+      elements.volumeKk
+    ].forEach(input => setFieldVisible(input, mode !== 'label'));
+    elements.status.closest('.editor-field').style.display = mode === 'label' ? 'none' : '';
+    elements.title.closest('.editor-field').querySelector('span').textContent = mode === 'label' ? 'Название метки RU' : 'Проект RU';
+    elements.save.textContent = editingProjectId
+      ? 'Сохранить изменения'
+      : mode === 'line'
+        ? 'Сохранить линию'
+        : mode === 'label'
+          ? 'Сохранить метку'
+          : 'Сохранить точку';
     elements.hint.textContent = mode === 'line'
-      ? 'Линия: нажимай вдоль железной дороги. Каждый tap добавляет узел. Для красивого поворота ставь больше узлов.'
-      : 'Точка: нажми по пустому месту карты, заполни данные и сохрани объект.';
+      ? 'Линия: первая и последняя точки станут городскими узлами. Укажи названия начала и конца.'
+      : mode === 'label'
+        ? 'Метка: нажми по карте и подпиши город или место. В обычном режиме карточка не открывается.'
+        : 'Точка: нажми по пустому месту карты, заполни данные и сохрани объект.';
     refreshActions();
   }
 
@@ -331,7 +524,7 @@ const MapEditor = (() => {
       elements.title.value = type === 'line' ? `Участок ${n}` : `Проект ${n}`;
     }
     if (!elements.description.value.trim()) elements.description.value = '';
-    elements.year.value = new Date().getFullYear();
+    if (!elements.period.value.trim()) elements.period.value = String(new Date().getFullYear());
   }
 
   function renderDraft() {
@@ -341,6 +534,8 @@ const MapEditor = (() => {
 
     if (mode === 'line') {
       renderTempLine();
+    } else if (mode === 'label' && pendingPoint) {
+      renderTempLabel(pendingPoint.x, pendingPoint.y);
     } else if (pendingPoint) {
       renderTempPoint(pendingPoint.x, pendingPoint.y);
     }
@@ -367,6 +562,34 @@ const MapEditor = (() => {
     g.appendChild(ring);
     g.appendChild(circle);
     g.appendChild(dot);
+    tempLayer.appendChild(g);
+  }
+
+  function renderTempLabel(x, y) {
+    const g = document.createElementNS(SVG_NS, 'g');
+    g.setAttribute('class', 'map-label-point editor-temp-marker label-active');
+    g.setAttribute('transform', `translate(${x}, ${y})`);
+
+    const ring = document.createElementNS(SVG_NS, 'circle');
+    ring.setAttribute('class', 'map-label-ring');
+    ring.setAttribute('r', '9');
+    ring.setAttribute('fill', '#ffffff');
+    ring.setAttribute('stroke', selectedColor);
+
+    const dot = document.createElementNS(SVG_NS, 'circle');
+    dot.setAttribute('class', 'map-label-dot');
+    dot.setAttribute('r', '4');
+    dot.setAttribute('fill', selectedColor);
+
+    const label = document.createElementNS(SVG_NS, 'text');
+    label.setAttribute('class', 'map-label-text');
+    label.setAttribute('x', '14');
+    label.setAttribute('y', '-10');
+    label.textContent = I18n.tr(localizedValue(elements.title, elements.titleEn, elements.titleKk, 'Метка'));
+
+    g.appendChild(ring);
+    g.appendChild(dot);
+    g.appendChild(label);
     tempLayer.appendChild(g);
   }
 
@@ -417,9 +640,21 @@ const MapEditor = (() => {
   function clearDraft() {
     pendingPoint = null;
     linePoints = [];
+    editingProjectId = null;
     clearTempLayer();
     elements.coords.textContent = 'x: —, y: —';
     elements.lineCount.textContent = 'Точек линии: 0';
+    elements.lineStartName.value = '';
+    elements.lineEndName.value = '';
+    elements.lineStartNameEn.value = '';
+    elements.lineEndNameEn.value = '';
+    elements.lineStartNameKk.value = '';
+    elements.lineEndNameKk.value = '';
+    elements.zIndex.value = 0;
+    elements.segment.value = '';
+    elements.segmentEn.value = '';
+    elements.segmentKk.value = '';
+    elements.delete.classList.add('hidden');
     refreshActions();
   }
 
@@ -439,9 +674,11 @@ const MapEditor = (() => {
 
   function refreshActions() {
     const canSavePoint = mode === 'point' && !!pendingPoint;
+    const canSaveLabel = mode === 'label' && !!pendingPoint;
     const canSaveLine = mode === 'line' && linePoints.length >= 2;
     const canCancel = !!pendingPoint || linePoints.length > 0;
-    elements.save.disabled = !(canSavePoint || canSaveLine);
+    const canSaveEdit = !!editingProjectId;
+    elements.save.disabled = !(canSavePoint || canSaveLabel || canSaveLine || canSaveEdit);
     elements.cancel.disabled = !canCancel;
     elements.lineUndo.disabled = linePoints.length === 0;
     elements.lineClear.disabled = linePoints.length === 0;
@@ -449,7 +686,9 @@ const MapEditor = (() => {
   }
 
   function savePendingObject() {
-    if (mode === 'line') savePendingLine();
+    if (editingProjectId) saveEditingProject();
+    else if (mode === 'line') savePendingLine();
+    else if (mode === 'label') savePendingLabel();
     else savePendingPoint();
   }
 
@@ -469,38 +708,189 @@ const MapEditor = (() => {
     project.points = linePoints.map(p => [Number(p[0]), Number(p[1])]);
     project.width = selectedWidth;
     project.hitWidth = Math.max(34, selectedWidth + 30);
+    project.endpoints = buildLineEndpoints();
 
     DataLoader.addProject(project);
     afterSave(project);
   }
 
+  function savePendingLabel() {
+    if (!pendingPoint) return;
+    const project = buildLabelProject();
+    project.x = pendingPoint.x;
+    project.y = pendingPoint.y;
+
+    DataLoader.addProject(project);
+    afterSave(project);
+  }
+
+  // If the user left the "Отрезок" field blank, derive a sensible default:
+  // for a line, the start/end names typed in just above; for a point/label,
+  // its own title (a single name is exactly "точка на карте" per the spec).
+  function computeDefaultSegment(type, title) {
+    if (type === 'line') {
+      const start = elements.lineStartName.value.trim();
+      const end = elements.lineEndName.value.trim();
+      if (start && end) return { ru: `${start} — ${end}`, en: '', kk: '' };
+    }
+    return title;
+  }
+
+  function resolveSegment(type, title) {
+    const segmentInput = localizedValue(elements.segment, elements.segmentEn, elements.segmentKk, '');
+    return I18n.tr(segmentInput) ? segmentInput : computeDefaultSegment(type, title);
+  }
+
   function buildBaseProject(type) {
-    const title = elements.title.value.trim() || (type === 'line' ? `Участок ${DataLoader.getProjects().length + 1}` : `Проект ${DataLoader.getProjects().length + 1}`);
-    const location = elements.location.value.trim() || (type === 'line' ? 'Участок не указан' : 'Локация не указана');
-    const description = elements.description.value.trim() || 'Описание будет добавлено позже.';
+    const fallbackTitle = type === 'line' ? `Участок ${DataLoader.getProjects().length + 1}` : `Проект ${DataLoader.getProjects().length + 1}`;
+    const title = localizedValue(elements.title, elements.titleEn, elements.titleKk, fallbackTitle);
+    const workType = localizedValue(elements.workType, elements.workTypeEn, elements.workTypeKk, 'Вид работ не указан');
+    const period = localizedValue(elements.period, elements.periodEn, elements.periodKk, String(new Date().getFullYear()));
+    const volume = localizedValue(elements.volume, elements.volumeEn, elements.volumeKk, '');
+    const description = localizedValue(elements.description, elements.descriptionEn, elements.descriptionKk, 'Описание выполненных работ будет добавлено позже.');
 
     return {
-      id: makeId(title),
+      id: makeId(I18n.tr(title)),
       type,
       color: selectedColor,
+      zIndex: Number(elements.zIndex.value) || 0,
       region: elements.region.value,
       status: elements.status.value,
-      category: elements.category.value,
-      year: Number(elements.year.value) || new Date().getFullYear(),
-      name: { ru: title, kk: title, en: title },
-      location: { ru: location, kk: location, en: location },
-      description: { ru: description, kk: description, en: description },
+      year: extractYear(I18n.tr(period)),
+      name: title,
+      segment: resolveSegment(type, title),
+      workType,
+      location: workType,
+      period,
+      volume,
+      description,
       indicators: [],
       images: [],
-      additional: { ru: type === 'line' ? 'Интерактивный железнодорожный участок.' : '', kk: type === 'line' ? 'Интерактивті теміржол учаскесі.' : '', en: type === 'line' ? 'Interactive railway section.' : '' }
+      additional: null
     };
+  }
+
+  function buildLabelProject() {
+    const title = localizedValue(elements.title, elements.titleEn, elements.titleKk, `Метка ${DataLoader.getProjects().length + 1}`);
+    return {
+      id: makeId(I18n.tr(title)),
+      type: 'label',
+      color: selectedColor,
+      zIndex: Number(elements.zIndex.value) || 0,
+      region: elements.region.value,
+      status: 'completed',
+      year: new Date().getFullYear(),
+      name: title,
+      segment: resolveSegment('label', title),
+      location: title,
+      description: { ru: '', kk: '', en: '' },
+      indicators: [],
+      images: [],
+      additional: null
+    };
+  }
+
+  function buildLineEndpoints() {
+    return {
+      start: {
+        name: localizedValue(elements.lineStartName, elements.lineStartNameEn, elements.lineStartNameKk, '')
+      },
+      end: {
+        name: localizedValue(elements.lineEndName, elements.lineEndNameEn, elements.lineEndNameKk, '')
+      }
+    };
+  }
+
+  function editProject(projectId) {
+    const project = DataLoader.getProjectById(projectId);
+    if (!project) return false;
+
+    enabled = true;
+    elements.panel.classList.remove('hidden');
+    elements.toggle.classList.add('active');
+    elements.badge.textContent = 'Редактирование';
+    elements.badge.classList.remove('off');
+    elements.badge.classList.add('on');
+    mapContainer.classList.add('editor-active');
+
+    editingProjectId = projectId;
+    mode = project.type === 'line' ? 'line' : project.type === 'label' ? 'label' : 'point';
+    selectedColor = project.color || selectedColor;
+    selectedWidth = Number(project.width) || selectedWidth;
+    elements.color.value = selectedColor;
+    elements.lineWidth.value = selectedWidth;
+    elements.zIndex.value = Number.isFinite(Number(project.zIndex)) ? Number(project.zIndex) : 0;
+    setLocalizedValue(elements.title, elements.titleEn, elements.titleKk, project.name);
+    setLocalizedValue(elements.segment, elements.segmentEn, elements.segmentKk, project.segment);
+    setLocalizedValue(elements.workType, elements.workTypeEn, elements.workTypeKk, project.workType || project.location);
+    setLocalizedValue(elements.period, elements.periodEn, elements.periodKk, project.period || String(project.year || ''));
+    setLocalizedValue(elements.description, elements.descriptionEn, elements.descriptionKk, project.description);
+    setLocalizedValue(elements.volume, elements.volumeEn, elements.volumeKk, project.volume);
+    elements.status.value = project.status || elements.status.value;
+    elements.region.value = project.region || elements.region.value;
+    setLocalizedValue(elements.lineStartName, elements.lineStartNameEn, elements.lineStartNameKk, project.endpoints?.start?.name);
+    setLocalizedValue(elements.lineEndName, elements.lineEndNameEn, elements.lineEndNameKk, project.endpoints?.end?.name);
+
+    if (project.type === 'line') {
+      pendingPoint = null;
+      linePoints = (project.points || project.geometry || []).map(p => Array.isArray(p) ? [Number(p[0]), Number(p[1])] : [Number(p?.x), Number(p?.y)]);
+    } else {
+      pendingPoint = { x: Number(project.x), y: Number(project.y) };
+      linePoints = [];
+      elements.coords.textContent = `x: ${pendingPoint.x}, y: ${pendingPoint.y}`;
+    }
+
+    elements.delete.classList.remove('hidden');
+    updateModeUI();
+    renderDraft();
+    refreshActions();
+    return true;
+  }
+
+  function saveEditingProject() {
+    const current = DataLoader.getProjectById(editingProjectId);
+    if (!current) return;
+
+    const patch = mode === 'label'
+      ? buildLabelProject()
+      : buildBaseProject(mode === 'line' ? 'line' : 'point');
+
+    patch.id = current.id;
+    if (mode === 'line') {
+      patch.points = linePoints.map(p => [Number(p[0]), Number(p[1])]);
+      patch.width = selectedWidth;
+      patch.hitWidth = Math.max(34, selectedWidth + 30);
+      patch.endpoints = buildLineEndpoints();
+    } else if (pendingPoint) {
+      patch.x = pendingPoint.x;
+      patch.y = pendingPoint.y;
+    }
+
+    DataLoader.updateProject(current.id, patch);
+    afterSave({ ...current, ...patch });
+  }
+
+  function deleteEditingProject() {
+    if (!editingProjectId) return;
+    DataLoader.removeProject(editingProjectId);
+    editingProjectId = null;
+    clearDraft();
+    Markers.refresh();
+    ProjectCard.close();
+    if (typeof onProjectsChangedCallback === 'function') onProjectsChangedCallback();
+  }
+
+  function extractYear(period) {
+    const match = String(period).match(/\d{4}/);
+    return match ? Number(match[0]) : new Date().getFullYear();
   }
 
   function afterSave(project) {
     clearDraft();
     Markers.refresh();
     Markers.highlightMarker(project.id);
-    ProjectCard.open(project.id);
+    if (project.type === 'label') ProjectCard.close();
+    else ProjectCard.open(project.id);
     if (typeof onProjectsChangedCallback === 'function') onProjectsChangedCallback();
   }
 
@@ -545,6 +935,6 @@ const MapEditor = (() => {
     }
   }
 
-  return { init, handleMapTap, isEnabled };
+  return { init, handleMapTap, isEnabled, editProject };
 })();
 window.MapEditor = MapEditor;

@@ -1,7 +1,7 @@
 /* ===== CSS Variables ===== */
 :root {
-  --bg-primary: #0a1628;
-  --bg-secondary: #0f1923;
+  --bg-primary: #ffffff;
+  --bg-secondary: #ffffff;
   --bg-tertiary: #1a2a3a;
   --bg-card: #162033;
   --bg-card-hover: #1c2d45;
@@ -139,6 +139,12 @@ select {
   background: var(--bg-tertiary);
   border-radius: 20px;
   font-size: 0.85rem;
+  cursor: pointer;
+  transition: background var(--transition-fast), border-color var(--transition-fast), color var(--transition-fast);
+}
+
+.project-count:hover {
+  background: rgba(0, 212, 255, 0.12);
 }
 
 .project-count #count-value {
@@ -247,7 +253,7 @@ select {
 }
 
 .filter-clear:hover {
-  background: rgba(58, 123, 213, 0.15);
+  background: rgba(255, 255, 255, 0.15);
 }
 
 .filter-body {
@@ -416,6 +422,45 @@ select {
   transition: all var(--transition-fast);
 }
 
+.map-label-point {
+  cursor: pointer;
+  pointer-events: visiblePainted;
+}
+
+.map-label-hitarea {
+  fill: transparent;
+  pointer-events: all;
+}
+
+.map-label-ring {
+  stroke-width: 3;
+  filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.45));
+}
+
+.map-label-text,
+.map-line-endpoint-label,
+.map-line-station-label {
+  fill: #06121f;
+  stroke: #ffffff;
+  stroke-width: 4;
+  paint-order: stroke;
+  font-size: 86px;
+  font-weight: 800;
+  letter-spacing: 0;
+  pointer-events: none;
+}
+
+.map-label-point:hover .map-label-ring,
+.map-label-point:focus .map-label-ring,
+.map-label-point.label-active .map-label-ring {
+  stroke-width: 5;
+}
+
+.map-line-station-label {
+  font-size: 62px;
+  font-weight: 750;
+}
+
 /* ===== Demo Indicator ===== */
 #demo-indicator {
   position: absolute;
@@ -545,6 +590,152 @@ select {
   border-radius: 2px;
 }
 
+.card-detail-view,
+.card-list-view {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+}
+
+.card-back {
+  align-self: flex-start;
+  margin: 18px 24px 12px;
+  padding: 8px 0;
+  color: var(--accent-secondary);
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-align: left;
+}
+
+.card-back:hover {
+  color: var(--text-primary);
+}
+
+.card-list-view {
+  padding: 24px;
+  gap: 16px;
+}
+
+.card-list-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+  padding-right: 44px;
+}
+
+.card-list-header h2 {
+  font-size: 1.25rem;
+  line-height: 1.25;
+}
+
+.card-list-header span {
+  color: var(--text-muted);
+  font-size: 0.82rem;
+  white-space: nowrap;
+}
+
+.card-list-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.card-list-filter-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  border: 1px solid var(--border-color);
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--text-secondary);
+  font-size: 0.78rem;
+  font-weight: 600;
+  transition: all var(--transition-fast);
+  white-space: nowrap;
+}
+
+.card-list-filter-chip:hover {
+  background: rgba(255, 255, 255, 0.09);
+  color: var(--text-primary);
+}
+
+.card-list-filter-chip .chip-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.card-list-filter-chip .chip-count {
+  color: var(--text-muted);
+  font-weight: 500;
+  font-size: 0.72rem;
+}
+
+.card-list-filter-chip.active .chip-count {
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.card-project-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.card-project-list-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.04);
+  text-align: left;
+  transition: background var(--transition-fast), border-color var(--transition-fast), transform var(--transition-fast);
+}
+
+.card-project-list-item:hover {
+  background: rgba(0, 212, 255, 0.1);
+  border-color: rgba(0, 212, 255, 0.35);
+}
+
+.card-project-list-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin-top: 4px;
+  flex-shrink: 0;
+}
+
+.card-project-list-text {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 0;
+}
+
+.card-project-list-title {
+  min-width: 0;
+  font-size: 0.9rem;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+.card-project-list-meta {
+  color: var(--text-muted);
+  font-size: 0.76rem;
+}
+
+.card-list-empty {
+  padding: 24px 4px;
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+
 /* Card Gallery */
 .card-gallery {
   width: 100%;
@@ -604,7 +795,7 @@ select {
   color: var(--text-secondary);
 }
 
-.badge-category {
+.badge-segment {
   background: rgba(0, 212, 255, 0.1);
   color: var(--accent-secondary);
 }
@@ -656,7 +847,7 @@ select {
   border: 1px solid var(--border-color);
   border-radius: 10px;
   padding: 14px;
-  text-align: center;
+  text-align: left;
 }
 
 .indicator-value {
@@ -664,11 +855,13 @@ select {
   font-weight: 700;
   color: var(--accent-secondary);
   margin-bottom: 4px;
+  text-align: left;
 }
 
 .indicator-label {
   font-size: 0.75rem;
   color: var(--text-muted);
+  text-align: left;
 }
 
 .card-additional {
@@ -1017,6 +1210,44 @@ body,
   cursor: pointer;
 }
 
+.editor-zindex-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.editor-zindex-row input {
+  flex: 1;
+  min-height: 38px;
+  text-align: center;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--text-primary);
+  font: inherit;
+  font-weight: 700;
+  outline: none;
+}
+
+.editor-zindex-row input:focus {
+  border-color: rgba(0, 212, 255, 0.55);
+  box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.08);
+}
+
+.editor-zindex-row .editor-icon-btn {
+  width: 38px;
+  height: 38px;
+  border-radius: 8px;
+  font-size: 18px;
+  font-weight: 700;
+  background: rgba(255, 255, 255, 0.06);
+  flex-shrink: 0;
+}
+
+.editor-zindex-row .editor-icon-btn:hover {
+  background: rgba(255, 255, 255, 0.12);
+}
+
 .editor-color-preset {
   width: 30px;
   height: 30px;
@@ -1104,6 +1335,20 @@ body,
   pointer-events: none;
 }
 
+/*
+  While the editor is active (creating OR editing an object), every existing
+  point/line/label must stop intercepting taps so the user can place new
+  nodes directly on top of an existing line without accidentally hitting it.
+  Only the hit-testing elements need overriding - the visible glow/stroke
+  parts already have pointer-events:none from the base marker styles.
+*/
+#map-container.editor-active .map-marker-hitarea,
+#map-container.editor-active .map-line-hitarea,
+#map-container.editor-active .map-label-hitarea,
+#map-container.editor-active .map-object {
+  pointer-events: none !important;
+}
+
 @media (max-width: 900px) {
   .editor-toggle span {
     display: none;
@@ -1130,7 +1375,8 @@ body,
 
 .map-line-visible,
 .map-line-glow,
-.map-line-endpoint {
+.map-line-endpoint,
+.map-line-station {
   pointer-events: none;
   transition: stroke-width var(--transition-fast), opacity var(--transition-fast), filter var(--transition-fast), r var(--transition-fast);
 }
@@ -1158,7 +1404,7 @@ body,
 /* ===== Editor object type switch ===== */
 .editor-mode-switch {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(3, 1fr);
   gap: 8px;
   padding: 4px;
   border: 1px solid var(--border-color);
@@ -1216,6 +1462,25 @@ body,
   stroke: #ffffff;
   stroke-width: 2;
   filter: drop-shadow(0 0 6px rgba(0, 0, 0, 0.65));
+}
+
+.editor-danger {
+  min-height: 40px;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #ffb3b3;
+  background: rgba(255, 82, 82, 0.12);
+  border: 1px solid rgba(255, 82, 82, 0.28);
+}
+
+.editor-danger:hover {
+  color: #ffffff;
+  background: rgba(255, 82, 82, 0.22);
+}
+
+.hidden {
+  display: none !important;
 }
 
 #map-container.editor-active::after {

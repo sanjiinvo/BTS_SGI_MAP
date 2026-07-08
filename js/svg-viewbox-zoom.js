@@ -8,6 +8,7 @@ const SvgViewBoxZoom = (() => {
   let moved = false;
   let hadMultiTouch = false;
   let lastTapTarget = null;
+  let zoomAnimFrame = null;
 
   const options = {
     minZoom: 1,
@@ -121,10 +122,42 @@ const SvgViewBoxZoom = (() => {
     container.addEventListener('wheel', onWheel, { passive: false });
   }
 
+  function cancelZoomAnimation() {
+    if (zoomAnimFrame) {
+      clearTimeout(zoomAnimFrame);
+      zoomAnimFrame = null;
+    }
+  }
+
+  // Uses setTimeout rather than requestAnimationFrame: rAF can be fully
+  // suspended on backgrounded/hidden kiosk displays or embedded previews,
+  // which would silently freeze the zoom. A timer keeps ticking regardless.
+  function animateViewBoxTo(targetBox, duration = 650) {
+    cancelZoomAnimation();
+    const start = cloneBox(currentViewBox);
+    const target = clampViewBox(targetBox);
+    const t0 = Date.now();
+    const frameDelay = 16;
+
+    function step() {
+      const p = Math.min(1, (Date.now() - t0) / duration);
+      const ease = p < 0.5 ? 2 * p * p : 1 - Math.pow(-2 * p + 2, 2) / 2;
+      setViewBox({
+        x: start.x + (target.x - start.x) * ease,
+        y: start.y + (target.y - start.y) * ease,
+        width: start.width + (target.width - start.width) * ease,
+        height: start.height + (target.height - start.height) * ease
+      });
+      zoomAnimFrame = p < 1 ? setTimeout(step, frameDelay) : null;
+    }
+    zoomAnimFrame = setTimeout(step, frameDelay);
+  }
+
   function onPointerDown(e) {
     if (!svg || !container) return;
     if (e.pointerType === 'mouse' && e.button !== 0) return;
 
+    cancelZoomAnimation();
     e.preventDefault();
     container.setPointerCapture?.(e.pointerId);
 
@@ -321,9 +354,10 @@ const SvgViewBoxZoom = (() => {
     });
   }
 
-  function reset() {
+  function reset(animate = true) {
     if (!baseViewBox) return;
-    setViewBox(cloneBox(baseViewBox));
+    if (animate) animateViewBoxTo(cloneBox(baseViewBox));
+    else setViewBox(cloneBox(baseViewBox));
   }
 
   function wasGestureMoved() {
@@ -334,6 +368,22 @@ const SvgViewBoxZoom = (() => {
     return cloneBox(currentViewBox);
   }
 
-  return { init, reset, wasGestureMoved, getCurrentViewBox, clientToSvg };
+  function zoomToPoint(point, zoom = 5, animate = true) {
+    if (!baseViewBox || !point) return;
+    const targetZoom = clamp(Number(zoom) || 5, options.minZoom, options.maxZoom);
+    const width = baseViewBox.width / targetZoom;
+    const height = width * (baseViewBox.height / baseViewBox.width);
+    const target = {
+      x: Number(point.x) - width / 2,
+      y: Number(point.y) - height / 2,
+      width,
+      height
+    };
+
+    if (animate) animateViewBoxTo(target);
+    else setViewBox(target);
+  }
+
+  return { init, reset, wasGestureMoved, getCurrentViewBox, clientToSvg, zoomToPoint };
 })();
 window.SvgViewBoxZoom = SvgViewBoxZoom;

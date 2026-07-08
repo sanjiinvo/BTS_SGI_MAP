@@ -39,7 +39,7 @@ const I18n = (() => {
   function tr(obj) {
     if (!obj) return '';
     if (typeof obj === 'string') return obj;
-    return obj[currentLang] || obj['ru'] || '';
+    return obj[currentLang] || obj.ru || obj.en || obj.kk || '';
   }
 
   async function setLang(lang) {
