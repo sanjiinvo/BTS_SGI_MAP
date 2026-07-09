@@ -9,13 +9,28 @@ const SvgViewBoxZoom = (() => {
   let hadMultiTouch = false;
   let lastTapTarget = null;
   let zoomAnimFrame = null;
+  let lastSizeScale = null;
 
   const options = {
     minZoom: 1,
     maxZoom: 10,
     tapMoveTolerance: 14,
-    onMapTap: null
+    onMapTap: null,
+    onSizeScaleChange: null
   };
+
+  // Markers are drawn at fixed SVG-unit sizes, so at full zoom-out they
+  // shrink to near-invisible dots. SIZE_SCALE_REFERENCE_ZOOM is the zoom
+  // level at which markers are "standard" (1x) size; zooming out further
+  // than that grows them smoothly up to SIZE_SCALE_MAX at full zoom-out.
+  const SIZE_SCALE_REFERENCE_ZOOM = 6;
+  const SIZE_SCALE_MAX = 8;
+
+  function computeSizeScale(width) {
+    if (!baseViewBox) return 1;
+    const referenceWidth = baseViewBox.width / SIZE_SCALE_REFERENCE_ZOOM;
+    return clamp(width / referenceWidth, 1, SIZE_SCALE_MAX);
+  }
 
   function parseViewBox(value) {
     const parts = String(value || '')
@@ -38,6 +53,12 @@ const SvgViewBoxZoom = (() => {
       'viewBox',
       `${currentViewBox.x} ${currentViewBox.y} ${currentViewBox.width} ${currentViewBox.height}`
     );
+
+    const scale = computeSizeScale(currentViewBox.width);
+    if (scale !== lastSizeScale) {
+      lastSizeScale = scale;
+      options.onSizeScaleChange?.(scale);
+    }
   }
 
   function clamp(value, min, max) {

@@ -98,72 +98,85 @@ const MapEditor = (() => {
         <div class="editor-grid editor-line-endpoint-fields">
           <label class="editor-field">
             <span>Начальная точка RU</span>
-            <input id="editor-line-start-name" type="text" placeholder="Например: Астана">
+            <textarea id="editor-line-start-name" class="short" rows="1" placeholder="Например: Астана"></textarea>
           </label>
           <label class="editor-field">
             <span>Конечная точка RU</span>
-            <input id="editor-line-end-name" type="text" placeholder="Например: Караганда">
+            <textarea id="editor-line-end-name" class="short" rows="1" placeholder="Например: Караганда"></textarea>
           </label>
           <label class="editor-field">
             <span>Начальная точка EN</span>
-            <input id="editor-line-start-name-en" type="text" placeholder="Astana">
+            <textarea id="editor-line-start-name-en" class="short" rows="1" placeholder="Astana"></textarea>
           </label>
           <label class="editor-field">
             <span>Конечная точка EN</span>
-            <input id="editor-line-end-name-en" type="text" placeholder="Karaganda">
+            <textarea id="editor-line-end-name-en" class="short" rows="1" placeholder="Karaganda"></textarea>
           </label>
           <label class="editor-field">
             <span>Начальная точка KZ</span>
-            <input id="editor-line-start-name-kk" type="text" placeholder="Астана">
+            <textarea id="editor-line-start-name-kk" class="short" rows="1" placeholder="Астана"></textarea>
           </label>
           <label class="editor-field">
             <span>Конечная точка KZ</span>
-            <input id="editor-line-end-name-kk" type="text" placeholder="Қарағанды">
+            <textarea id="editor-line-end-name-kk" class="short" rows="1" placeholder="Қарағанды"></textarea>
+          </label>
+          <label class="editor-field">
+            <span>Размер шрифта начальной точки (по умолч. 86)</span>
+            <input id="editor-line-start-font-size" type="number" min="10" max="300" step="1" placeholder="86">
+          </label>
+          <label class="editor-field">
+            <span>Размер шрифта конечной точки (по умолч. 86)</span>
+            <input id="editor-line-end-font-size" type="number" min="10" max="300" step="1" placeholder="86">
           </label>
         </div>
 
         <label class="editor-field">
           <span>Проект RU</span>
-          <input id="editor-title" type="text" placeholder="Например: Модернизация участка Астана — Караганда">
+          <textarea id="editor-title" class="short" rows="1" placeholder="Например: Модернизация участка Астана — Караганда"></textarea>
         </label>
         <div class="editor-grid">
           <label class="editor-field">
             <span>Проект EN</span>
-            <input id="editor-title-en" type="text" placeholder="Astana — Karaganda section upgrade">
+            <textarea id="editor-title-en" class="short" rows="1" placeholder="Astana — Karaganda section upgrade"></textarea>
           </label>
           <label class="editor-field">
             <span>Проект KZ</span>
-            <input id="editor-title-kk" type="text" placeholder="Астана — Қарағанды учаскесін жаңғырту">
+            <textarea id="editor-title-kk" class="short" rows="1" placeholder="Астана — Қарағанды учаскесін жаңғырту"></textarea>
           </label>
         </div>
 
+        <label class="editor-field editor-label-font-size-field">
+          <span>Размер шрифта метки на карте (по умолч. 86)</span>
+          <input id="editor-label-font-size" type="number" min="10" max="300" step="1" placeholder="86">
+        </label>
+
         <label class="editor-field">
           <span>Отрезок RU (два названия через тире для линии, одно — для точки)</span>
-          <input id="editor-segment" type="text" placeholder="Например: Астана — Караганда, либо просто Алматы">
+          <textarea id="editor-segment" class="short" rows="1" placeholder="Например: Астана — Караганда, либо просто Алматы"></textarea>
         </label>
         <div class="editor-grid">
           <label class="editor-field">
             <span>Отрезок EN</span>
-            <input id="editor-segment-en" type="text" placeholder="Astana — Karaganda">
+            <textarea id="editor-segment-en" class="short" rows="1" placeholder="Astana — Karaganda"></textarea>
           </label>
           <label class="editor-field">
             <span>Отрезок KZ</span>
-            <input id="editor-segment-kk" type="text" placeholder="Астана — Қарағанды">
+            <textarea id="editor-segment-kk" class="short" rows="1" placeholder="Астана — Қарағанды"></textarea>
           </label>
         </div>
 
         <label class="editor-field">
           <span>Вид работ RU</span>
-          <input id="editor-work-type" type="text" placeholder="Например: Строительно-монтажные работы">
+          <textarea id="editor-work-type" class="short" rows="1" placeholder="Например: Строительно-монтажные работы"></textarea>
         </label>
         <div class="editor-grid">
           <label class="editor-field">
             <span>Вид работ EN</span>
-            <input id="editor-work-type-en" type="text" placeholder="Construction and installation works">
+            <textarea id="editor-work-type-en" class="short" rows="1" placeholder="Construction and installation works"></textarea>
           </label>
           <label class="editor-field">
             <span>Вид работ KZ</span>
-            <input id="editor-work-type-kk" type="text" placeholder="Құрылыс-монтаж жұмыстары">
+            <textarea id="editor-work-type-kk" class="short" rows="1" placeholder="Құрылыс-монтаж жұмыстары"></textarea>
           </label>
         </div>
 
@@ -174,17 +187,17 @@ const MapEditor = (() => {
           </label>
           <label class="editor-field">
             <span>Сроки реализации RU</span>
-            <input id="editor-period" type="text" placeholder="Например: 2023 или 2023-2025">
+            <textarea id="editor-period" class="short" rows="1" placeholder="Например: 2023 или 2023-2025"></textarea>
           </label>
         </div>
         <div class="editor-grid">
           <label class="editor-field">
             <span>Сроки реализации EN</span>
-            <input id="editor-period-en" type="text" placeholder="2023 or 2023-2025">
+            <textarea id="editor-period-en" class="short" rows="1" placeholder="2023 or 2023-2025"></textarea>
           </label>
           <label class="editor-field">
             <span>Сроки реализации KZ</span>
-            <input id="editor-period-kk" type="text" placeholder="2023 немесе 2023-2025">
+            <textarea id="editor-period-kk" class="short" rows="1" placeholder="2023 немесе 2023-2025"></textarea>
           </label>
         </div>
 
@@ -209,16 +222,16 @@ const MapEditor = (() => {
 
         <label class="editor-field">
           <span>Объем работ RU</span>
-          <input id="editor-volume" type="text" placeholder="Например: 12 км кабеля, 4 станции, 36 шкафов">
+          <textarea id="editor-volume" rows="3" placeholder="Например: 12 км кабеля, 4 станции, 36 шкафов"></textarea>
         </label>
         <div class="editor-grid">
           <label class="editor-field">
             <span>Объем работ EN</span>
-            <input id="editor-volume-en" type="text" placeholder="12 km of cable, 4 stations, 36 cabinets">
+            <textarea id="editor-volume-en" rows="3" placeholder="12 km of cable, 4 stations, 36 cabinets"></textarea>
           </label>
           <label class="editor-field">
             <span>Объем работ KZ</span>
-            <input id="editor-volume-kk" type="text" placeholder="12 км кабель, 4 станция, 36 шкаф">
+            <textarea id="editor-volume-kk" rows="3" placeholder="12 км кабель, 4 станция, 36 шкаф"></textarea>
           </label>
         </div>
 
@@ -271,6 +284,9 @@ const MapEditor = (() => {
     elements.lineEndNameEn = panel.querySelector('#editor-line-end-name-en');
     elements.lineStartNameKk = panel.querySelector('#editor-line-start-name-kk');
     elements.lineEndNameKk = panel.querySelector('#editor-line-end-name-kk');
+    elements.lineStartFontSize = panel.querySelector('#editor-line-start-font-size');
+    elements.lineEndFontSize = panel.querySelector('#editor-line-end-font-size');
+    elements.labelFontSize = panel.querySelector('#editor-label-font-size');
     elements.title = panel.querySelector('#editor-title');
     elements.titleEn = panel.querySelector('#editor-title-en');
     elements.titleKk = panel.querySelector('#editor-title-kk');
@@ -457,6 +473,7 @@ const MapEditor = (() => {
       elements.volumeKk
     ].forEach(input => setFieldVisible(input, mode !== 'label'));
     elements.status.closest('.editor-field').style.display = mode === 'label' ? 'none' : '';
+    setFieldVisible(elements.labelFontSize, mode === 'label');
     elements.title.closest('.editor-field').querySelector('span').textContent = mode === 'label' ? 'Название метки RU' : 'Проект RU';
     elements.save.textContent = editingProjectId
       ? 'Сохранить изменения'
@@ -650,6 +667,9 @@ const MapEditor = (() => {
     elements.lineEndNameEn.value = '';
     elements.lineStartNameKk.value = '';
     elements.lineEndNameKk.value = '';
+    elements.lineStartFontSize.value = '';
+    elements.lineEndFontSize.value = '';
+    elements.labelFontSize.value = '';
     elements.zIndex.value = 0;
     elements.segment.value = '';
     elements.segmentEn.value = '';
@@ -772,6 +792,7 @@ const MapEditor = (() => {
 
   function buildLabelProject() {
     const title = localizedValue(elements.title, elements.titleEn, elements.titleKk, `Метка ${DataLoader.getProjects().length + 1}`);
+    const fontSize = Number(elements.labelFontSize.value);
     return {
       id: makeId(I18n.tr(title)),
       type: 'label',
@@ -786,17 +807,22 @@ const MapEditor = (() => {
       description: { ru: '', kk: '', en: '' },
       indicators: [],
       images: [],
-      additional: null
+      additional: null,
+      ...(fontSize > 0 ? { fontSize } : {})
     };
   }
 
   function buildLineEndpoints() {
+    const startFontSize = Number(elements.lineStartFontSize.value);
+    const endFontSize = Number(elements.lineEndFontSize.value);
     return {
       start: {
-        name: localizedValue(elements.lineStartName, elements.lineStartNameEn, elements.lineStartNameKk, '')
+        name: localizedValue(elements.lineStartName, elements.lineStartNameEn, elements.lineStartNameKk, ''),
+        ...(startFontSize > 0 ? { fontSize: startFontSize } : {})
       },
       end: {
-        name: localizedValue(elements.lineEndName, elements.lineEndNameEn, elements.lineEndNameKk, '')
+        name: localizedValue(elements.lineEndName, elements.lineEndNameEn, elements.lineEndNameKk, ''),
+        ...(endFontSize > 0 ? { fontSize: endFontSize } : {})
       }
     };
   }
@@ -830,6 +856,9 @@ const MapEditor = (() => {
     elements.region.value = project.region || elements.region.value;
     setLocalizedValue(elements.lineStartName, elements.lineStartNameEn, elements.lineStartNameKk, project.endpoints?.start?.name);
     setLocalizedValue(elements.lineEndName, elements.lineEndNameEn, elements.lineEndNameKk, project.endpoints?.end?.name);
+    elements.lineStartFontSize.value = project.endpoints?.start?.fontSize || '';
+    elements.lineEndFontSize.value = project.endpoints?.end?.fontSize || '';
+    elements.labelFontSize.value = project.fontSize || '';
 
     if (project.type === 'line') {
       pendingPoint = null;

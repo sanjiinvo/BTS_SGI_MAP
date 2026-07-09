@@ -5,14 +5,41 @@ const Markers = (() => {
   let svgContainerRef = null;
   let lastPointerOpenAt = 0;
   let displayViewBox = null;
+  let currentZoomScale = 1;
+  let scalableRegistry = [];
 
   const SVG_NS = 'http://www.w3.org/2000/svg';
   const LEGACY_VIEWBOX = { x: 0, y: 0, width: 4127.1641, height: 2050.417 };
+  const DEFAULT_ENDPOINT_FONT_SIZE = 86;
+  const DEFAULT_STATION_FONT_SIZE = 62;
+  const DEFAULT_LABEL_FONT_SIZE = 86;
   const STATUS_COLORS = {
     'completed': '#00c853',
     'in-progress': '#ffc107',
     'planning': '#3a7bd5'
   };
+
+  // Points/lines are drawn in fixed SVG-unit sizes, so at full zoom-out
+  // (viewBox = whole map) they end up tiny on screen. Every element that
+  // should grow when zoomed out registers its base size here; applyZoomScale
+  // then multiplies every registered size by the current scale factor
+  // (computed in svg-viewbox-zoom.js and pushed in via onSizeScaleChange).
+  function registerScalable(el, attr, base) {
+    if (!el || !Number.isFinite(base)) return;
+    scalableRegistry.push({ el, attr, base });
+    applyScaleToEntry({ el, attr, base }, currentZoomScale);
+  }
+
+  function applyScaleToEntry(entry, scale) {
+    const value = entry.base * scale;
+    if (entry.attr === 'font-size') entry.el.style.fontSize = `${value}px`;
+    else entry.el.setAttribute(entry.attr, value);
+  }
+
+  function applyZoomScale(scale) {
+    currentZoomScale = Number.isFinite(scale) && scale > 0 ? scale : 1;
+    scalableRegistry.forEach(entry => applyScaleToEntry(entry, currentZoomScale));
+  }
 
   function init(svgContainer, onClick) {
     svgContainerRef = svgContainer;
@@ -60,6 +87,7 @@ const Markers = (() => {
 
     const oldLayer = svg.querySelector('#interactive-markers-layer');
     if (oldLayer) oldLayer.remove();
+    scalableRegistry = [];
 
     const layer = document.createElementNS(SVG_NS, 'g');
     layer.setAttribute('id', 'interactive-markers-layer');
@@ -144,6 +172,13 @@ const Markers = (() => {
     markerGroup.appendChild(circle);
     markerGroup.appendChild(dot);
     bindObjectEvents(markerGroup, project.id);
+
+    registerScalable(hitArea, 'r', 28);
+    registerScalable(glow, 'r', 18);
+    registerScalable(ring, 'r', 13);
+    registerScalable(circle, 'r', 9);
+    registerScalable(dot, 'r', 3.5);
+
     return markerGroup;
   }
 
@@ -190,11 +225,11 @@ const Markers = (() => {
     visibleLine.setAttribute('stroke-linecap', 'round');
     visibleLine.setAttribute('stroke-linejoin', 'round');
 
-    const startNode = createLineEndpoint(points[0], color, 'start', I18n.tr(project.endpoints?.start?.name));
-    const endNode = createLineEndpoint(points[points.length - 1], color, 'end', I18n.tr(project.endpoints?.end?.name));
+    const startNode = createLineEndpoint(points[0], color, 'start', I18n.tr(project.endpoints?.start?.name), project.endpoints?.start?.fontSize);
+    const endNode = createLineEndpoint(points[points.length - 1], color, 'end', I18n.tr(project.endpoints?.end?.name), project.endpoints?.end?.fontSize);
     const stationNodes = points
       .slice(1, -1)
-      .map((point, index) => createLineStation(point, color, getLineStationName(project, index + 1)));
+      .map((point, index) => createLineStation(point, color, getLineStationName(project, index + 1), getLineStationFontSize(project, index + 1)));
 
     group.appendChild(hitLine);
     group.appendChild(glowLine);
@@ -203,6 +238,11 @@ const Markers = (() => {
     group.appendChild(startNode);
     group.appendChild(endNode);
     bindObjectEvents(group, project.id);
+
+    registerScalable(hitLine, 'stroke-width', Number(project.hitWidth) || 42);
+    registerScalable(glowLine, 'stroke-width', project.width ? Number(project.width) + 8 : 14);
+    registerScalable(visibleLine, 'stroke-width', Number(project.width) || 7);
+
     return group;
   }
 
@@ -246,6 +286,13 @@ const Markers = (() => {
     group.appendChild(inner);
     group.appendChild(label);
     bindObjectEvents(group, project.id);
+
+    label.style.fontSize = `${Number(project.fontSize) || DEFAULT_LABEL_FONT_SIZE}px`;
+
+    registerScalable(hitArea, 'r', 28);
+    registerScalable(outer, 'r', 9);
+    registerScalable(inner, 'r', 4);
+
     return group;
   }
 
@@ -272,7 +319,7 @@ const Markers = (() => {
     });
   }
 
-  function createLineEndpoint(point, color, type, name = '') {
+  function createLineEndpoint(point, color, type, name = '', fontSize) {
     const group = document.createElementNS(SVG_NS, 'g');
     group.setAttribute('class', `map-line-endpoint ${type}`);
 
@@ -284,6 +331,8 @@ const Markers = (() => {
     circle.setAttribute('stroke', color);
     circle.setAttribute('stroke-width', '3');
     group.appendChild(circle);
+    registerScalable(circle, 'r', 9);
+    registerScalable(circle, 'stroke-width', 3);
 
     const dot = document.createElementNS(SVG_NS, 'circle');
     dot.setAttribute('cx', point[0]);
@@ -291,6 +340,7 @@ const Markers = (() => {
     dot.setAttribute('r', '4');
     dot.setAttribute('fill', color);
     group.appendChild(dot);
+    registerScalable(dot, 'r', 4);
 
     if (name) {
       const text = document.createElementNS(SVG_NS, 'text');
@@ -298,13 +348,14 @@ const Markers = (() => {
       text.setAttribute('x', point[0] + 14);
       text.setAttribute('y', point[1] - 10);
       text.textContent = name;
+      text.style.fontSize = `${Number(fontSize) || DEFAULT_ENDPOINT_FONT_SIZE}px`;
       group.appendChild(text);
     }
 
     return group;
   }
 
-  function createLineStation(point, color, name = '') {
+  function createLineStation(point, color, name = '', fontSize) {
     const group = document.createElementNS(SVG_NS, 'g');
     group.setAttribute('class', 'map-line-station');
 
@@ -316,6 +367,8 @@ const Markers = (() => {
     circle.setAttribute('stroke', color);
     circle.setAttribute('stroke-width', '2.5');
     group.appendChild(circle);
+    registerScalable(circle, 'r', 6);
+    registerScalable(circle, 'stroke-width', 2.5);
 
     const dot = document.createElementNS(SVG_NS, 'circle');
     dot.setAttribute('cx', point[0]);
@@ -323,6 +376,7 @@ const Markers = (() => {
     dot.setAttribute('r', '2.6');
     dot.setAttribute('fill', color);
     group.appendChild(dot);
+    registerScalable(dot, 'r', 2.6);
 
     if (name) {
       const text = document.createElementNS(SVG_NS, 'text');
@@ -330,6 +384,7 @@ const Markers = (() => {
       text.setAttribute('x', point[0] + 11);
       text.setAttribute('y', point[1] - 8);
       text.textContent = name;
+      text.style.fontSize = `${Number(fontSize) || DEFAULT_STATION_FONT_SIZE}px`;
       group.appendChild(text);
     }
 
@@ -340,6 +395,10 @@ const Markers = (() => {
     const station = project.stations?.[pointIndex];
     if (!station) return '';
     return I18n.tr(station.name || station);
+  }
+
+  function getLineStationFontSize(project, pointIndex) {
+    return project.stations?.[pointIndex]?.fontSize;
   }
 
   function bindObjectEvents(element, projectId) {
@@ -430,5 +489,5 @@ const Markers = (() => {
 
   function getAllMarkers() { return allObjects; }
 
-  return { init, refresh, showAll, showOnly, highlightMarker, getMarkerPosition, getMarkerSvgPoint, getAllMarkers };
+  return { init, refresh, showAll, showOnly, highlightMarker, getMarkerPosition, getMarkerSvgPoint, getAllMarkers, applyZoomScale };
 })();

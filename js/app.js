@@ -97,7 +97,11 @@
         if (window.MapEditor?.isEnabled?.()) {
           window.MapEditor.handleMapTap(payload);
         }
-      }
+      },
+      // Points/lines are drawn at fixed sizes, so at full zoom-out they'd be
+      // nearly invisible; grow them smoothly as the map zooms out and settle
+      // back to normal size once zoomed in past the reference level.
+      onSizeScaleChange: (scale) => Markers.applyZoomScale(scale)
     });
 
     // Step 5: Initialize modules

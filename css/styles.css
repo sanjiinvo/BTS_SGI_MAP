@@ -1182,6 +1182,25 @@ body,
 .editor-field textarea {
   resize: vertical;
   min-height: 80px;
+  white-space: pre-wrap;
+}
+
+/* Fields that used to be single-line <input>s: keep them compact by
+   default, but the user can still drag-resize and press Enter for
+   manual line breaks. */
+.editor-field textarea.short {
+  min-height: 38px;
+}
+
+.editor-field-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.editor-field-row input[type="number"] {
+  width: 84px;
+  flex-shrink: 0;
 }
 
 .editor-field input:focus,
