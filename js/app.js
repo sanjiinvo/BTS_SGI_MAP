@@ -131,6 +131,7 @@
     document.addEventListener('language-changed', () => {
       updateUI();
       FilterManager.updateLabels();
+      Markers.refresh();
       applyInitialFilters();
       // Update open card content
       if (ProjectCard.isOpen()) {
@@ -204,6 +205,10 @@
 
   // ===== Callbacks =====
   function onMarkerClick(projectId) {
+    if (window.MapEditor?.isDeleteModeEnabled?.() && window.MapEditor?.deleteById?.(projectId)) {
+      return;
+    }
+
     if (window.MapEditor?.isEnabled?.() && window.MapEditor?.editProject?.(projectId)) {
       return;
     }

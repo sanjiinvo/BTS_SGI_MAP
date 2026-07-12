@@ -277,8 +277,16 @@ const Markers = (() => {
 
     const label = document.createElementNS(SVG_NS, 'text');
     label.setAttribute('class', 'map-label-text');
-    label.setAttribute('x', '14');
-    label.setAttribute('y', '-10');
+    const labelDx = Number.isFinite(project.labelDx) ? project.labelDx : 14;
+    const labelDy = Number.isFinite(project.labelDy) ? project.labelDy : -10;
+    label.setAttribute('x', String(labelDx));
+    label.setAttribute('y', String(labelDy));
+    if (Number.isFinite(project.labelRotate) && project.labelRotate !== 0) {
+      label.setAttribute('transform', `rotate(${project.labelRotate} ${labelDx} ${labelDy})`);
+    }
+    if (project.labelAnchor) {
+      label.setAttribute('text-anchor', project.labelAnchor);
+    }
     label.textContent = I18n.tr(project.name);
 
     group.appendChild(hitArea);

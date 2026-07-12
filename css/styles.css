@@ -1368,6 +1368,16 @@ body,
   pointer-events: none !important;
 }
 
+/*
+  Exception: in label mode, existing labels must stay clickable so the user
+  can tap one directly to move/rename it (instead of only being able to
+  place brand-new labels on empty map space).
+*/
+#map-container.editor-active[data-editor-mode="label"] .map-label-hitarea,
+#map-container.editor-active[data-editor-mode="label"] .map-label-point {
+  pointer-events: auto !important;
+}
+
 @media (max-width: 900px) {
   .editor-toggle span {
     display: none;
@@ -1423,7 +1433,7 @@ body,
 /* ===== Editor object type switch ===== */
 .editor-mode-switch {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 8px;
   padding: 4px;
   border: 1px solid var(--border-color);
@@ -1496,6 +1506,68 @@ body,
 .editor-danger:hover {
   color: #ffffff;
   background: rgba(255, 82, 82, 0.22);
+}
+
+.editor-mode-btn-danger {
+  color: #ffb3b3;
+}
+
+.editor-mode-btn-danger.active {
+  color: #2a0a0a;
+  background: #ff5252;
+  border-color: rgba(255, 255, 255, 0.18);
+}
+
+.editor-delete-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 82, 82, 0.28);
+  background: rgba(255, 82, 82, 0.06);
+}
+
+.editor-delete-panel.hidden {
+  display: none;
+}
+
+#editor-delete-log {
+  font-family: monospace;
+  font-size: 0.72rem;
+  resize: vertical;
+}
+
+.delete-mode-toggle:hover,
+.delete-mode-toggle.active {
+  background: rgba(255, 82, 82, 0.14);
+  color: #ff8080;
+  border-color: rgba(255, 82, 82, 0.32);
+}
+
+.editor-delete-standalone {
+  border-right-color: rgba(255, 82, 82, 0.35);
+}
+
+#map-container.delete-mode-active {
+  cursor: crosshair;
+}
+
+#map-container.delete-mode-active::after {
+  content: 'Удаление: нажми на точку/метку/линию на карте, чтобы удалить';
+  position: absolute;
+  left: 50%;
+  bottom: 18px;
+  transform: translateX(-50%);
+  padding: 9px 15px;
+  border-radius: 999px;
+  background: rgba(42, 10, 10, 0.9);
+  border: 1px solid rgba(255, 82, 82, 0.35);
+  color: #ff8080;
+  font-size: 0.82rem;
+  z-index: 80;
+  pointer-events: none;
+  backdrop-filter: blur(8px);
 }
 
 .hidden {

@@ -10,6 +10,9 @@ const MapEditor = (() => {
   let editingProjectId = null;
   let tempLayer = null;
   let onProjectsChangedCallback = null;
+  let deleteLog = [];
+  let undoStack = [];
+  let netDeletedCount = 0;
 
   const elements = {};
   const SVG_NS = 'http://www.w3.org/2000/svg';
@@ -20,6 +23,8 @@ const MapEditor = (() => {
     onProjectsChangedCallback = options.onProjectsChanged || null;
     createToolbarButton();
     createPanel();
+    createDeleteToolbarButton();
+    createDeletePanel();
     ensureTempLayer();
     bindEvents();
   }
@@ -148,6 +153,11 @@ const MapEditor = (() => {
         <label class="editor-field editor-label-font-size-field">
           <span>Размер шрифта метки на карте (по умолч. 86)</span>
           <input id="editor-label-font-size" type="number" min="10" max="300" step="1" placeholder="86">
+        </label>
+
+        <label class="editor-field editor-label-font-size-field">
+          <span>Наклон надписи метки, градусы (<span id="editor-label-rotate-value">0</span>°, не переворачивай кверху ногами — держи в пределах ±90)</span>
+          <input id="editor-label-rotate" type="range" min="-90" max="90" step="1" value="0">
         </label>
 
         <label class="editor-field">
@@ -287,6 +297,8 @@ const MapEditor = (() => {
     elements.lineStartFontSize = panel.querySelector('#editor-line-start-font-size');
     elements.lineEndFontSize = panel.querySelector('#editor-line-end-font-size');
     elements.labelFontSize = panel.querySelector('#editor-label-font-size');
+    elements.labelRotate = panel.querySelector('#editor-label-rotate');
+    elements.labelRotateValue = panel.querySelector('#editor-label-rotate-value');
     elements.title = panel.querySelector('#editor-title');
     elements.titleEn = panel.querySelector('#editor-title-en');
     elements.titleKk = panel.querySelector('#editor-title-kk');
@@ -376,6 +388,11 @@ const MapEditor = (() => {
       renderDraft();
     });
 
+    elements.labelRotate.addEventListener('input', (e) => {
+      elements.labelRotateValue.textContent = e.target.value;
+      renderDraft();
+    });
+
     elements.zIndexUp.addEventListener('click', () => {
       elements.zIndex.value = (Number(elements.zIndex.value) || 0) + 1;
     });
@@ -417,6 +434,7 @@ const MapEditor = (() => {
   }
 
   function enable() {
+    if (deleteModeEnabled) disableDeleteMode(); // the two modes are mutually exclusive
     enabled = true;
     elements.panel.classList.remove('hidden');
     elements.toggle.classList.add('active');
@@ -435,6 +453,7 @@ const MapEditor = (() => {
     elements.badge.classList.remove('on');
     elements.badge.classList.add('off');
     mapContainer.classList.remove('editor-active');
+    delete mapContainer.dataset.editorMode;
   }
 
   function closePanel() {
@@ -455,6 +474,8 @@ const MapEditor = (() => {
     elements.modePoint.classList.toggle('active', mode === 'point');
     elements.modeLabel.classList.toggle('active', mode === 'label');
     elements.modeLine.classList.toggle('active', mode === 'line');
+    if (mapContainer) mapContainer.dataset.editorMode = mode;
+
     elements.lineTools.style.display = mode === 'line' ? '' : 'none';
     elements.lineWidthField.style.display = mode === 'line' ? '' : 'none';
     elements.lineEndpointFields.style.display = mode === 'line' ? '' : 'none';
@@ -474,7 +495,12 @@ const MapEditor = (() => {
     ].forEach(input => setFieldVisible(input, mode !== 'label'));
     elements.status.closest('.editor-field').style.display = mode === 'label' ? 'none' : '';
     setFieldVisible(elements.labelFontSize, mode === 'label');
+    setFieldVisible(elements.labelRotate, mode === 'label');
+    elements.title.closest('.editor-field').style.display = '';
     elements.title.closest('.editor-field').querySelector('span').textContent = mode === 'label' ? 'Название метки RU' : 'Проект RU';
+    elements.save.style.display = '';
+    elements.cancel.style.display = '';
+    elements.delete.classList.toggle('hidden', !editingProjectId);
     elements.save.textContent = editingProjectId
       ? 'Сохранить изменения'
       : mode === 'line'
@@ -485,7 +511,7 @@ const MapEditor = (() => {
     elements.hint.textContent = mode === 'line'
       ? 'Линия: первая и последняя точки станут городскими узлами. Укажи названия начала и конца.'
       : mode === 'label'
-        ? 'Метка: нажми по карте и подпиши город или место. В обычном режиме карточка не открывается.'
+        ? 'Метка: нажми по существующей метке на карте, чтобы переместить/переименовать её, либо нажми по пустому месту, чтобы поставить новую. Не забудь нажать «Сохранить» и затем экспортировать JSON.'
         : 'Точка: нажми по пустому месту карты, заполни данные и сохрани объект.';
     refreshActions();
   }
@@ -602,6 +628,8 @@ const MapEditor = (() => {
     label.setAttribute('class', 'map-label-text');
     label.setAttribute('x', '14');
     label.setAttribute('y', '-10');
+    const rotate = Number(elements.labelRotate.value) || 0;
+    if (rotate !== 0) label.setAttribute('transform', `rotate(${rotate} 14 -10)`);
     label.textContent = I18n.tr(localizedValue(elements.title, elements.titleEn, elements.titleKk, 'Метка'));
 
     g.appendChild(ring);
@@ -670,6 +698,8 @@ const MapEditor = (() => {
     elements.lineStartFontSize.value = '';
     elements.lineEndFontSize.value = '';
     elements.labelFontSize.value = '';
+    elements.labelRotate.value = 0;
+    elements.labelRotateValue.textContent = '0';
     elements.zIndex.value = 0;
     elements.segment.value = '';
     elements.segmentEn.value = '';
@@ -808,7 +838,8 @@ const MapEditor = (() => {
       indicators: [],
       images: [],
       additional: null,
-      ...(fontSize > 0 ? { fontSize } : {})
+      ...(fontSize > 0 ? { fontSize } : {}),
+      ...(Number(elements.labelRotate.value) ? { labelRotate: Number(elements.labelRotate.value) } : {})
     };
   }
 
@@ -859,6 +890,8 @@ const MapEditor = (() => {
     elements.lineStartFontSize.value = project.endpoints?.start?.fontSize || '';
     elements.lineEndFontSize.value = project.endpoints?.end?.fontSize || '';
     elements.labelFontSize.value = project.fontSize || '';
+    elements.labelRotate.value = Number(project.labelRotate) || 0;
+    elements.labelRotateValue.textContent = String(elements.labelRotate.value);
 
     if (project.type === 'line') {
       pendingPoint = null;
@@ -897,6 +930,160 @@ const MapEditor = (() => {
 
     DataLoader.updateProject(current.id, patch);
     afterSave({ ...current, ...patch });
+  }
+
+  // ===== Standalone delete mode (independent of the create/edit editor) =====
+  // Deliberately does NOT reuse `enabled`/`editor-active`: that class disables
+  // pointer-events on every marker's hit area so new points/lines can be
+  // placed on top of existing ones. Delete mode needs the opposite - markers
+  // must stay fully clickable - so it gets its own toggle, class and panel.
+  let deleteModeEnabled = false;
+
+  function createDeleteToolbarButton() {
+    const headerRight = document.querySelector('.header-right');
+    if (!headerRight || document.getElementById('delete-mode-toggle')) return;
+
+    const btn = document.createElement('button');
+    btn.id = 'delete-mode-toggle';
+    btn.className = 'editor-toggle delete-mode-toggle';
+    btn.title = 'Удаление точек с карты';
+    btn.innerHTML = `
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M3 6h18M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2m3 0-1 14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2L4 6"/>
+      </svg>
+      <span>Удаление</span>
+    `;
+    headerRight.insertBefore(btn, headerRight.firstChild);
+    btn.addEventListener('click', toggleDeleteMode);
+    elements.deleteToggle = btn;
+  }
+
+  function createDeletePanel() {
+    if (document.getElementById('delete-panel')) return;
+
+    const panel = document.createElement('aside');
+    panel.id = 'delete-panel';
+    panel.className = 'editor-panel editor-delete-standalone hidden';
+    panel.innerHTML = `
+      <div class="editor-header">
+        <div>
+          <h2>Удаление точек</h2>
+          <p>Нажми на любую точку/метку/линию на карте — она сразу удалится.</p>
+        </div>
+        <button id="delete-panel-close" class="editor-icon-btn" title="Закрыть">×</button>
+      </div>
+      <div class="editor-body">
+        <div class="editor-row editor-status-row">
+          <span>Удалено за сессию: <strong id="editor-delete-count">0</strong></span>
+          <button id="editor-delete-undo" class="editor-secondary" disabled>Отменить (Undo)</button>
+        </div>
+        <label class="editor-field">
+          <span>Список удалённых объектов (скопируй и пришли мне)</span>
+          <textarea id="editor-delete-log" rows="12" readonly placeholder="Здесь появятся удалённые точки..."></textarea>
+        </label>
+        <div class="editor-actions">
+          <button id="editor-delete-copy" class="editor-secondary">Скопировать список</button>
+          <button id="editor-delete-clear-log" class="editor-secondary">Очистить список</button>
+        </div>
+      </div>
+    `;
+    document.getElementById('app').appendChild(panel);
+
+    elements.deletePanel = panel;
+    elements.deletePanelClose = panel.querySelector('#delete-panel-close');
+    elements.deleteCount = panel.querySelector('#editor-delete-count');
+    elements.deleteLog = panel.querySelector('#editor-delete-log');
+    elements.deleteUndo = panel.querySelector('#editor-delete-undo');
+    elements.deleteCopy = panel.querySelector('#editor-delete-copy');
+    elements.deleteClearLog = panel.querySelector('#editor-delete-clear-log');
+
+    elements.deletePanelClose.addEventListener('click', disableDeleteMode);
+    elements.deleteUndo.addEventListener('click', undoLastDelete);
+    elements.deleteCopy.addEventListener('click', copyDeleteLog);
+    elements.deleteClearLog.addEventListener('click', () => {
+      deleteLog = [];
+      renderDeleteLog();
+    });
+  }
+
+  function toggleDeleteMode() { deleteModeEnabled ? disableDeleteMode() : enableDeleteMode(); }
+
+  function enableDeleteMode() {
+    if (enabled) disable(); // the create/edit editor and delete mode are mutually exclusive
+    deleteModeEnabled = true;
+    elements.deleteToggle.classList.add('active');
+    elements.deletePanel.classList.remove('hidden');
+    mapContainer.classList.add('delete-mode-active');
+  }
+
+  function disableDeleteMode() {
+    deleteModeEnabled = false;
+    elements.deleteToggle.classList.remove('active');
+    elements.deletePanel.classList.add('hidden');
+    mapContainer.classList.remove('delete-mode-active');
+  }
+
+  function isDeleteModeEnabled() { return deleteModeEnabled; }
+
+  function deleteById(projectId) {
+    const project = DataLoader.getProjectById(projectId);
+    if (!project) return false;
+    deleteObjectViaClick(project);
+    return true;
+  }
+
+  function describeProject(project) {
+    const name = I18n.tr(project.name) || project.id;
+    const coords = project.type === 'line'
+      ? `line, ${(project.points || []).length} pts, start ${JSON.stringify(project.points?.[0] || [])}`
+      : `x:${project.x}, y:${project.y}`;
+    return `${name} | id:${project.id} | type:${project.type} | region:${project.region} | ${coords}`;
+  }
+
+  function deleteObjectViaClick(project) {
+    const removed = DataLoader.removeProject(project.id);
+    if (!removed) return;
+
+    undoStack.push(project);
+    netDeletedCount++;
+    deleteLog.push(`[${new Date().toLocaleTimeString()}] ${describeProject(project)}`);
+    renderDeleteLog();
+
+    Markers.refresh();
+    ProjectCard.close();
+    if (typeof onProjectsChangedCallback === 'function') onProjectsChangedCallback();
+  }
+
+  function undoLastDelete() {
+    const project = undoStack.pop();
+    if (!project) return;
+
+    DataLoader.addProject(project);
+    netDeletedCount = Math.max(0, netDeletedCount - 1);
+    deleteLog.push(`[${new Date().toLocaleTimeString()}] ОТМЕНЕНО (восстановлено): ${describeProject(project)}`);
+    renderDeleteLog();
+
+    Markers.refresh();
+    if (typeof onProjectsChangedCallback === 'function') onProjectsChangedCallback();
+  }
+
+  function renderDeleteLog() {
+    elements.deleteCount.textContent = String(netDeletedCount);
+    elements.deleteLog.value = deleteLog.join('\n');
+    elements.deleteLog.scrollTop = elements.deleteLog.scrollHeight;
+    elements.deleteUndo.disabled = undoStack.length === 0;
+  }
+
+  async function copyDeleteLog() {
+    const text = deleteLog.join('\n') || 'Список пуст.';
+    try {
+      await navigator.clipboard.writeText(text);
+      const old = elements.deleteCopy.textContent;
+      elements.deleteCopy.textContent = 'Скопировано';
+      setTimeout(() => elements.deleteCopy.textContent = old, 1400);
+    } catch (e) {
+      console.warn('Clipboard failed:', e);
+    }
   }
 
   function deleteEditingProject() {
@@ -964,6 +1151,6 @@ const MapEditor = (() => {
     }
   }
 
-  return { init, handleMapTap, isEnabled, editProject };
+  return { init, handleMapTap, isEnabled, editProject, isDeleteModeEnabled, deleteById };
 })();
 window.MapEditor = MapEditor;
