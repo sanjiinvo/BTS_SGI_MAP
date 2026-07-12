@@ -23153,6 +23153,1232 @@
       "additional": null,
       "x": 9674,
       "y": 12788
+    },
+    {
+      "id": "obj-koskol-akm1",
+      "type": "label",
+      "color": "#ffc107",
+      "zIndex": 0,
+      "region": "akmola",
+      "status": "completed",
+      "year": 2026,
+      "fontSize": 22,
+      "name": {
+        "ru": "Косколь",
+        "en": "Koskol",
+        "kk": "Қоскөл"
+      },
+      "segment": {
+        "ru": "Косколь",
+        "en": "Koskol",
+        "kk": "Қоскөл"
+      },
+      "location": {
+        "ru": "Косколь",
+        "en": "Koskol",
+        "kk": "Қоскөл"
+      },
+      "description": {
+        "ru": "",
+        "en": "",
+        "kk": ""
+      },
+      "indicators": [],
+      "images": [],
+      "additional": null,
+      "x": 10491,
+      "y": 12200
+    },
+    {
+      "id": "obj-zhanaesip-akm2",
+      "type": "label",
+      "color": "#60BB46",
+      "zIndex": 0,
+      "region": "akmola",
+      "status": "completed",
+      "year": 2026,
+      "fontSize": 32,
+      "name": {
+        "ru": "Жанаесіл",
+        "en": "Zhanayesil",
+        "kk": "Жаңаесіл"
+      },
+      "segment": {
+        "ru": "Жанаесіл",
+        "en": "Zhanayesil",
+        "kk": "Жаңаесіл"
+      },
+      "location": {
+        "ru": "Жанаесіл",
+        "en": "Zhanayesil",
+        "kk": "Жаңаесіл"
+      },
+      "description": {
+        "ru": "",
+        "en": "",
+        "kk": ""
+      },
+      "indicators": [],
+      "images": [],
+      "additional": null,
+      "x": 10636,
+      "y": 12263
+    },
+    {
+      "id": "obj-pervaya-celinnaya-akm3",
+      "type": "label",
+      "color": "#ffc107",
+      "zIndex": 0,
+      "region": "akmola",
+      "status": "completed",
+      "year": 2026,
+      "fontSize": 20,
+      "name": {
+        "ru": "Первая Целинная",
+        "en": "Pervaya Tselinnaya",
+        "kk": "Первая Целинная"
+      },
+      "segment": {
+        "ru": "Первая Целинная",
+        "en": "Pervaya Tselinnaya",
+        "kk": "Первая Целинная"
+      },
+      "location": {
+        "ru": "Первая Целинная",
+        "en": "Pervaya Tselinnaya",
+        "kk": "Первая Целинная"
+      },
+      "description": {
+        "ru": "",
+        "en": "",
+        "kk": ""
+      },
+      "indicators": [],
+      "images": [],
+      "additional": null,
+      "x": 10797,
+      "y": 12290
+    },
+    {
+      "id": "obj-yanko-akm4",
+      "type": "label",
+      "color": "#ffc107",
+      "zIndex": 0,
+      "region": "akmola",
+      "status": "completed",
+      "year": 2026,
+      "fontSize": 22,
+      "name": {
+        "ru": "Янко",
+        "en": "Yanko",
+        "kk": "Янко"
+      },
+      "segment": {
+        "ru": "Янко",
+        "en": "Yanko",
+        "kk": "Янко"
+      },
+      "location": {
+        "ru": "Янко",
+        "en": "Yanko",
+        "kk": "Янко"
+      },
+      "description": {
+        "ru": "",
+        "en": "",
+        "kk": ""
+      },
+      "indicators": [],
+      "images": [],
+      "additional": null,
+      "x": 10912,
+      "y": 12117
+    },
+    {
+      "id": "obj-saumalkel-akm5",
+      "type": "label",
+      "color": "#ffc107",
+      "zIndex": 0,
+      "region": "akmola",
+      "status": "completed",
+      "year": 2026,
+      "fontSize": 20,
+      "name": {
+        "ru": "Саумалкел",
+        "en": "Saumalkel",
+        "kk": "Саумалкөл"
+      },
+      "segment": {
+        "ru": "Саумалкел",
+        "en": "Saumalkel",
+        "kk": "Саумалкөл"
+      },
+      "location": {
+        "ru": "Саумалкел",
+        "en": "Saumalkel",
+        "kk": "Саумалкөл"
+      },
+      "description": {
+        "ru": "",
+        "en": "",
+        "kk": ""
+      },
+      "indicators": [],
+      "images": [],
+      "additional": null,
+      "x": 11005,
+      "y": 12198
+    },
+    {
+      "id": "obj-ugolki-akm6",
+      "type": "label",
+      "color": "#ffc107",
+      "zIndex": 0,
+      "region": "akmola",
+      "status": "completed",
+      "year": 2026,
+      "fontSize": 22,
+      "name": {
+        "ru": "Уголки",
+        "en": "Ugolki",
+        "kk": "Уголки"
+      },
+      "segment": {
+        "ru": "Уголки",
+        "en": "Ugolki",
+        "kk": "Уголки"
+      },
+      "location": {
+        "ru": "Уголки",
+        "en": "Ugolki",
+        "kk": "Уголки"
+      },
+      "description": {
+        "ru": "",
+        "en": "",
+        "kk": ""
+      },
+      "indicators": [],
+      "images": [],
+      "additional": null,
+      "x": 11075,
+      "y": 12161
+    },
+    {
+      "id": "obj-surtan-akm7",
+      "type": "label",
+      "color": "#ffc107",
+      "zIndex": 0,
+      "region": "akmola",
+      "status": "completed",
+      "year": 2026,
+      "fontSize": 22,
+      "name": {
+        "ru": "Сурган",
+        "en": "Surgan",
+        "kk": "Сурған"
+      },
+      "segment": {
+        "ru": "Сурган",
+        "en": "Surgan",
+        "kk": "Сурған"
+      },
+      "location": {
+        "ru": "Сурган",
+        "en": "Surgan",
+        "kk": "Сурған"
+      },
+      "description": {
+        "ru": "",
+        "en": "",
+        "kk": ""
+      },
+      "indicators": [],
+      "images": [],
+      "additional": null,
+      "x": 10639,
+      "y": 12607
+    },
+    {
+      "id": "obj-esil-akm8",
+      "type": "label",
+      "color": "#60BB46",
+      "zIndex": 0,
+      "region": "akmola",
+      "status": "completed",
+      "year": 2026,
+      "fontSize": 34,
+      "name": {
+        "ru": "ЕСИЛЬ",
+        "en": "YESIL",
+        "kk": "ЕСІЛ"
+      },
+      "segment": {
+        "ru": "ЕСИЛЬ",
+        "en": "YESIL",
+        "kk": "ЕСІЛ"
+      },
+      "location": {
+        "ru": "ЕСИЛЬ",
+        "en": "YESIL",
+        "kk": "ЕСІЛ"
+      },
+      "description": {
+        "ru": "",
+        "en": "",
+        "kk": ""
+      },
+      "indicators": [],
+      "images": [],
+      "additional": null,
+      "x": 10696,
+      "y": 12625
+    },
+    {
+      "id": "obj-krasivyi-kazahski-akm9",
+      "type": "label",
+      "color": "#ffc107",
+      "zIndex": 0,
+      "region": "akmola",
+      "status": "completed",
+      "year": 2026,
+      "fontSize": 18,
+      "name": {
+        "ru": "Красивый-Казахски",
+        "en": "Krasyviy-Kazakhski",
+        "kk": "Красивый-Казахски"
+      },
+      "segment": {
+        "ru": "Красивый-Казахски",
+        "en": "Krasyviy-Kazakhski",
+        "kk": "Красивый-Казахски"
+      },
+      "location": {
+        "ru": "Красивый-Казахски",
+        "en": "Krasyviy-Kazakhski",
+        "kk": "Красивый-Казахски"
+      },
+      "description": {
+        "ru": "",
+        "en": "",
+        "kk": ""
+      },
+      "indicators": [],
+      "images": [],
+      "additional": null,
+      "x": 10949,
+      "y": 12642
+    },
+    {
+      "id": "obj-zhaksy-akm10",
+      "type": "label",
+      "color": "#ffc107",
+      "zIndex": 0,
+      "region": "akmola",
+      "status": "completed",
+      "year": 2026,
+      "fontSize": 22,
+      "name": {
+        "ru": "Жаксы",
+        "en": "Zhaksy",
+        "kk": "Жақсы"
+      },
+      "segment": {
+        "ru": "Жаксы",
+        "en": "Zhaksy",
+        "kk": "Жақсы"
+      },
+      "location": {
+        "ru": "Жаксы",
+        "en": "Zhaksy",
+        "kk": "Жақсы"
+      },
+      "description": {
+        "ru": "",
+        "en": "",
+        "kk": ""
+      },
+      "indicators": [],
+      "images": [],
+      "additional": null,
+      "x": 11047,
+      "y": 12700
+    },
+    {
+      "id": "obj-zhanyspay-akm11",
+      "type": "label",
+      "color": "#ffc107",
+      "zIndex": 0,
+      "region": "akmola",
+      "status": "completed",
+      "year": 2026,
+      "fontSize": 22,
+      "name": {
+        "ru": "Жаныспай",
+        "en": "Zhanyspay",
+        "kk": "Жаңыспай"
+      },
+      "segment": {
+        "ru": "Жаныспай",
+        "en": "Zhanyspay",
+        "kk": "Жаңыспай"
+      },
+      "location": {
+        "ru": "Жаныспай",
+        "en": "Zhanyspay",
+        "kk": "Жаңыспай"
+      },
+      "description": {
+        "ru": "",
+        "en": "",
+        "kk": ""
+      },
+      "indicators": [],
+      "images": [],
+      "additional": null,
+      "x": 10424,
+      "y": 12686
+    },
+    {
+      "id": "obj-kovylnaya-akm12",
+      "type": "label",
+      "color": "#ffc107",
+      "zIndex": 0,
+      "region": "akmola",
+      "status": "completed",
+      "year": 2026,
+      "fontSize": 18,
+      "name": {
+        "ru": "Ковыльная I",
+        "en": "Kovylnaya I",
+        "kk": "Ковыльная I"
+      },
+      "segment": {
+        "ru": "Ковыльная I",
+        "en": "Kovylnaya I",
+        "kk": "Ковыльная I"
+      },
+      "location": {
+        "ru": "Ковыльная I",
+        "en": "Kovylnaya I",
+        "kk": "Ковыльная I"
+      },
+      "description": {
+        "ru": "",
+        "en": "",
+        "kk": ""
+      },
+      "indicators": [],
+      "images": [],
+      "additional": null,
+      "x": 10467,
+      "y": 12714
+    },
+    {
+      "id": "obj-kazakhskaya-akm13",
+      "type": "label",
+      "color": "#ffc107",
+      "zIndex": 0,
+      "region": "akmola",
+      "status": "completed",
+      "year": 2026,
+      "fontSize": 22,
+      "name": {
+        "ru": "Казахская",
+        "en": "Kazakhskaya",
+        "kk": "Казахская"
+      },
+      "segment": {
+        "ru": "Казахская",
+        "en": "Kazakhskaya",
+        "kk": "Казахская"
+      },
+      "location": {
+        "ru": "Казахская",
+        "en": "Kazakhskaya",
+        "kk": "Казахская"
+      },
+      "description": {
+        "ru": "",
+        "en": "",
+        "kk": ""
+      },
+      "indicators": [],
+      "images": [],
+      "additional": null,
+      "x": 10829,
+      "y": 12768
+    },
+    {
+      "id": "obj-atbasar-akm14",
+      "type": "label",
+      "color": "#60BB46",
+      "zIndex": 0,
+      "region": "akmola",
+      "status": "completed",
+      "year": 2026,
+      "fontSize": 30,
+      "name": {
+        "ru": "Атбасар",
+        "en": "Atbasar",
+        "kk": "Атбасар"
+      },
+      "segment": {
+        "ru": "Атбасар",
+        "en": "Atbasar",
+        "kk": "Атбасар"
+      },
+      "location": {
+        "ru": "Атбасар",
+        "en": "Atbasar",
+        "kk": "Атбасар"
+      },
+      "description": {
+        "ru": "",
+        "en": "",
+        "kk": ""
+      },
+      "indicators": [],
+      "images": [],
+      "additional": null,
+      "x": 11047,
+      "y": 12780
+    },
+    {
+      "id": "obj-pritobolskaya-akt27",
+      "type": "label",
+      "color": "#ffc107",
+      "zIndex": 0,
+      "region": "aktobe",
+      "status": "completed",
+      "year": 2026,
+      "fontSize": 18,
+      "name": {
+        "ru": "Притобольская",
+        "en": "Pritobolskaya",
+        "kk": "Пртобольская"
+      },
+      "segment": {
+        "ru": "Притобольская",
+        "en": "Pritobolskaya",
+        "kk": "Пртобольская"
+      },
+      "location": {
+        "ru": "Притобольская",
+        "en": "Pritobolskaya",
+        "kk": "Пртобольская"
+      },
+      "description": {
+        "ru": "",
+        "en": "",
+        "kk": ""
+      },
+      "indicators": [],
+      "images": [],
+      "additional": null,
+      "x": 9781,
+      "y": 12352
+    },
+    {
+      "id": "obj-apanovka-akt28",
+      "type": "label",
+      "color": "#ffc107",
+      "zIndex": 0,
+      "region": "aktobe",
+      "status": "completed",
+      "year": 2026,
+      "fontSize": 20,
+      "name": {
+        "ru": "Апановка",
+        "en": "Apanovka",
+        "kk": "Апановка"
+      },
+      "segment": {
+        "ru": "Апановка",
+        "en": "Apanovka",
+        "kk": "Апановка"
+      },
+      "location": {
+        "ru": "Апановка",
+        "en": "Apanovka",
+        "kk": "Апановка"
+      },
+      "description": {
+        "ru": "",
+        "en": "",
+        "kk": ""
+      },
+      "indicators": [],
+      "images": [],
+      "additional": null,
+      "x": 9828,
+      "y": 12365
+    },
+    {
+      "id": "obj-arka-akt29",
+      "type": "label",
+      "color": "#ffc107",
+      "zIndex": 0,
+      "region": "aktobe",
+      "status": "completed",
+      "year": 2026,
+      "fontSize": 20,
+      "name": {
+        "ru": "Арка",
+        "en": "Arka",
+        "kk": "Арка"
+      },
+      "segment": {
+        "ru": "Арка",
+        "en": "Arka",
+        "kk": "Арка"
+      },
+      "location": {
+        "ru": "Арка",
+        "en": "Arka",
+        "kk": "Арка"
+      },
+      "description": {
+        "ru": "",
+        "en": "",
+        "kk": ""
+      },
+      "indicators": [],
+      "images": [],
+      "additional": null,
+      "x": 9763,
+      "y": 12481
+    },
+    {
+      "id": "obj-sholaksay-akt30",
+      "type": "label",
+      "color": "#ffc107",
+      "zIndex": 0,
+      "region": "aktobe",
+      "status": "completed",
+      "year": 2026,
+      "fontSize": 20,
+      "name": {
+        "ru": "Шолаксай",
+        "en": "Sholaksay",
+        "kk": "Шолаксай"
+      },
+      "segment": {
+        "ru": "Шолаксай",
+        "en": "Sholaksay",
+        "kk": "Шолаксай"
+      },
+      "location": {
+        "ru": "Шолаксай",
+        "en": "Sholaksay",
+        "kk": "Шолаксай"
+      },
+      "description": {
+        "ru": "",
+        "en": "",
+        "kk": ""
+      },
+      "indicators": [],
+      "images": [],
+      "additional": null,
+      "x": 9637,
+      "y": 12878
+    },
+    {
+      "id": "obj-ayke-akt31",
+      "type": "label",
+      "color": "#ffc107",
+      "zIndex": 0,
+      "region": "aktobe",
+      "status": "completed",
+      "year": 2026,
+      "fontSize": 20,
+      "name": {
+        "ru": "Айке",
+        "en": "Ayke",
+        "kk": "Айке"
+      },
+      "segment": {
+        "ru": "Айке",
+        "en": "Ayke",
+        "kk": "Айке"
+      },
+      "location": {
+        "ru": "Айке",
+        "en": "Ayke",
+        "kk": "Айке"
+      },
+      "description": {
+        "ru": "",
+        "en": "",
+        "kk": ""
+      },
+      "indicators": [],
+      "images": [],
+      "additional": null,
+      "x": 9572,
+      "y": 12975
+    },
+    {
+      "id": "obj-aiteke-bi-akt32",
+      "type": "label",
+      "color": "#ffc107",
+      "zIndex": 0,
+      "region": "aktobe",
+      "status": "completed",
+      "year": 2026,
+      "fontSize": 18,
+      "name": {
+        "ru": "Айтеке би",
+        "en": "Ayteke bi",
+        "kk": "Айтеке би"
+      },
+      "segment": {
+        "ru": "Айтеке би",
+        "en": "Ayteke bi",
+        "kk": "Айтеке би"
+      },
+      "location": {
+        "ru": "Айтеке би",
+        "en": "Ayteke bi",
+        "kk": "Айтеке би"
+      },
+      "description": {
+        "ru": "",
+        "en": "",
+        "kk": ""
+      },
+      "indicators": [],
+      "images": [],
+      "additional": null,
+      "x": 9382,
+      "y": 13275
+    },
+    {
+      "id": "obj-zhezkazgan-kar15",
+      "type": "label",
+      "color": "#60BB46",
+      "zIndex": 0,
+      "region": "karaganda",
+      "status": "completed",
+      "year": 2026,
+      "fontSize": 34,
+      "name": {
+        "ru": "Жезказган",
+        "en": "Zhezkazgan",
+        "kk": "Жезқазған"
+      },
+      "segment": {
+        "ru": "Жезказган",
+        "en": "Zhezkazgan",
+        "kk": "Жезқазған"
+      },
+      "location": {
+        "ru": "Жезказган",
+        "en": "Zhezkazgan",
+        "kk": "Жезқазған"
+      },
+      "description": {
+        "ru": "",
+        "en": "",
+        "kk": ""
+      },
+      "indicators": [],
+      "images": [],
+      "additional": null,
+      "x": 10864,
+      "y": 14350
+    },
+    {
+      "id": "obj-terekty-kar16",
+      "type": "label",
+      "color": "#ffc107",
+      "zIndex": 0,
+      "region": "karaganda",
+      "status": "completed",
+      "year": 2026,
+      "fontSize": 20,
+      "name": {
+        "ru": "Теректы",
+        "en": "Terekty",
+        "kk": "Теректі"
+      },
+      "segment": {
+        "ru": "Теректы",
+        "en": "Terekty",
+        "kk": "Теректі"
+      },
+      "location": {
+        "ru": "Теректы",
+        "en": "Terekty",
+        "kk": "Теректі"
+      },
+      "description": {
+        "ru": "",
+        "en": "",
+        "kk": ""
+      },
+      "indicators": [],
+      "images": [],
+      "additional": null,
+      "x": 11015,
+      "y": 14415
+    },
+    {
+      "id": "obj-tuyemoinak-kar17",
+      "type": "label",
+      "color": "#ffc107",
+      "zIndex": 0,
+      "region": "karaganda",
+      "status": "completed",
+      "year": 2026,
+      "fontSize": 18,
+      "name": {
+        "ru": "Туйемойнак",
+        "en": "Tuyemoinak",
+        "kk": "Туйемойнак"
+      },
+      "segment": {
+        "ru": "Туйемойнак",
+        "en": "Tuyemoinak",
+        "kk": "Туйемойнак"
+      },
+      "location": {
+        "ru": "Туйемойнак",
+        "en": "Tuyemoinak",
+        "kk": "Туйемойнак"
+      },
+      "description": {
+        "ru": "",
+        "en": "",
+        "kk": ""
+      },
+      "indicators": [],
+      "images": [],
+      "additional": null,
+      "x": 11190,
+      "y": 14120
+    },
+    {
+      "id": "obj-arystansor-akt33",
+      "type": "label",
+      "color": "#ffc107",
+      "zIndex": 0,
+      "region": "aktobe",
+      "status": "completed",
+      "year": 2026,
+      "fontSize": 20,
+      "name": {
+        "ru": "Арыстансор",
+        "en": "Arystansor",
+        "kk": "Арыстансор"
+      },
+      "segment": {
+        "ru": "Арыстансор",
+        "en": "Arystansor",
+        "kk": "Арыстансор"
+      },
+      "location": {
+        "ru": "Арыстансор",
+        "en": "Arystansor",
+        "kk": "Арыстансор"
+      },
+      "description": {
+        "ru": "",
+        "en": "",
+        "kk": ""
+      },
+      "indicators": [],
+      "images": [],
+      "additional": null,
+      "x": 9680,
+      "y": 12630
+    },
+    {
+      "id": "obj-priishimskaya-akm15",
+      "type": "label",
+      "color": "#ffc107",
+      "zIndex": 0,
+      "region": "akmola",
+      "status": "completed",
+      "year": 2026,
+      "fontSize": 18,
+      "name": {
+        "ru": "Приишимская",
+        "en": "Priishimskaya",
+        "kk": "Приишимская"
+      },
+      "segment": {
+        "ru": "Приишимская",
+        "en": "Priishimskaya",
+        "kk": "Приишимская"
+      },
+      "location": {
+        "ru": "Приишимская",
+        "en": "Priishimskaya",
+        "kk": "Приишимская"
+      },
+      "description": {
+        "ru": "",
+        "en": "",
+        "kk": ""
+      },
+      "indicators": [],
+      "images": [],
+      "additional": null,
+      "x": 10697,
+      "y": 12863
+    },
+    {
+      "id": "obj-kenskaya-akm16",
+      "type": "label",
+      "color": "#ffc107",
+      "zIndex": 0,
+      "region": "akmola",
+      "status": "completed",
+      "year": 2026,
+      "fontSize": 20,
+      "name": {
+        "ru": "Кенская",
+        "en": "Kenskaya",
+        "kk": "Кенская"
+      },
+      "segment": {
+        "ru": "Кенская",
+        "en": "Kenskaya",
+        "kk": "Кенская"
+      },
+      "location": {
+        "ru": "Кенская",
+        "en": "Kenskaya",
+        "kk": "Кенская"
+      },
+      "description": {
+        "ru": "",
+        "en": "",
+        "kk": ""
+      },
+      "indicators": [],
+      "images": [],
+      "additional": null,
+      "x": 10658,
+      "y": 12943
+    },
+    {
+      "id": "obj-derzhavinskaya-akm17",
+      "type": "label",
+      "color": "#ffc107",
+      "zIndex": 0,
+      "region": "akmola",
+      "status": "completed",
+      "year": 2026,
+      "fontSize": 18,
+      "name": {
+        "ru": "Державинская",
+        "en": "Derzhavinskaya",
+        "kk": "Державинская"
+      },
+      "segment": {
+        "ru": "Державинская",
+        "en": "Derzhavinskaya",
+        "kk": "Державинская"
+      },
+      "location": {
+        "ru": "Державинская",
+        "en": "Derzhavinskaya",
+        "kk": "Державинская"
+      },
+      "description": {
+        "ru": "",
+        "en": "",
+        "kk": ""
+      },
+      "indicators": [],
+      "images": [],
+      "additional": null,
+      "x": 10458,
+      "y": 13034
+    },
+    {
+      "id": "obj-tasty-taldy-akm18",
+      "type": "label",
+      "color": "#ffc107",
+      "zIndex": 0,
+      "region": "akmola",
+      "status": "completed",
+      "year": 2026,
+      "fontSize": 20,
+      "name": {
+        "ru": "Тасты-Талды",
+        "en": "Tasty-Taldy",
+        "kk": "Тасты-Талды"
+      },
+      "segment": {
+        "ru": "Тасты-Талды",
+        "en": "Tasty-Taldy",
+        "kk": "Тасты-Талды"
+      },
+      "location": {
+        "ru": "Тасты-Талды",
+        "en": "Tasty-Taldy",
+        "kk": "Тасты-Талды"
+      },
+      "description": {
+        "ru": "",
+        "en": "",
+        "kk": ""
+      },
+      "indicators": [],
+      "images": [],
+      "additional": null,
+      "x": 10515,
+      "y": 13115
+    },
+    {
+      "id": "obj-furmanovskiy-akm19",
+      "type": "label",
+      "color": "#ffc107",
+      "zIndex": 0,
+      "region": "akmola",
+      "status": "completed",
+      "year": 2026,
+      "fontSize": 18,
+      "name": {
+        "ru": "Фурмановский",
+        "en": "Furmanovskiy",
+        "kk": "Фурмановский"
+      },
+      "segment": {
+        "ru": "Фурмановский",
+        "en": "Furmanovskiy",
+        "kk": "Фурмановский"
+      },
+      "location": {
+        "ru": "Фурмановский",
+        "en": "Furmanovskiy",
+        "kk": "Фурмановский"
+      },
+      "description": {
+        "ru": "",
+        "en": "",
+        "kk": ""
+      },
+      "indicators": [],
+      "images": [],
+      "additional": null,
+      "x": 10571,
+      "y": 13320
+    },
+    {
+      "id": "obj-arkalyk-akm20",
+      "type": "label",
+      "color": "#60BB46",
+      "zIndex": 0,
+      "region": "akmola",
+      "status": "completed",
+      "year": 2026,
+      "fontSize": 32,
+      "name": {
+        "ru": "Аркалык",
+        "en": "Arkalyk",
+        "kk": "Арқалық"
+      },
+      "segment": {
+        "ru": "Аркалык",
+        "en": "Arkalyk",
+        "kk": "Арқалық"
+      },
+      "location": {
+        "ru": "Аркалык",
+        "en": "Arkalyk",
+        "kk": "Арқалық"
+      },
+      "description": {
+        "ru": "",
+        "en": "",
+        "kk": ""
+      },
+      "indicators": [],
+      "images": [],
+      "additional": null,
+      "x": 10631,
+      "y": 13390
+    },
+    {
+      "id": "obj-zhalgyztal-akm21",
+      "type": "label",
+      "color": "#ffc107",
+      "zIndex": 0,
+      "region": "akmola",
+      "status": "completed",
+      "year": 2026,
+      "fontSize": 20,
+      "name": {
+        "ru": "Жалгызтал",
+        "en": "Zhalgyztal",
+        "kk": "Жалғызтал"
+      },
+      "segment": {
+        "ru": "Жалгызтал",
+        "en": "Zhalgyztal",
+        "kk": "Жалғызтал"
+      },
+      "location": {
+        "ru": "Жалгызтал",
+        "en": "Zhalgyztal",
+        "kk": "Жалғызтал"
+      },
+      "description": {
+        "ru": "",
+        "en": "",
+        "kk": ""
+      },
+      "indicators": [],
+      "images": [],
+      "additional": null,
+      "x": 10682,
+      "y": 13485
+    },
+    {
+      "id": "obj-terisakkan-akm22",
+      "type": "label",
+      "color": "#ffc107",
+      "zIndex": 0,
+      "region": "akmola",
+      "status": "completed",
+      "year": 2026,
+      "fontSize": 18,
+      "name": {
+        "ru": "Терисаккан",
+        "en": "Terisakkan",
+        "kk": "Терісаққан"
+      },
+      "segment": {
+        "ru": "Терисаккан",
+        "en": "Terisakkan",
+        "kk": "Терісаққан"
+      },
+      "location": {
+        "ru": "Терисаккан",
+        "en": "Terisakkan",
+        "kk": "Терісаққан"
+      },
+      "description": {
+        "ru": "",
+        "en": "",
+        "kk": ""
+      },
+      "indicators": [],
+      "images": [],
+      "additional": null,
+      "x": 10740,
+      "y": 13656
+    },
+    {
+      "id": "obj-maibulak-akm23",
+      "type": "label",
+      "color": "#ffc107",
+      "zIndex": 0,
+      "region": "akmola",
+      "status": "completed",
+      "year": 2026,
+      "fontSize": 20,
+      "name": {
+        "ru": "Майбулак",
+        "en": "Maibulak",
+        "kk": "Майбұлақ"
+      },
+      "segment": {
+        "ru": "Майбулак",
+        "en": "Maibulak",
+        "kk": "Майбұлақ"
+      },
+      "location": {
+        "ru": "Майбулак",
+        "en": "Maibulak",
+        "kk": "Майбұлақ"
+      },
+      "description": {
+        "ru": "",
+        "en": "",
+        "kk": ""
+      },
+      "indicators": [],
+      "images": [],
+      "additional": null,
+      "x": 10797,
+      "y": 13759
+    },
+    {
+      "id": "obj-ereymentau-pav7",
+      "type": "label",
+      "color": "#60BB46",
+      "zIndex": 0,
+      "region": "pavlodar",
+      "status": "completed",
+      "year": 2026,
+      "fontSize": 32,
+      "name": {
+        "ru": "Ерейментау",
+        "en": "Yereymentau",
+        "kk": "Ерейментау"
+      },
+      "segment": {
+        "ru": "Ерейментау",
+        "en": "Yereymentau",
+        "kk": "Ерейментау"
+      },
+      "location": {
+        "ru": "Ерейментау",
+        "en": "Yereymentau",
+        "kk": "Ерейментау"
+      },
+      "description": {
+        "ru": "",
+        "en": "",
+        "kk": ""
+      },
+      "indicators": [],
+      "images": [],
+      "additional": null,
+      "x": 12272,
+      "y": 12630,
+      "labelRotate": 90
+    },
+    {
+      "id": "obj-borly-pav8",
+      "type": "label",
+      "color": "#60BB46",
+      "zIndex": 0,
+      "region": "pavlodar",
+      "status": "completed",
+      "year": 2026,
+      "fontSize": 26,
+      "name": {
+        "ru": "Борлы",
+        "en": "Borly",
+        "kk": "Борлы"
+      },
+      "segment": {
+        "ru": "Борлы",
+        "en": "Borly",
+        "kk": "Борлы"
+      },
+      "location": {
+        "ru": "Борлы",
+        "en": "Borly",
+        "kk": "Борлы"
+      },
+      "description": {
+        "ru": "",
+        "en": "",
+        "kk": ""
+      },
+      "indicators": [],
+      "images": [],
+      "additional": null,
+      "x": 12570,
+      "y": 13260
     }
   ]
 }
