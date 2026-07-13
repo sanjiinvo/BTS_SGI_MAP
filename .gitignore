@@ -1,0 +1,8 @@
+node_modules/
+.scratch/
+*.cdr
+*.zip
+*backup*
+*копия*
+data/geo-calibration.json
+assets/map_Images/
