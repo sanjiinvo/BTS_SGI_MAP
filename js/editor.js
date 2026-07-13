@@ -13,6 +13,10 @@ const MapEditor = (() => {
   let deleteLog = [];
   let undoStack = [];
   let netDeletedCount = 0;
+  const DEFAULT_LABEL_FONT_SIZE = 86;
+  const DEFAULT_LABEL_OFFSET = { dx: 14, dy: -10 };
+  let labelOffset = { ...DEFAULT_LABEL_OFFSET };
+  let labelDrag = null;
 
   const elements = {};
   const SVG_NS = 'http://www.w3.org/2000/svg';
@@ -393,6 +397,8 @@ const MapEditor = (() => {
       renderDraft();
     });
 
+    elements.labelFontSize.addEventListener('input', renderDraft);
+
     elements.zIndexUp.addEventListener('click', () => {
       elements.zIndex.value = (Number(elements.zIndex.value) || 0) + 1;
     });
@@ -413,6 +419,7 @@ const MapEditor = (() => {
     elements.delete.addEventListener('click', deleteEditingProject);
     elements.lineUndo.addEventListener('click', undoLinePoint);
     elements.lineClear.addEventListener('click', clearLinePoints);
+    document.addEventListener('keydown', onSpaceShortcut);
     elements.export.addEventListener('click', downloadJson);
     elements.copy.addEventListener('click', copyJson);
   }
@@ -511,7 +518,7 @@ const MapEditor = (() => {
     elements.hint.textContent = mode === 'line'
       ? 'Линия: первая и последняя точки станут городскими узлами. Укажи названия начала и конца.'
       : mode === 'label'
-        ? 'Метка: нажми по существующей метке на карте, чтобы переместить/переименовать её, либо нажми по пустому месту, чтобы поставить новую. Не забудь нажать «Сохранить» и затем экспортировать JSON.'
+        ? 'Метка: нажми по существующей метке на карте, чтобы переместить/переименовать её, либо нажми по пустому месту, чтобы поставить новую. Текст метки можно перетащить мышью/пальцем в любую сторону от точки. Не забудь нажать «Сохранить» и затем экспортировать JSON.'
         : 'Точка: нажми по пустому месту карты, заполни данные и сохрани объект.';
     refreshActions();
   }
@@ -548,6 +555,7 @@ const MapEditor = (() => {
   function setPendingPoint(x, y) {
     pendingPoint = { x, y };
     linePoints = [];
+    labelOffset = { ...DEFAULT_LABEL_OFFSET };
     prefillDefaults('point');
     renderDraft();
     refreshActions();
@@ -624,18 +632,105 @@ const MapEditor = (() => {
     dot.setAttribute('r', '4');
     dot.setAttribute('fill', selectedColor);
 
+    const leader = document.createElementNS(SVG_NS, 'line');
+    leader.setAttribute('class', 'editor-label-leader');
+    leader.setAttribute('x1', '0');
+    leader.setAttribute('y1', '0');
+    leader.setAttribute('stroke', selectedColor);
+    leader.setAttribute('stroke-width', '1.5');
+    leader.setAttribute('stroke-dasharray', '4 4');
+    leader.setAttribute('opacity', '0.6');
+    leader.setAttribute('pointer-events', 'none');
+
     const label = document.createElementNS(SVG_NS, 'text');
     label.setAttribute('class', 'map-label-text');
-    label.setAttribute('x', '14');
-    label.setAttribute('y', '-10');
-    const rotate = Number(elements.labelRotate.value) || 0;
-    if (rotate !== 0) label.setAttribute('transform', `rotate(${rotate} 14 -10)`);
     label.textContent = I18n.tr(localizedValue(elements.title, elements.titleEn, elements.titleKk, 'Метка'));
+    label.style.cursor = 'move';
+    label.setAttribute('pointer-events', 'all');
+    label.style.fontSize = `${Number(elements.labelFontSize.value) || DEFAULT_LABEL_FONT_SIZE}px`;
 
+    const handle = document.createElementNS(SVG_NS, 'circle');
+    handle.setAttribute('class', 'editor-label-drag-handle');
+    handle.setAttribute('r', '12');
+    handle.setAttribute('fill', selectedColor);
+    handle.setAttribute('opacity', '0.18');
+    handle.setAttribute('stroke', selectedColor);
+    handle.setAttribute('stroke-width', '1.5');
+    handle.style.cursor = 'move';
+    handle.setAttribute('pointer-events', 'all');
+
+    g.appendChild(leader);
     g.appendChild(ring);
     g.appendChild(dot);
+    g.appendChild(handle);
     g.appendChild(label);
     tempLayer.appendChild(g);
+
+    applyLabelOffset({ leader, label, handle });
+    bindLabelDrag(label, { leader, label, handle });
+    bindLabelDrag(handle, { leader, label, handle });
+  }
+
+  // Positions the label text, its drag handle and the dashed leader line
+  // according to the current labelOffset/rotate — called on initial render
+  // and on every pointermove while dragging (mutates in place so an in-
+  // progress pointer capture on `label`/`handle` survives the update).
+  function applyLabelOffset(refs) {
+    const { leader, label, handle } = refs;
+    const { dx, dy } = labelOffset;
+    const rotate = Number(elements.labelRotate.value) || 0;
+
+    leader.setAttribute('x2', String(dx));
+    leader.setAttribute('y2', String(dy));
+
+    label.setAttribute('x', String(dx));
+    label.setAttribute('y', String(dy));
+    label.removeAttribute('transform');
+    if (rotate !== 0) label.setAttribute('transform', `rotate(${rotate} ${dx} ${dy})`);
+
+    handle.setAttribute('cx', String(dx));
+    handle.setAttribute('cy', String(dy));
+  }
+
+  function bindLabelDrag(el, refs) {
+    el.addEventListener('pointerdown', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      const startSvg = SvgViewBoxZoom.clientToSvg(e.clientX, e.clientY);
+      labelDrag = {
+        pointerId: e.pointerId,
+        startSvg,
+        startOffset: { ...labelOffset },
+        refs
+      };
+      el.setPointerCapture?.(e.pointerId);
+      el.addEventListener('pointermove', onLabelDragMove);
+      el.addEventListener('pointerup', onLabelDragEnd);
+      el.addEventListener('pointercancel', onLabelDragEnd);
+    });
+  }
+
+  function onLabelDragMove(e) {
+    if (!labelDrag || e.pointerId !== labelDrag.pointerId) return;
+    e.preventDefault();
+    e.stopPropagation();
+    const svgPoint = SvgViewBoxZoom.clientToSvg(e.clientX, e.clientY);
+    labelOffset = {
+      dx: Math.round((labelDrag.startOffset.dx + (svgPoint.x - labelDrag.startSvg.x)) * 10) / 10,
+      dy: Math.round((labelDrag.startOffset.dy + (svgPoint.y - labelDrag.startSvg.y)) * 10) / 10
+    };
+    applyLabelOffset(labelDrag.refs);
+  }
+
+  function onLabelDragEnd(e) {
+    if (!labelDrag || e.pointerId !== labelDrag.pointerId) return;
+    e.preventDefault();
+    e.stopPropagation();
+    const el = e.currentTarget;
+    el.removeEventListener('pointermove', onLabelDragMove);
+    el.removeEventListener('pointerup', onLabelDragEnd);
+    el.removeEventListener('pointercancel', onLabelDragEnd);
+    labelDrag = null;
   }
 
   function renderTempLine() {
@@ -686,6 +781,8 @@ const MapEditor = (() => {
     pendingPoint = null;
     linePoints = [];
     editingProjectId = null;
+    labelOffset = { ...DEFAULT_LABEL_OFFSET };
+    labelDrag = null;
     clearTempLayer();
     elements.coords.textContent = 'x: —, y: —';
     elements.lineCount.textContent = 'Точек линии: 0';
@@ -740,6 +837,20 @@ const MapEditor = (() => {
     else if (mode === 'line') savePendingLine();
     else if (mode === 'label') savePendingLabel();
     else savePendingPoint();
+  }
+
+  // Space bar is the fast-path for "Сохранить" (touchscreen kiosk has no
+  // dedicated shortcut key otherwise) — but only outside text fields, where
+  // space must keep typing a literal space.
+  function onSpaceShortcut(e) {
+    if (e.code !== 'Space' && e.key !== ' ') return;
+    if (!enabled || elements.save.disabled) return;
+    const active = document.activeElement;
+    const tag = active?.tagName;
+    if (tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT' || active?.isContentEditable) return;
+
+    e.preventDefault();
+    savePendingObject();
   }
 
   function savePendingPoint() {
@@ -839,7 +950,9 @@ const MapEditor = (() => {
       images: [],
       additional: null,
       ...(fontSize > 0 ? { fontSize } : {}),
-      ...(Number(elements.labelRotate.value) ? { labelRotate: Number(elements.labelRotate.value) } : {})
+      ...(Number(elements.labelRotate.value) ? { labelRotate: Number(elements.labelRotate.value) } : {}),
+      ...(labelOffset.dx !== DEFAULT_LABEL_OFFSET.dx ? { labelDx: labelOffset.dx } : {}),
+      ...(labelOffset.dy !== DEFAULT_LABEL_OFFSET.dy ? { labelDy: labelOffset.dy } : {})
     };
   }
 
@@ -892,6 +1005,10 @@ const MapEditor = (() => {
     elements.labelFontSize.value = project.fontSize || '';
     elements.labelRotate.value = Number(project.labelRotate) || 0;
     elements.labelRotateValue.textContent = String(elements.labelRotate.value);
+    labelOffset = {
+      dx: Number.isFinite(project.labelDx) ? Number(project.labelDx) : DEFAULT_LABEL_OFFSET.dx,
+      dy: Number.isFinite(project.labelDy) ? Number(project.labelDy) : DEFAULT_LABEL_OFFSET.dy
+    };
 
     if (project.type === 'line') {
       pendingPoint = null;

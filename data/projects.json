@@ -4850,7 +4850,7 @@
       "region": "east-kz",
       "status": "completed",
       "year": 2026,
-      "fontSize": 70,
+      "fontSize": 76,
       "name": {
         "ru": "Семейское отделение",
         "en": "Semey Branch",
@@ -4868,14 +4868,15 @@
       },
       "description": {
         "ru": "",
-        "en": "",
-        "kk": ""
+        "kk": "",
+        "en": ""
       },
       "indicators": [],
       "images": [],
       "additional": null,
-      "x": 13717.91,
-      "y": 12930.02
+      "x": 13719.5,
+      "y": 13871.7,
+      "labelRotate": -64
     },
     {
       "id": "obj-almaty-otd",
@@ -8687,14 +8688,14 @@
       },
       "description": {
         "ru": "",
-        "en": "",
-        "kk": ""
+        "kk": "",
+        "en": ""
       },
       "indicators": [],
       "images": [],
       "additional": null,
-      "x": 14156,
-      "y": 14291.8
+      "x": 14165.6,
+      "y": 14336.9
     },
     {
       "id": "obj-zhaksybulak-kar2",
@@ -8932,14 +8933,14 @@
       },
       "description": {
         "ru": "",
-        "en": "",
-        "kk": ""
+        "kk": "",
+        "en": ""
       },
       "indicators": [],
       "images": [],
       "additional": null,
-      "x": 13943.2,
-      "y": 14915.2
+      "x": 14067,
+      "y": 14871.1
     },
     {
       "id": "obj-eginsu-alm2",
@@ -8967,14 +8968,14 @@
       },
       "description": {
         "ru": "",
-        "en": "",
-        "kk": ""
+        "kk": "",
+        "en": ""
       },
       "indicators": [],
       "images": [],
       "additional": null,
-      "x": 13960.7,
-      "y": 14959.9
+      "x": 13977.9,
+      "y": 14922.8
     },
     {
       "id": "obj-alazhide-alm3",
@@ -9509,7 +9510,7 @@
       "region": "east-kz",
       "status": "completed",
       "year": 2026,
-      "fontSize": 32,
+      "fontSize": 35,
       "name": {
         "ru": "Дегелен",
         "en": "Degelen",
@@ -9527,15 +9528,15 @@
       },
       "description": {
         "ru": "",
-        "en": "",
-        "kk": ""
+        "kk": "",
+        "en": ""
       },
       "indicators": [],
       "images": [],
       "additional": null,
-      "x": 13688.4,
-      "y": 12963.46,
-      "labelRotate": 25
+      "x": 13659.3,
+      "y": 12963.4,
+      "labelRotate": -61
     },
     {
       "id": "obj-semstan-ekz2",
@@ -9545,7 +9546,7 @@
       "region": "east-kz",
       "status": "completed",
       "year": 2026,
-      "fontSize": 28,
+      "fontSize": 15,
       "name": {
         "ru": "Семипалатинск-Пристань",
         "en": "Semipalatinsk-Pristan",
@@ -9563,8 +9564,8 @@
       },
       "description": {
         "ru": "",
-        "en": "",
-        "kk": ""
+        "kk": "",
+        "en": ""
       },
       "indicators": [],
       "images": [],
@@ -9572,42 +9573,6 @@
       "x": 14070.01,
       "y": 12971.15,
       "labelRotate": -1
-    },
-    {
-      "id": "obj-zhanasemey-ekz3",
-      "type": "label",
-      "color": "#60BB46",
-      "zIndex": 0,
-      "region": "east-kz",
-      "status": "completed",
-      "year": 2026,
-      "fontSize": 40,
-      "name": {
-        "ru": "Жана Семей",
-        "en": "Zhana Semey",
-        "kk": "Жаңа Семей"
-      },
-      "segment": {
-        "ru": "Жана Семей",
-        "en": "Zhana Semey",
-        "kk": "Жаңа Семей"
-      },
-      "location": {
-        "ru": "Жана Семей",
-        "en": "Zhana Semey",
-        "kk": "Жаңа Семей"
-      },
-      "description": {
-        "ru": "",
-        "en": "",
-        "kk": ""
-      },
-      "indicators": [],
-      "images": [],
-      "additional": null,
-      "x": 14135.55,
-      "y": 12995,
-      "labelRotate": -15
     },
     {
       "id": "obj-karasor-pav1",
@@ -9750,7 +9715,7 @@
       "additional": null,
       "x": 13326.97,
       "y": 12670.15,
-      "labelRotate": 39
+      "labelRotate": -34
     },
     {
       "id": "obj-ushkulyn-pav6",
@@ -9851,14 +9816,14 @@
       },
       "description": {
         "ru": "",
-        "en": "",
-        "kk": ""
+        "kk": "",
+        "en": ""
       },
       "indicators": [],
       "images": [],
       "additional": null,
-      "x": 13830.65,
-      "y": 15797.5,
+      "x": 13868.5,
+      "y": 15802.3,
       "labelRotate": -1,
       "labelDx": 16,
       "labelDy": 4
@@ -9902,42 +9867,6 @@
       "labelDy": 4
     },
     {
-      "id": "obj-medeu-alm26",
-      "type": "label",
-      "color": "#ffc107",
-      "zIndex": 0,
-      "region": "almaty",
-      "status": "completed",
-      "year": 2026,
-      "fontSize": 24,
-      "name": {
-        "ru": "Медеу",
-        "en": "Medeu",
-        "kk": "Медеу"
-      },
-      "segment": {
-        "ru": "Медеу",
-        "en": "Medeu",
-        "kk": "Медеу"
-      },
-      "location": {
-        "ru": "Медеу",
-        "en": "Medeu",
-        "kk": "Медеу"
-      },
-      "description": {
-        "ru": "",
-        "en": "",
-        "kk": ""
-      },
-      "indicators": [],
-      "images": [],
-      "additional": null,
-      "x": 13794.39,
-      "y": 15798.12,
-      "labelRotate": -1
-    },
-    {
       "id": "obj-almaty1-alm27",
       "type": "label",
       "color": "#60BB46",
@@ -9973,44 +9902,6 @@
       "y": 16001.8
     },
     {
-      "id": "obj-bokter-alm30",
-      "type": "label",
-      "color": "#ffc107",
-      "zIndex": 0,
-      "region": "almaty",
-      "status": "completed",
-      "year": 2026,
-      "fontSize": 24,
-      "name": {
-        "ru": "Боктер",
-        "en": "Bokter",
-        "kk": "Боктер"
-      },
-      "segment": {
-        "ru": "Боктер",
-        "en": "Bokter",
-        "kk": "Боктер"
-      },
-      "location": {
-        "ru": "Боктер",
-        "en": "Bokter",
-        "kk": "Боктер"
-      },
-      "description": {
-        "ru": "",
-        "en": "",
-        "kk": ""
-      },
-      "indicators": [],
-      "images": [],
-      "additional": null,
-      "x": 13725.85,
-      "y": 15759.3,
-      "labelRotate": -1,
-      "labelDx": 16,
-      "labelDy": 4
-    },
-    {
       "id": "obj-kapchagay-alm31",
       "type": "label",
       "color": "#60BB46",
@@ -10018,7 +9909,7 @@
       "region": "almaty",
       "status": "completed",
       "year": 2026,
-      "fontSize": 36,
+      "fontSize": 25,
       "name": {
         "ru": "Капчагай",
         "en": "Kapchagay",
@@ -10036,14 +9927,14 @@
       },
       "description": {
         "ru": "",
-        "en": "",
-        "kk": ""
+        "kk": "",
+        "en": ""
       },
       "indicators": [],
       "images": [],
       "additional": null,
-      "x": 13726.55,
-      "y": 15799.3,
+      "x": 13730.1,
+      "y": 15802.3,
       "labelRotate": -1,
       "labelDx": 16,
       "labelDy": 4
@@ -10074,15 +9965,15 @@
       },
       "description": {
         "ru": "",
-        "en": "",
-        "kk": ""
+        "kk": "",
+        "en": ""
       },
       "indicators": [],
       "images": [],
       "additional": null,
-      "x": 13725.85,
-      "y": 15759.3,
-      "labelRotate": -1,
+      "x": 13724.1,
+      "y": 15757.8,
+      "labelRotate": -74,
       "labelDx": 16,
       "labelDy": 4
     },
@@ -10112,53 +10003,15 @@
       },
       "description": {
         "ru": "",
-        "en": "",
-        "kk": ""
+        "kk": "",
+        "en": ""
       },
       "indicators": [],
       "images": [],
       "additional": null,
-      "x": 13726.55,
-      "y": 15799.3,
-      "labelRotate": -1,
-      "labelDx": 16,
-      "labelDy": 4
-    },
-    {
-      "id": "obj-koskuduk-alm36",
-      "type": "label",
-      "color": "#ffc107",
-      "zIndex": 0,
-      "region": "almaty",
-      "status": "completed",
-      "year": 2026,
-      "fontSize": 24,
-      "name": {
-        "ru": "Коскудук",
-        "en": "Koskuduk",
-        "kk": "Қоскөдүк"
-      },
-      "segment": {
-        "ru": "Коскудук",
-        "en": "Koskuduk",
-        "kk": "Қоскөдүк"
-      },
-      "location": {
-        "ru": "Коскудук",
-        "en": "Koskuduk",
-        "kk": "Қоскөдүк"
-      },
-      "description": {
-        "ru": "",
-        "en": "",
-        "kk": ""
-      },
-      "indicators": [],
-      "images": [],
-      "additional": null,
-      "x": 13738.84,
-      "y": 15759.08,
-      "labelRotate": -1,
+      "x": 13767.4,
+      "y": 15759,
+      "labelRotate": -68,
       "labelDx": 16,
       "labelDy": 4
     },
@@ -12407,14 +12260,14 @@
       },
       "description": {
         "ru": "",
-        "en": "",
-        "kk": ""
+        "kk": "",
+        "en": ""
       },
       "indicators": [],
       "images": [],
       "additional": null,
-      "x": 11806,
-      "y": 12130
+      "x": 11754.3,
+      "y": 12178.1
     },
     {
       "id": "obj-karagai-a4",
@@ -12512,14 +12365,14 @@
       },
       "description": {
         "ru": "",
-        "en": "",
-        "kk": ""
+        "kk": "",
+        "en": ""
       },
       "indicators": [],
       "images": [],
       "additional": null,
-      "x": 11913,
-      "y": 12198
+      "x": 11801.3,
+      "y": 12252.5
     },
     {
       "id": "obj-zhamantuz-a7",
@@ -12582,14 +12435,14 @@
       },
       "description": {
         "ru": "",
-        "en": "",
-        "kk": ""
+        "kk": "",
+        "en": ""
       },
       "indicators": [],
       "images": [],
       "additional": null,
-      "x": 11596,
-      "y": 12285
+      "x": 11539.9,
+      "y": 12274.4
     },
     {
       "id": "obj-altyntau-a9",
@@ -12617,14 +12470,14 @@
       },
       "description": {
         "ru": "",
-        "en": "",
-        "kk": ""
+        "kk": "",
+        "en": ""
       },
       "indicators": [],
       "images": [],
       "additional": null,
-      "x": 11957,
-      "y": 12321
+      "x": 11892.1,
+      "y": 12361.9
     },
     {
       "id": "obj-makinka-a10",
@@ -12652,14 +12505,14 @@
       },
       "description": {
         "ru": "",
-        "en": "",
-        "kk": ""
+        "kk": "",
+        "en": ""
       },
       "indicators": [],
       "images": [],
       "additional": null,
-      "x": 11637,
-      "y": 12351
+      "x": 11578.2,
+      "y": 12382.7
     },
     {
       "id": "obj-kurortborovoe-a11",
@@ -12687,14 +12540,14 @@
       },
       "description": {
         "ru": "",
-        "en": "",
-        "kk": ""
+        "kk": "",
+        "en": ""
       },
       "indicators": [],
       "images": [],
       "additional": null,
-      "x": 11412,
-      "y": 12353
+      "x": 11526.8,
+      "y": 12321.4
     },
     {
       "id": "obj-selety-a12",
@@ -12722,14 +12575,14 @@
       },
       "description": {
         "ru": "",
-        "en": "",
-        "kk": ""
+        "kk": "",
+        "en": ""
       },
       "indicators": [],
       "images": [],
       "additional": null,
-      "x": 12075,
-      "y": 12469
+      "x": 12057.3,
+      "y": 12535.8
     },
     {
       "id": "obj-eltai-a13",
@@ -12757,14 +12610,14 @@
       },
       "description": {
         "ru": "",
-        "en": "",
-        "kk": ""
+        "kk": "",
+        "en": ""
       },
       "indicators": [],
       "images": [],
       "additional": null,
-      "x": 11667,
-      "y": 12458
+      "x": 11603.4,
+      "y": 12466.9
     },
     {
       "id": "obj-akkul-a14",
@@ -12792,14 +12645,14 @@
       },
       "description": {
         "ru": "",
-        "en": "",
-        "kk": ""
+        "kk": "",
+        "en": ""
       },
       "indicators": [],
       "images": [],
       "additional": null,
-      "x": 11786,
-      "y": 12607
+      "x": 11710.6,
+      "y": 12621.1
     },
     {
       "id": "obj-turgai-a15",
@@ -12827,14 +12680,14 @@
       },
       "description": {
         "ru": "",
-        "en": "",
-        "kk": ""
+        "kk": "",
+        "en": ""
       },
       "indicators": [],
       "images": [],
       "additional": null,
-      "x": 12187,
-      "y": 12640
+      "x": 12168.8,
+      "y": 12693.3
     },
     {
       "id": "obj-obpenbek-a16",
@@ -12862,14 +12715,14 @@
       },
       "description": {
         "ru": "",
-        "en": "",
-        "kk": ""
+        "kk": "",
+        "en": ""
       },
       "indicators": [],
       "images": [],
       "additional": null,
-      "x": 11824,
-      "y": 12655
+      "x": 11730.2,
+      "y": 12681.3
     },
     {
       "id": "obj-irchenko-a17",
@@ -13002,14 +12855,14 @@
       },
       "description": {
         "ru": "",
-        "en": "",
-        "kk": ""
+        "kk": "",
+        "en": ""
       },
       "indicators": [],
       "images": [],
       "additional": null,
-      "x": 11833,
-      "y": 12749
+      "x": 11753.2,
+      "y": 12754.5
     },
     {
       "id": "obj-edyge-a21",
@@ -13107,14 +12960,14 @@
       },
       "description": {
         "ru": "",
-        "en": "",
-        "kk": ""
+        "kk": "",
+        "en": ""
       },
       "indicators": [],
       "images": [],
       "additional": null,
-      "x": 11855,
-      "y": 12823
+      "x": 11783.8,
+      "y": 12828.9
     },
     {
       "id": "obj-saryoba-a24",
@@ -13142,14 +12995,15 @@
       },
       "description": {
         "ru": "",
-        "en": "",
-        "kk": ""
+        "kk": "",
+        "en": ""
       },
       "indicators": [],
       "images": [],
       "additional": null,
-      "x": 12015,
-      "y": 12824
+      "x": 12023.4,
+      "y": 12912,
+      "labelRotate": -47
     },
     {
       "id": "obj-dzhaltyr-a25",
@@ -13212,14 +13066,14 @@
       },
       "description": {
         "ru": "",
-        "en": "",
-        "kk": ""
+        "kk": "",
+        "en": ""
       },
       "indicators": [],
       "images": [],
       "additional": null,
-      "x": 11881,
-      "y": 12880
+      "x": 11813.4,
+      "y": 12885.8
     },
     {
       "id": "obj-karaadyr-a27",
@@ -13984,14 +13838,15 @@
       },
       "description": {
         "ru": "",
-        "en": "",
-        "kk": ""
+        "kk": "",
+        "en": ""
       },
       "indicators": [],
       "images": [],
       "additional": null,
-      "x": 14887,
-      "y": 12760
+      "x": 14918.5,
+      "y": 12820.2,
+      "labelRotate": -90
     },
     {
       "id": "obj-tishinskaya-ek2",
@@ -14019,14 +13874,15 @@
       },
       "description": {
         "ru": "",
-        "en": "",
-        "kk": ""
+        "kk": "",
+        "en": ""
       },
       "indicators": [],
       "images": [],
       "additional": null,
-      "x": 14940,
-      "y": 12770
+      "x": 14964.4,
+      "y": 12785.2,
+      "labelRotate": -50
     },
     {
       "id": "obj-ridder-ek3",
@@ -14036,7 +13892,7 @@
       "region": "east-kz",
       "status": "completed",
       "year": 2026,
-      "fontSize": 26,
+      "fontSize": 30,
       "name": {
         "ru": "Риддер",
         "en": "Ridder",
@@ -14054,14 +13910,14 @@
       },
       "description": {
         "ru": "",
-        "en": "",
-        "kk": ""
+        "kk": "",
+        "en": ""
       },
       "indicators": [],
       "images": [],
       "additional": null,
-      "x": 15032,
-      "y": 12790
+      "x": 14966.7,
+      "y": 12818.5
     },
     {
       "id": "obj-comboA-ek4-s1",
@@ -14200,8 +14056,8 @@
       "indicators": [],
       "images": [],
       "additional": null,
-      "x": 15237.1,
-      "y": 12978.3
+      "x": 15232.4,
+      "y": 13009.4
     },
     {
       "id": "obj-comboB-ek6-s1",
@@ -14340,8 +14196,9 @@
       "indicators": [],
       "images": [],
       "additional": null,
-      "x": 15018.5,
-      "y": 13060.7
+      "x": 15059.6,
+      "y": 13067.4,
+      "labelRotate": 28
     },
     {
       "id": "obj-comboC-ek7-s5",
@@ -14421,7 +14278,7 @@
       "region": "east-kz",
       "status": "completed",
       "year": 2026,
-      "fontSize": 42,
+      "fontSize": 50,
       "name": {
         "ru": "Оскемен",
         "en": "Oskemen",
@@ -14439,14 +14296,15 @@
       },
       "description": {
         "ru": "",
-        "en": "",
-        "kk": ""
+        "kk": "",
+        "en": ""
       },
       "indicators": [],
       "images": [],
       "additional": null,
       "x": 14649,
-      "y": 12997
+      "y": 12997,
+      "labelRotate": 26
     },
     {
       "id": "obj-comboE-ek10-s1",
@@ -14516,7 +14374,8 @@
       "images": [],
       "additional": null,
       "x": 14661.5,
-      "y": 13077.1
+      "y": 13077.1,
+      "labelRotate": 54
     },
     {
       "id": "obj-comboF-ek11-s1",
@@ -14586,7 +14445,8 @@
       "images": [],
       "additional": null,
       "x": 14497.9,
-      "y": 13147.4
+      "y": 13147.4,
+      "labelRotate": 37
     },
     {
       "id": "obj-sarizhal-ek13",
@@ -14621,7 +14481,8 @@
       "images": [],
       "additional": null,
       "x": 14458.3,
-      "y": 13213.3
+      "y": 13213.3,
+      "labelRotate": 38
     },
     {
       "id": "obj-comboShar-ek14-s1",
@@ -14789,15 +14650,15 @@
       },
       "description": {
         "ru": "",
-        "en": "",
-        "kk": ""
+        "kk": "",
+        "en": ""
       },
       "indicators": [],
       "images": [],
       "additional": null,
-      "x": 14125.05,
-      "y": 12956.4,
-      "labelRotate": -15
+      "x": 14176.9,
+      "y": 12877.1,
+      "labelRotate": 1
     },
     {
       "id": "obj-ruliha-ek19",
@@ -14838,11 +14699,11 @@
       "id": "obj-zhanasemey-ek20",
       "type": "label",
       "color": "#60BB46",
-      "zIndex": 0,
+      "zIndex": 2,
       "region": "east-kz",
       "status": "completed",
       "year": 2026,
-      "fontSize": 34,
+      "fontSize": 35,
       "name": {
         "ru": "Жана Семей",
         "en": "Zhana Semey",
@@ -14860,15 +14721,15 @@
       },
       "description": {
         "ru": "",
-        "en": "",
-        "kk": ""
+        "kk": "",
+        "en": ""
       },
       "indicators": [],
       "images": [],
       "additional": null,
-      "x": 14135.55,
-      "y": 12995,
-      "labelRotate": -15
+      "x": 14131,
+      "y": 13004,
+      "labelRotate": 2
     },
     {
       "id": "obj-razizvestkoviy-ek21",
@@ -14896,15 +14757,15 @@
       },
       "description": {
         "ru": "",
-        "en": "",
-        "kk": ""
+        "kk": "",
+        "en": ""
       },
       "indicators": [],
       "images": [],
       "additional": null,
       "x": 13743.56,
       "y": 12934.39,
-      "labelRotate": 5
+      "labelRotate": -47
     },
     {
       "id": "obj-pplevyi-semipalatinsk-ek22-s1",
@@ -14914,7 +14775,7 @@
       "region": "east-kz",
       "status": "completed",
       "year": 2026,
-      "fontSize": 20,
+      "fontSize": 17,
       "name": {
         "ru": "П.п. Левый Иртыш",
         "en": "Pp. Levy Irtysh",
@@ -14932,15 +14793,15 @@
       },
       "description": {
         "ru": "",
-        "en": "",
-        "kk": ""
+        "kk": "",
+        "en": ""
       },
       "indicators": [],
       "images": [],
       "additional": null,
-      "x": 13931.07,
-      "y": 12988.25,
-      "labelRotate": 33
+      "x": 13937.4,
+      "y": 12891.3,
+      "labelRotate": -1
     },
     {
       "id": "obj-pplevyi-semipalatinsk-ek22-s2",
@@ -14968,14 +14829,14 @@
       },
       "description": {
         "ru": "",
-        "en": "",
-        "kk": ""
+        "kk": "",
+        "en": ""
       },
       "indicators": [],
       "images": [],
       "additional": null,
-      "x": 13992,
-      "y": 12955
+      "x": 14076.3,
+      "y": 12913.2
     },
     {
       "id": "obj-chagan-ek23",
@@ -15003,14 +14864,15 @@
       },
       "description": {
         "ru": "",
-        "en": "",
-        "kk": ""
+        "kk": "",
+        "en": ""
       },
       "indicators": [],
       "images": [],
       "additional": null,
       "x": 13791,
-      "y": 12997
+      "y": 12997,
+      "labelRotate": -74
     },
     {
       "id": "obj-kul-ek24",
@@ -15038,15 +14900,15 @@
       },
       "description": {
         "ru": "",
-        "en": "",
-        "kk": ""
+        "kk": "",
+        "en": ""
       },
       "indicators": [],
       "images": [],
       "additional": null,
-      "x": 13817.26,
-      "y": 12947.35,
-      "labelRotate": -16
+      "x": 13870.7,
+      "y": 12974.5,
+      "labelRotate": -71
     },
     {
       "id": "obj-bp297-ek25",
@@ -15110,15 +14972,15 @@
       },
       "description": {
         "ru": "",
-        "en": "",
-        "kk": ""
+        "kk": "",
+        "en": ""
       },
       "indicators": [],
       "images": [],
       "additional": null,
-      "x": 13596.04,
-      "y": 12868,
-      "labelRotate": 50
+      "x": 13459.5,
+      "y": 12994.7,
+      "labelRotate": -29
     },
     {
       "id": "obj-suyrly-ek30",
@@ -15286,14 +15148,14 @@
       },
       "description": {
         "ru": "",
-        "en": "",
-        "kk": ""
+        "kk": "",
+        "en": ""
       },
       "indicators": [],
       "images": [],
       "additional": null,
-      "x": 14515,
-      "y": 13521
+      "x": 14433.9,
+      "y": 13477.9
     },
     {
       "id": "obj-narbota-ek36",
@@ -15321,14 +15183,14 @@
       },
       "description": {
         "ru": "",
-        "en": "",
-        "kk": ""
+        "kk": "",
+        "en": ""
       },
       "indicators": [],
       "images": [],
       "additional": null,
-      "x": 14493,
-      "y": 13549
+      "x": 14400.2,
+      "y": 13534.4
     },
     {
       "id": "obj-zharma-ek37",
@@ -15356,14 +15218,14 @@
       },
       "description": {
         "ru": "",
-        "en": "",
-        "kk": ""
+        "kk": "",
+        "en": ""
       },
       "indicators": [],
       "images": [],
       "additional": null,
-      "x": 14508,
-      "y": 13585
+      "x": 14424.3,
+      "y": 13589.8
     },
     {
       "id": "obj-karakultas-ek39",
@@ -15391,14 +15253,14 @@
       },
       "description": {
         "ru": "",
-        "en": "",
-        "kk": ""
+        "kk": "",
+        "en": ""
       },
       "indicators": [],
       "images": [],
       "additional": null,
-      "x": 14526,
-      "y": 13655
+      "x": 14409.9,
+      "y": 13653.5
     },
     {
       "id": "obj-ushbiik-combo-ek41",
@@ -15426,14 +15288,14 @@
       },
       "description": {
         "ru": "",
-        "en": "",
-        "kk": ""
+        "kk": "",
+        "en": ""
       },
       "indicators": [],
       "images": [],
       "additional": null,
-      "x": 14408,
-      "y": 13748
+      "x": 14377.4,
+      "y": 13710.1
     },
     {
       "id": "obj-razenrekey-ek42",
@@ -15461,14 +15323,14 @@
       },
       "description": {
         "ru": "",
-        "en": "",
-        "kk": ""
+        "kk": "",
+        "en": ""
       },
       "indicators": [],
       "images": [],
       "additional": null,
-      "x": 14469,
-      "y": 13772
+      "x": 14364.1,
+      "y": 13746.2
     },
     {
       "id": "obj-aigyrzhal-ek43",
@@ -15496,14 +15358,14 @@
       },
       "description": {
         "ru": "",
-        "en": "",
-        "kk": ""
+        "kk": "",
+        "en": ""
       },
       "indicators": [],
       "images": [],
       "additional": null,
-      "x": 14454,
-      "y": 13807
+      "x": 14356.9,
+      "y": 13787.1
     },
     {
       "id": "obj-altynkolat-ek44",
@@ -15531,14 +15393,14 @@
       },
       "description": {
         "ru": "",
-        "en": "",
-        "kk": ""
+        "kk": "",
+        "en": ""
       },
       "indicators": [],
       "images": [],
       "additional": null,
-      "x": 14480,
-      "y": 13833
+      "x": 14360.5,
+      "y": 13828
     },
     {
       "id": "obj-egizkyzyl-ek45",
@@ -15566,14 +15428,14 @@
       },
       "description": {
         "ru": "",
-        "en": "",
-        "kk": ""
+        "kk": "",
+        "en": ""
       },
       "indicators": [],
       "images": [],
       "additional": null,
-      "x": 14480,
-      "y": 13861
+      "x": 14372.6,
+      "y": 13860.5
     },
     {
       "id": "obj-raz21-ayagoz-ek46-s2",
@@ -15601,14 +15463,14 @@
       },
       "description": {
         "ru": "",
-        "en": "",
-        "kk": ""
+        "kk": "",
+        "en": ""
       },
       "indicators": [],
       "images": [],
       "additional": null,
-      "x": 14452,
-      "y": 13966
+      "x": 14373.8,
+      "y": 13936.3
     },
     {
       "id": "obj-koshkental-ek48",
@@ -15636,14 +15498,14 @@
       },
       "description": {
         "ru": "",
-        "en": "",
-        "kk": ""
+        "kk": "",
+        "en": ""
       },
       "indicators": [],
       "images": [],
       "additional": null,
-      "x": 14472,
-      "y": 14013
+      "x": 14364.1,
+      "y": 14013.3
     },
     {
       "id": "obj-zhylandy-ek49",
@@ -15671,14 +15533,14 @@
       },
       "description": {
         "ru": "",
-        "en": "",
-        "kk": ""
+        "kk": "",
+        "en": ""
       },
       "indicators": [],
       "images": [],
       "additional": null,
-      "x": 14447,
-      "y": 14088
+      "x": 14356.9,
+      "y": 14063.8
     },
     {
       "id": "obj-temekili-combo-ek50-s1",
@@ -15706,14 +15568,14 @@
       },
       "description": {
         "ru": "",
-        "en": "",
-        "kk": ""
+        "kk": "",
+        "en": ""
       },
       "indicators": [],
       "images": [],
       "additional": null,
-      "x": 14385,
-      "y": 14144
+      "x": 14329.3,
+      "y": 14120.4
     },
     {
       "id": "obj-temekili-combo-ek50-s3",
@@ -15741,14 +15603,14 @@
       },
       "description": {
         "ru": "",
-        "en": "",
-        "kk": ""
+        "kk": "",
+        "en": ""
       },
       "indicators": [],
       "images": [],
       "additional": null,
-      "x": 14385,
-      "y": 14232
+      "x": 14271.5,
+      "y": 14235.9
     },
     {
       "id": "obj-temekili-combo-ek50-s4",
@@ -15776,14 +15638,14 @@
       },
       "description": {
         "ru": "",
-        "en": "",
-        "kk": ""
+        "kk": "",
+        "en": ""
       },
       "indicators": [],
       "images": [],
       "additional": null,
-      "x": 14341,
-      "y": 14188
+      "x": 14301.6,
+      "y": 14176.9
     },
     {
       "id": "obj-raz30-zhuzagach-ek51-s2",
@@ -15811,14 +15673,14 @@
       },
       "description": {
         "ru": "",
-        "en": "",
-        "kk": ""
+        "kk": "",
+        "en": ""
       },
       "indicators": [],
       "images": [],
       "additional": null,
-      "x": 14283,
-      "y": 14338
+      "x": 14271.5,
+      "y": 14370.6
     },
     {
       "id": "obj-sarykum-aktogai-ek55-s1",
@@ -16024,15 +15886,15 @@
       },
       "description": {
         "ru": "",
-        "en": "",
-        "kk": ""
+        "kk": "",
+        "en": ""
       },
       "indicators": [],
       "images": [],
       "additional": null,
       "x": 14567,
       "y": 15439,
-      "labelRotate": 90,
+      "labelRotate": -29,
       "labelDx": 16,
       "labelDy": 4
     },
@@ -16252,14 +16114,14 @@
       },
       "description": {
         "ru": "",
-        "en": "",
-        "kk": ""
+        "kk": "",
+        "en": ""
       },
       "indicators": [],
       "images": [],
       "additional": null,
-      "x": 14405.62,
-      "y": 15547.81,
+      "x": 14376.2,
+      "y": 15561.7,
       "labelRotate": -30,
       "labelDx": 16,
       "labelDy": 4
@@ -16328,15 +16190,15 @@
       },
       "description": {
         "ru": "",
-        "en": "",
-        "kk": ""
+        "kk": "",
+        "en": ""
       },
       "indicators": [],
       "images": [],
       "additional": null,
-      "x": 14173,
-      "y": 15742,
-      "labelRotate": 90,
+      "x": 14107.9,
+      "y": 15767.4,
+      "labelRotate": -22,
       "labelDx": 16,
       "labelDy": 4
     },
@@ -16474,14 +16336,14 @@
       },
       "description": {
         "ru": "",
-        "en": "",
-        "kk": ""
+        "kk": "",
+        "en": ""
       },
       "indicators": [],
       "images": [],
       "additional": null,
-      "x": 14069,
-      "y": 14969
+      "x": 14052.5,
+      "y": 14943.3
     },
     {
       "id": "obj-mulaly-karaoi-alm12-s2",
@@ -16509,14 +16371,14 @@
       },
       "description": {
         "ru": "",
-        "en": "",
-        "kk": ""
+        "kk": "",
+        "en": ""
       },
       "indicators": [],
       "images": [],
       "additional": null,
-      "x": 14069,
-      "y": 15029
+      "x": 14012.8,
+      "y": 15033.5
     },
     {
       "id": "obj-kairakty-combo-alm13-s1",
@@ -16719,14 +16581,14 @@
       },
       "description": {
         "ru": "",
-        "en": "",
-        "kk": ""
+        "kk": "",
+        "en": ""
       },
       "indicators": [],
       "images": [],
       "additional": null,
-      "x": 13992,
-      "y": 14742
+      "x": 14087.4,
+      "y": 14747.2
     },
     {
       "id": "obj-bereke-alm18",
@@ -16789,14 +16651,14 @@
       },
       "description": {
         "ru": "",
-        "en": "",
-        "kk": ""
+        "kk": "",
+        "en": ""
       },
       "indicators": [],
       "images": [],
       "additional": null,
-      "x": 13971,
-      "y": 14819
+      "x": 14071.8,
+      "y": 14818.2
     },
     {
       "id": "obj-matai-akuzek-alm19-s2",
@@ -18259,14 +18121,15 @@
       },
       "description": {
         "ru": "",
-        "en": "",
-        "kk": ""
+        "kk": "",
+        "en": ""
       },
       "indicators": [],
       "images": [],
       "additional": null,
-      "x": 11205.96,
-      "y": 16603.5
+      "x": 11330.1,
+      "y": 16571.7,
+      "labelRotate": 11
     },
     {
       "id": "obj-montaitas-shanak-shy2-s1",
@@ -18294,14 +18157,14 @@
       },
       "description": {
         "ru": "",
-        "en": "",
-        "kk": ""
+        "kk": "",
+        "en": ""
       },
       "indicators": [],
       "images": [],
       "additional": null,
-      "x": 11262,
-      "y": 16631
+      "x": 11340.9,
+      "y": 16633.1
     },
     {
       "id": "obj-montaitas-shanak-shy2-s2",
@@ -18329,14 +18192,14 @@
       },
       "description": {
         "ru": "",
-        "en": "",
-        "kk": ""
+        "kk": "",
+        "en": ""
       },
       "indicators": [],
       "images": [],
       "additional": null,
-      "x": 11262,
-      "y": 16691
+      "x": 11281.9,
+      "y": 16670.4
     },
     {
       "id": "obj-shengeldy-shy3",
@@ -18364,14 +18227,14 @@
       },
       "description": {
         "ru": "",
-        "en": "",
-        "kk": ""
+        "kk": "",
+        "en": ""
       },
       "indicators": [],
       "images": [],
       "additional": null,
-      "x": 11264,
-      "y": 16741
+      "x": 11366.2,
+      "y": 16720.9
     },
     {
       "id": "obj-zhylga-shy4",
@@ -18399,14 +18262,14 @@
       },
       "description": {
         "ru": "",
-        "en": "",
-        "kk": ""
+        "kk": "",
+        "en": ""
       },
       "indicators": [],
       "images": [],
       "additional": null,
-      "x": 11302,
-      "y": 16791
+      "x": 11326.5,
+      "y": 16758.2
     },
     {
       "id": "obj-darbaza-shy5",
@@ -18434,14 +18297,14 @@
       },
       "description": {
         "ru": "",
-        "en": "",
-        "kk": ""
+        "kk": "",
+        "en": ""
       },
       "indicators": [],
       "images": [],
       "additional": null,
-      "x": 11314,
-      "y": 16839
+      "x": 11387.8,
+      "y": 16807.5
     },
     {
       "id": "obj-saryagash-shy6",
@@ -18469,14 +18332,14 @@
       },
       "description": {
         "ru": "",
-        "en": "",
-        "kk": ""
+        "kk": "",
+        "en": ""
       },
       "indicators": [],
       "images": [],
       "additional": null,
-      "x": 11326,
-      "y": 16889
+      "x": 11405.9,
+      "y": 16876.1
     },
     {
       "id": "obj-turkestan-shy8",
@@ -21275,15 +21138,17 @@
       },
       "description": {
         "ru": "",
-        "en": "",
-        "kk": ""
+        "kk": "",
+        "en": ""
       },
       "indicators": [],
       "images": [],
       "additional": null,
-      "x": 9126.96,
-      "y": 16745.93,
-      "labelRotate": 6
+      "x": 9145,
+      "y": 16727.5,
+      "labelRotate": 72,
+      "labelDx": -0.2,
+      "labelDy": 30.5
     },
     {
       "id": "obj-dautela-uz4",
@@ -21455,15 +21320,17 @@
       },
       "description": {
         "ru": "",
-        "en": "",
-        "kk": ""
+        "kk": "",
+        "en": ""
       },
       "indicators": [],
       "images": [],
       "additional": null,
-      "x": 9799.66,
-      "y": 17294.24,
-      "labelRotate": 65
+      "x": 9768.5,
+      "y": 17299.5,
+      "labelRotate": -27,
+      "labelDx": -73.5,
+      "labelDy": 51.3
     },
     {
       "id": "obj-yangiabad-uz12",
@@ -21491,51 +21358,17 @@
       },
       "description": {
         "ru": "",
-        "en": "",
-        "kk": ""
+        "kk": "",
+        "en": ""
       },
       "indicators": [],
       "images": [],
       "additional": null,
-      "x": 9788.21,
-      "y": 17364.31,
-      "labelRotate": 65
-    },
-    {
-      "id": "obj-koybak-uzk1",
-      "type": "label",
-      "color": "#ffc107",
-      "zIndex": 0,
-      "region": "uzbekistan",
-      "status": "completed",
-      "year": 2026,
-      "fontSize": 20,
-      "name": {
-        "ru": "Койбак",
-        "en": "Koybak",
-        "kk": "Койбак"
-      },
-      "segment": {
-        "ru": "Койбак",
-        "en": "Koybak",
-        "kk": "Койбак"
-      },
-      "location": {
-        "ru": "Койбак",
-        "en": "Koybak",
-        "kk": "Койбак"
-      },
-      "description": {
-        "ru": "",
-        "en": "",
-        "kk": ""
-      },
-      "indicators": [],
-      "images": [],
-      "additional": null,
-      "x": 8837.98,
-      "y": 16605.56,
-      "labelRotate": 39
+      "x": 9818.8,
+      "y": 17394.7,
+      "labelRotate": -7,
+      "labelDx": -106.3,
+      "labelDy": 6.4
     },
     {
       "id": "obj-karuzak-uzk2",
@@ -21547,9 +21380,9 @@
       "year": 2026,
       "fontSize": 20,
       "name": {
-        "ru": "Карузак",
-        "en": "Karuzak",
-        "kk": "Карузак"
+        "ru": "Хива",
+        "en": "Hiva",
+        "kk": "Hiva"
       },
       "segment": {
         "ru": "Карузак",
@@ -21557,62 +21390,23 @@
         "kk": "Карузак"
       },
       "location": {
-        "ru": "Карузак",
-        "en": "Karuzak",
-        "kk": "Карузак"
+        "ru": "Хива",
+        "en": "Hiva",
+        "kk": "Hiva"
       },
       "description": {
         "ru": "",
-        "en": "",
-        "kk": ""
+        "kk": "",
+        "en": ""
       },
       "indicators": [],
       "images": [],
       "additional": null,
-      "x": 8812.82,
-      "y": 16636.64,
+      "x": 8823.5,
+      "y": 16621.4,
       "labelDx": 16,
       "labelDy": 14,
-      "labelRotate": 39
-    },
-    {
-      "id": "obj-djumurtau-uzk3",
-      "type": "label",
-      "color": "#ffc107",
-      "zIndex": 0,
-      "region": "uzbekistan",
-      "status": "completed",
-      "year": 2026,
-      "fontSize": 20,
-      "name": {
-        "ru": "Джумуртау",
-        "en": "Dzhumurtau",
-        "kk": "Джумуртау"
-      },
-      "segment": {
-        "ru": "Джумуртау",
-        "en": "Dzhumurtau",
-        "kk": "Джумуртау"
-      },
-      "location": {
-        "ru": "Джумуртау",
-        "en": "Dzhumurtau",
-        "kk": "Джумуртау"
-      },
-      "description": {
-        "ru": "",
-        "en": "",
-        "kk": ""
-      },
-      "indicators": [],
-      "images": [],
-      "additional": null,
-      "x": 8837.98,
-      "y": 16605.56,
-      "labelDx": -90,
-      "labelDy": -6,
-      "labelAnchor": "end",
-      "labelRotate": 39
+      "labelRotate": -38
     },
     {
       "id": "obj-buzaubay-uzk7",
@@ -21640,14 +21434,14 @@
       },
       "description": {
         "ru": "",
-        "en": "",
-        "kk": ""
+        "kk": "",
+        "en": ""
       },
       "indicators": [],
       "images": [],
       "additional": null,
-      "x": 9194.61,
-      "y": 16775.57,
+      "x": 9406.4,
+      "y": 16622.5,
       "labelRotate": 68
     },
     {
@@ -21676,15 +21470,15 @@
       },
       "description": {
         "ru": "",
-        "en": "",
-        "kk": ""
+        "kk": "",
+        "en": ""
       },
       "indicators": [],
       "images": [],
       "additional": null,
-      "x": 9162.32,
-      "y": 16711.68,
-      "labelRotate": 33
+      "x": 9310.2,
+      "y": 16650.9,
+      "labelRotate": 68
     },
     {
       "id": "obj-miskin-combo-uz1-s1",
@@ -21712,15 +21506,15 @@
       },
       "description": {
         "ru": "",
-        "en": "",
-        "kk": ""
+        "kk": "",
+        "en": ""
       },
       "indicators": [],
       "images": [],
       "additional": null,
-      "x": 9059.91,
-      "y": 16738.6,
-      "labelRotate": 6
+      "x": 8998.5,
+      "y": 16621.4,
+      "labelRotate": -26
     },
     {
       "id": "obj-miskin-combo-uz1-s2",
@@ -21748,51 +21542,15 @@
       },
       "description": {
         "ru": "",
-        "en": "",
-        "kk": ""
+        "kk": "",
+        "en": ""
       },
       "indicators": [],
       "images": [],
       "additional": null,
-      "x": 9101.92,
-      "y": 16702.96,
-      "labelRotate": 6
-    },
-    {
-      "id": "obj-miskin-combo-uz1-s3",
-      "type": "label",
-      "color": "#ffc107",
-      "zIndex": 0,
-      "region": "uzbekistan",
-      "status": "completed",
-      "year": 2026,
-      "fontSize": 20,
-      "name": {
-        "ru": "Бургутли",
-        "en": "Бургутли",
-        "kk": "Бургутли"
-      },
-      "segment": {
-        "ru": "Бургутли",
-        "en": "Бургутли",
-        "kk": "Бургутли"
-      },
-      "location": {
-        "ru": "Бургутли",
-        "en": "Бургутли",
-        "kk": "Бургутли"
-      },
-      "description": {
-        "ru": "",
-        "en": "",
-        "kk": ""
-      },
-      "indicators": [],
-      "images": [],
-      "additional": null,
-      "x": 9057.92,
-      "y": 16738.38,
-      "labelRotate": 6
+      "x": 9029.1,
+      "y": 16648.8,
+      "labelRotate": -22
     },
     {
       "id": "obj-hazarsp-combo-uz2-s1",
@@ -21820,14 +21578,16 @@
       },
       "description": {
         "ru": "",
-        "en": "",
-        "kk": ""
+        "kk": "",
+        "en": ""
       },
       "indicators": [],
       "images": [],
       "additional": null,
-      "x": 8926,
-      "y": 16721
+      "x": 8938.3,
+      "y": 16717.7,
+      "labelDx": -97.6,
+      "labelDy": 23.9
     },
     {
       "id": "obj-hazarsp-combo-uz2-s2",
@@ -21855,14 +21615,16 @@
       },
       "description": {
         "ru": "",
-        "en": "",
-        "kk": ""
+        "kk": "",
+        "en": ""
       },
       "indicators": [],
       "images": [],
       "additional": null,
-      "x": 8958.04,
-      "y": 16776.5
+      "x": 8989.7,
+      "y": 16761.4,
+      "labelDx": -96.5,
+      "labelDy": 30.5
     },
     {
       "id": "obj-hazarsp-combo-uz2-s3",
@@ -21890,14 +21652,14 @@
       },
       "description": {
         "ru": "",
-        "en": "",
-        "kk": ""
+        "kk": "",
+        "en": ""
       },
       "indicators": [],
       "images": [],
       "additional": null,
-      "x": 8955.4,
-      "y": 16700.61,
+      "x": 9024.7,
+      "y": 16786.6,
       "labelRotate": 39
     },
     {
@@ -21926,15 +21688,17 @@
       },
       "description": {
         "ru": "",
-        "en": "",
-        "kk": ""
+        "kk": "",
+        "en": ""
       },
       "indicators": [],
       "images": [],
       "additional": null,
-      "x": 9779.99,
-      "y": 17346.71,
-      "labelRotate": 65
+      "x": 9885.5,
+      "y": 17431.9,
+      "labelRotate": 65,
+      "labelDx": -54.9,
+      "labelDy": -100.8
     },
     {
       "id": "obj-bukhara2-uz14-s2",
@@ -21962,14 +21726,14 @@
       },
       "description": {
         "ru": "",
-        "en": "",
-        "kk": ""
+        "kk": "",
+        "en": ""
       },
       "indicators": [],
       "images": [],
       "additional": null,
-      "x": 9929.22,
-      "y": 17444.73,
+      "x": 10006.9,
+      "y": 17353.1,
       "labelRotate": 12
     },
     {
@@ -21980,7 +21744,7 @@
       "region": "uzbekistan",
       "status": "completed",
       "year": 2026,
-      "fontSize": 20,
+      "fontSize": 16,
       "name": {
         "ru": "Кулюмазар",
         "en": "Кулюмазар",
@@ -21998,15 +21762,15 @@
       },
       "description": {
         "ru": "",
-        "en": "",
-        "kk": ""
+        "kk": "",
+        "en": ""
       },
       "indicators": [],
       "images": [],
       "additional": null,
-      "x": 9795.53,
-      "y": 17380.02,
-      "labelRotate": 65
+      "x": 9956.6,
+      "y": 17387,
+      "labelRotate": 11
     },
     {
       "id": "obj-bukhara1-uz15-s1",
@@ -22034,14 +21798,14 @@
       },
       "description": {
         "ru": "",
-        "en": "",
-        "kk": ""
+        "kk": "",
+        "en": ""
       },
       "indicators": [],
       "images": [],
       "additional": null,
-      "x": 9929.22,
-      "y": 17444.73,
+      "x": 10076.9,
+      "y": 17415.5,
       "labelRotate": 12
     },
     {
@@ -22052,7 +21816,7 @@
       "region": "uzbekistan",
       "status": "completed",
       "year": 2026,
-      "fontSize": 20,
+      "fontSize": 13,
       "name": {
         "ru": "Пролетарабад",
         "en": "Пролетарабад",
@@ -22070,51 +21834,15 @@
       },
       "description": {
         "ru": "",
-        "en": "",
-        "kk": ""
+        "kk": "",
+        "en": ""
       },
       "indicators": [],
       "images": [],
       "additional": null,
-      "x": 9920.98,
-      "y": 17483.87,
+      "x": 9948.9,
+      "y": 17494.2,
       "labelRotate": 12
-    },
-    {
-      "id": "obj-angren-corridor-uz16-s1",
-      "type": "label",
-      "color": "#ffc107",
-      "zIndex": 0,
-      "region": "uzbekistan",
-      "status": "completed",
-      "year": 2026,
-      "fontSize": 20,
-      "name": {
-        "ru": "Ангрен",
-        "en": "Ангрен",
-        "kk": "Ангрен"
-      },
-      "segment": {
-        "ru": "Ангрен",
-        "en": "Ангрен",
-        "kk": "Ангрен"
-      },
-      "location": {
-        "ru": "Ангрен",
-        "en": "Ангрен",
-        "kk": "Ангрен"
-      },
-      "description": {
-        "ru": "",
-        "en": "",
-        "kk": ""
-      },
-      "indicators": [],
-      "images": [],
-      "additional": null,
-      "x": 11997.11,
-      "y": 17039.39,
-      "labelRotate": -2
     },
     {
       "id": "obj-angren-corridor-uz16-s2",
@@ -22321,87 +22049,15 @@
       },
       "description": {
         "ru": "",
-        "en": "",
-        "kk": ""
+        "kk": "",
+        "en": ""
       },
       "indicators": [],
       "images": [],
       "additional": null,
-      "x": 11945.37,
-      "y": 17038.12,
+      "x": 11960.9,
+      "y": 17000,
       "labelRotate": -34
-    },
-    {
-      "id": "obj-shavat-combo-uzk6-s1",
-      "type": "label",
-      "color": "#ffc107",
-      "zIndex": 0,
-      "region": "uzbekistan",
-      "status": "completed",
-      "year": 2026,
-      "fontSize": 20,
-      "name": {
-        "ru": "Шават",
-        "en": "Шават",
-        "kk": "Шават"
-      },
-      "segment": {
-        "ru": "Шават",
-        "en": "Шават",
-        "kk": "Шават"
-      },
-      "location": {
-        "ru": "Шават",
-        "en": "Шават",
-        "kk": "Шават"
-      },
-      "description": {
-        "ru": "",
-        "en": "",
-        "kk": ""
-      },
-      "indicators": [],
-      "images": [],
-      "additional": null,
-      "x": 8837.98,
-      "y": 16605.56,
-      "labelRotate": 39
-    },
-    {
-      "id": "obj-shavat-combo-uzk6-s2",
-      "type": "label",
-      "color": "#ffc107",
-      "zIndex": 0,
-      "region": "uzbekistan",
-      "status": "completed",
-      "year": 2026,
-      "fontSize": 20,
-      "name": {
-        "ru": "Ханка",
-        "en": "Ханка",
-        "kk": "Ханка"
-      },
-      "segment": {
-        "ru": "Ханка",
-        "en": "Ханка",
-        "kk": "Ханка"
-      },
-      "location": {
-        "ru": "Ханка",
-        "en": "Ханка",
-        "kk": "Ханка"
-      },
-      "description": {
-        "ru": "",
-        "en": "",
-        "kk": ""
-      },
-      "indicators": [],
-      "images": [],
-      "additional": null,
-      "x": 8833.48,
-      "y": 16653.37,
-      "labelRotate": 39
     },
     {
       "id": "obj-shavat-combo-uzk6-s3",
@@ -22429,159 +22085,15 @@
       },
       "description": {
         "ru": "",
-        "en": "",
-        "kk": ""
+        "kk": "",
+        "en": ""
       },
       "indicators": [],
       "images": [],
       "additional": null,
-      "x": 8875.34,
-      "y": 16635.8,
+      "x": 8856.3,
+      "y": 16514.2,
       "labelRotate": 39
-    },
-    {
-      "id": "obj-shavat-combo-uzk6-s4",
-      "type": "label",
-      "color": "#ffc107",
-      "zIndex": 0,
-      "region": "uzbekistan",
-      "status": "completed",
-      "year": 2026,
-      "fontSize": 20,
-      "name": {
-        "ru": "Эль-Икала",
-        "en": "Эль-Икала",
-        "kk": "Эль-Икала"
-      },
-      "segment": {
-        "ru": "Эль-Икала",
-        "en": "Эль-Икала",
-        "kk": "Эль-Икала"
-      },
-      "location": {
-        "ru": "Эль-Икала",
-        "en": "Эль-Икала",
-        "kk": "Эль-Икала"
-      },
-      "description": {
-        "ru": "",
-        "en": "",
-        "kk": ""
-      },
-      "indicators": [],
-      "images": [],
-      "additional": null,
-      "x": 8813.96,
-      "y": 16637.57,
-      "labelRotate": 39
-    },
-    {
-      "id": "obj-shavat-combo-uzk6-s5",
-      "type": "label",
-      "color": "#ffc107",
-      "zIndex": 0,
-      "region": "uzbekistan",
-      "status": "completed",
-      "year": 2026,
-      "fontSize": 20,
-      "name": {
-        "ru": "Беруни",
-        "en": "Беруни",
-        "kk": "Беруни"
-      },
-      "segment": {
-        "ru": "Беруни",
-        "en": "Беруни",
-        "kk": "Беруни"
-      },
-      "location": {
-        "ru": "Беруни",
-        "en": "Беруни",
-        "kk": "Беруни"
-      },
-      "description": {
-        "ru": "",
-        "en": "",
-        "kk": ""
-      },
-      "indicators": [],
-      "images": [],
-      "additional": null,
-      "x": 8837.98,
-      "y": 16605.56,
-      "labelRotate": 39
-    },
-    {
-      "id": "obj-malik-combo-uzk9-s1",
-      "type": "label",
-      "color": "#ffc107",
-      "zIndex": 0,
-      "region": "uzbekistan",
-      "status": "completed",
-      "year": 2026,
-      "fontSize": 20,
-      "name": {
-        "ru": "Малик",
-        "en": "Малик",
-        "kk": "Малик"
-      },
-      "segment": {
-        "ru": "Малик",
-        "en": "Малик",
-        "kk": "Малик"
-      },
-      "location": {
-        "ru": "Малик",
-        "en": "Малик",
-        "kk": "Малик"
-      },
-      "description": {
-        "ru": "",
-        "en": "",
-        "kk": ""
-      },
-      "indicators": [],
-      "images": [],
-      "additional": null,
-      "x": 9920.98,
-      "y": 17483.87,
-      "labelRotate": 12
-    },
-    {
-      "id": "obj-malik-combo-uzk9-s2",
-      "type": "label",
-      "color": "#ffc107",
-      "zIndex": 0,
-      "region": "uzbekistan",
-      "status": "completed",
-      "year": 2026,
-      "fontSize": 20,
-      "name": {
-        "ru": "Бинокор",
-        "en": "Бинокор",
-        "kk": "Бинокор"
-      },
-      "segment": {
-        "ru": "Бинокор",
-        "en": "Бинокор",
-        "kk": "Бинокор"
-      },
-      "location": {
-        "ru": "Бинокор",
-        "en": "Бинокор",
-        "kk": "Бинокор"
-      },
-      "description": {
-        "ru": "",
-        "en": "",
-        "kk": ""
-      },
-      "indicators": [],
-      "images": [],
-      "additional": null,
-      "x": 9929.22,
-      "y": 17444.73,
-      "labelRotate": 12
     },
     {
       "id": "obj-yakatut-combo-uzk10-s1",
@@ -22609,15 +22121,17 @@
       },
       "description": {
         "ru": "",
-        "en": "",
-        "kk": ""
+        "kk": "",
+        "en": ""
       },
       "indicators": [],
       "images": [],
       "additional": null,
-      "x": 9845.38,
-      "y": 17467.97,
-      "labelRotate": 12
+      "x": 9757.5,
+      "y": 17494.2,
+      "labelRotate": 55,
+      "labelDx": 6.3,
+      "labelDy": 17.3
     },
     {
       "id": "obj-yakatut-combo-uzk10-s2",
@@ -22645,15 +22159,17 @@
       },
       "description": {
         "ru": "",
-        "en": "",
-        "kk": ""
+        "kk": "",
+        "en": ""
       },
       "indicators": [],
       "images": [],
       "additional": null,
-      "x": 9853.62,
-      "y": 17428.83,
-      "labelRotate": 12
+      "x": 9799.1,
+      "y": 17472.3,
+      "labelRotate": 65,
+      "labelDx": 9.6,
+      "labelDy": 18.4
     },
     {
       "id": "obj-khodjadavlet-combo-uzk11-s1",
@@ -22681,51 +22197,15 @@
       },
       "description": {
         "ru": "",
-        "en": "",
-        "kk": ""
+        "kk": "",
+        "en": ""
       },
       "indicators": [],
       "images": [],
       "additional": null,
-      "x": 9811.45,
-      "y": 17414.15,
-      "labelRotate": 65
-    },
-    {
-      "id": "obj-khodjadavlet-combo-uzk11-s2",
-      "type": "label",
-      "color": "#ffc107",
-      "zIndex": 0,
-      "region": "uzbekistan",
-      "status": "completed",
-      "year": 2026,
-      "fontSize": 20,
-      "name": {
-        "ru": "Алат",
-        "en": "Алат",
-        "kk": "Алат"
-      },
-      "segment": {
-        "ru": "Алат",
-        "en": "Алат",
-        "kk": "Алат"
-      },
-      "location": {
-        "ru": "Алат",
-        "en": "Алат",
-        "kk": "Алат"
-      },
-      "description": {
-        "ru": "",
-        "en": "",
-        "kk": ""
-      },
-      "indicators": [],
-      "images": [],
-      "additional": null,
-      "x": 9853.62,
-      "y": 17428.83,
-      "labelRotate": 12
+      "x": 9683.2,
+      "y": 17569.7,
+      "labelRotate": 34
     },
     {
       "id": "obj-khodjadavlet-combo-uzk11-s3",
@@ -22753,51 +22233,15 @@
       },
       "description": {
         "ru": "",
-        "en": "",
-        "kk": ""
+        "kk": "",
+        "en": ""
       },
       "indicators": [],
       "images": [],
       "additional": null,
-      "x": 9826.99,
-      "y": 17447.46,
-      "labelRotate": 65
-    },
-    {
-      "id": "obj-karaulbazar-combo-uzk12-s1",
-      "type": "label",
-      "color": "#ffc107",
-      "zIndex": 0,
-      "region": "uzbekistan",
-      "status": "completed",
-      "year": 2026,
-      "fontSize": 20,
-      "name": {
-        "ru": "Караулбазар",
-        "en": "Караулбазар",
-        "kk": "Караулбазар"
-      },
-      "segment": {
-        "ru": "Караулбазар",
-        "en": "Караулбазар",
-        "kk": "Караулбазар"
-      },
-      "location": {
-        "ru": "Караулбазар",
-        "en": "Караулбазар",
-        "kk": "Караулбазар"
-      },
-      "description": {
-        "ru": "",
-        "en": "",
-        "kk": ""
-      },
-      "indicators": [],
-      "images": [],
-      "additional": null,
-      "x": 9929.22,
-      "y": 17444.73,
-      "labelRotate": 12
+      "x": 9707.2,
+      "y": 17535.8,
+      "labelRotate": 37
     },
     {
       "id": "obj-akhangaran-combo-uzk13-s1",
@@ -24335,15 +23779,17 @@
       },
       "description": {
         "ru": "",
-        "en": "",
-        "kk": ""
+        "kk": "",
+        "en": ""
       },
       "indicators": [],
       "images": [],
       "additional": null,
-      "x": 12272,
-      "y": 12630,
-      "labelRotate": 90
+      "x": 12278.2,
+      "y": 12752.4,
+      "labelRotate": -30,
+      "labelDx": -1.3,
+      "labelDy": -19.8
     },
     {
       "id": "obj-borly-pav8",
@@ -24379,6 +23825,321 @@
       "additional": null,
       "x": 12570,
       "y": 13260
+    },
+    {
+      "id": "obj-buhara-i-mrit6rt4",
+      "type": "label",
+      "color": "#60BB46",
+      "zIndex": 0,
+      "region": "uzbekistan",
+      "status": "completed",
+      "year": 2026,
+      "name": {
+        "ru": "Бухара I",
+        "en": "Бухара I",
+        "kk": "Бухара I"
+      },
+      "segment": {
+        "ru": "Бухара I",
+        "en": "Бухара I",
+        "kk": "Бухара I"
+      },
+      "location": {
+        "ru": "Бухара I",
+        "en": "Бухара I",
+        "kk": "Бухара I"
+      },
+      "description": {
+        "ru": "",
+        "kk": "",
+        "en": ""
+      },
+      "indicators": [],
+      "images": [],
+      "additional": null,
+      "fontSize": 44,
+      "x": 9926,
+      "y": 17462.5
+    },
+    {
+      "id": "obj-bostan-uzk20",
+      "type": "label",
+      "color": "#60BB46",
+      "zIndex": 0,
+      "region": "uzbekistan",
+      "status": "completed",
+      "year": 2026,
+      "name": {
+        "ru": "Бостан",
+        "en": "Boston",
+        "kk": "Бостан"
+      },
+      "segment": {
+        "ru": "Бостан",
+        "en": "Boston",
+        "kk": "Бостан"
+      },
+      "location": {
+        "ru": "Бостан",
+        "en": "Boston",
+        "kk": "Бостан"
+      },
+      "description": {
+        "ru": "",
+        "kk": "",
+        "en": ""
+      },
+      "indicators": [],
+      "images": [],
+      "additional": null,
+      "fontSize": 22,
+      "x": 7714.2,
+      "y": 15332.7
+    },
+    {
+      "id": "obj-razyezd-kunhodzha-uzk21",
+      "type": "label",
+      "color": "#60BB46",
+      "zIndex": 0,
+      "region": "uzbekistan",
+      "status": "completed",
+      "year": 2026,
+      "name": {
+        "ru": "раз.Кунходжа",
+        "en": "raz. Kunkhodzha",
+        "kk": "раз. Кунходжа"
+      },
+      "segment": {
+        "ru": "раз.Кунходжа",
+        "en": "raz. Kunkhodzha",
+        "kk": "раз. Кунходжа"
+      },
+      "location": {
+        "ru": "раз.Кунходжа",
+        "en": "raz. Kunkhodzha",
+        "kk": "раз. Кунходжа"
+      },
+      "description": {
+        "ru": "",
+        "kk": "",
+        "en": ""
+      },
+      "indicators": [],
+      "images": [],
+      "additional": null,
+      "fontSize": 22,
+      "x": 8260.2,
+      "y": 16045.2
+    },
+    {
+      "id": "obj-kungrad-uzk22",
+      "type": "label",
+      "color": "#60BB46",
+      "zIndex": 0,
+      "region": "uzbekistan",
+      "status": "completed",
+      "year": 2026,
+      "name": {
+        "ru": "Кунград",
+        "en": "Kungrad",
+        "kk": "Құңырат"
+      },
+      "segment": {
+        "ru": "Кунград",
+        "en": "Kungrad",
+        "kk": "Құңырат"
+      },
+      "location": {
+        "ru": "Кунград",
+        "en": "Kungrad",
+        "kk": "Құңырат"
+      },
+      "description": {
+        "ru": "",
+        "kk": "",
+        "en": ""
+      },
+      "indicators": [],
+      "images": [],
+      "additional": null,
+      "fontSize": 22,
+      "x": 8363.2,
+      "y": 16099.7
+    },
+    {
+      "id": "obj-shumanay-uzk23",
+      "type": "label",
+      "color": "#60BB46",
+      "zIndex": 0,
+      "region": "uzbekistan",
+      "status": "completed",
+      "year": 2026,
+      "name": {
+        "ru": "Шуманай",
+        "en": "Shumanay",
+        "kk": "Шұманай"
+      },
+      "segment": {
+        "ru": "Шуманай",
+        "en": "Shumanay",
+        "kk": "Шұманай"
+      },
+      "location": {
+        "ru": "Шуманай",
+        "en": "Shumanay",
+        "kk": "Шұманай"
+      },
+      "description": {
+        "ru": "",
+        "kk": "",
+        "en": ""
+      },
+      "indicators": [],
+      "images": [],
+      "additional": null,
+      "fontSize": 22,
+      "x": 8452.3,
+      "y": 16195.7
+    },
+    {
+      "id": "obj-hodjeyli-uzk24",
+      "type": "label",
+      "color": "#60BB46",
+      "zIndex": 0,
+      "region": "uzbekistan",
+      "status": "completed",
+      "year": 2026,
+      "name": {
+        "ru": "Ходжейли",
+        "en": "Khodjeyli",
+        "kk": "Қожайлы"
+      },
+      "segment": {
+        "ru": "Ходжейли",
+        "en": "Khodjeyli",
+        "kk": "Қожайлы"
+      },
+      "location": {
+        "ru": "Ходжейли",
+        "en": "Khodjeyli",
+        "kk": "Қожайлы"
+      },
+      "description": {
+        "ru": "",
+        "kk": "",
+        "en": ""
+      },
+      "indicators": [],
+      "images": [],
+      "additional": null,
+      "fontSize": 22,
+      "x": 8491.5,
+      "y": 16252.9
+    },
+    {
+      "id": "obj-nukus-uzk25",
+      "type": "label",
+      "color": "#60BB46",
+      "zIndex": 0,
+      "region": "uzbekistan",
+      "status": "completed",
+      "year": 2026,
+      "name": {
+        "ru": "НУКУС",
+        "en": "NUKUS",
+        "kk": "НӨКІС"
+      },
+      "segment": {
+        "ru": "НУКУС",
+        "en": "NUKUS",
+        "kk": "НӨКІС"
+      },
+      "location": {
+        "ru": "НУКУС",
+        "en": "NUKUS",
+        "kk": "НӨКІС"
+      },
+      "description": {
+        "ru": "",
+        "kk": "",
+        "en": ""
+      },
+      "indicators": [],
+      "images": [],
+      "additional": null,
+      "fontSize": 38,
+      "x": 8591.7,
+      "y": 16283.4
+    },
+    {
+      "id": "obj-chimbay-uzk26",
+      "type": "label",
+      "color": "#60BB46",
+      "zIndex": 0,
+      "region": "uzbekistan",
+      "status": "completed",
+      "year": 2026,
+      "name": {
+        "ru": "Чимбай",
+        "en": "Chimbay",
+        "kk": "Шымбай"
+      },
+      "segment": {
+        "ru": "Чимбай",
+        "en": "Chimbay",
+        "kk": "Шымбай"
+      },
+      "location": {
+        "ru": "Чимбай",
+        "en": "Chimbay",
+        "kk": "Шымбай"
+      },
+      "description": {
+        "ru": "",
+        "kk": "",
+        "en": ""
+      },
+      "indicators": [],
+      "images": [],
+      "additional": null,
+      "fontSize": 26,
+      "x": 8644,
+      "y": 16063.2
+    },
+    {
+      "id": "obj-nazarkhan-uzk27",
+      "type": "label",
+      "color": "#60BB46",
+      "zIndex": 0,
+      "region": "uzbekistan",
+      "status": "completed",
+      "year": 2026,
+      "name": {
+        "ru": "Назархан",
+        "en": "Nazarkhan",
+        "kk": "Назархан"
+      },
+      "segment": {
+        "ru": "Назархан",
+        "en": "Nazarkhan",
+        "kk": "Назархан"
+      },
+      "location": {
+        "ru": "Назархан",
+        "en": "Nazarkhan",
+        "kk": "Назархан"
+      },
+      "description": {
+        "ru": "",
+        "kk": "",
+        "en": ""
+      },
+      "indicators": [],
+      "images": [],
+      "additional": null,
+      "fontSize": 22,
+      "x": 8743.7,
+      "y": 16341.4
     }
   ]
 }
