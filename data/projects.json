@@ -24140,6 +24140,696 @@
       "fontSize": 22,
       "x": 8743.7,
       "y": 16341.4
+    },
+    {
+      "id": "obj-maylisay-mrn4b5zf",
+      "type": "label",
+      "color": "#ffc107",
+      "zIndex": 0,
+      "region": "astana",
+      "status": "completed",
+      "year": 2026,
+      "name": {
+        "ru": "Майлисай",
+        "en": "",
+        "kk": ""
+      },
+      "segment": {
+        "ru": "Майлисай",
+        "en": "",
+        "kk": ""
+      },
+      "location": {
+        "ru": "Майлисай",
+        "en": "",
+        "kk": ""
+      },
+      "description": {
+        "ru": "",
+        "kk": "",
+        "en": ""
+      },
+      "indicators": [],
+      "images": [],
+      "additional": null,
+      "fontSize": 26,
+      "labelRotate": 69,
+      "x": 9539.1,
+      "y": 16593.8
+    },
+    {
+      "id": "obj-uchkuduk-ii-mrn4cx9a",
+      "type": "label",
+      "color": "#ffc107",
+      "zIndex": 0,
+      "region": "astana",
+      "status": "completed",
+      "year": 2026,
+      "name": {
+        "ru": "Учкудук II",
+        "en": "",
+        "kk": ""
+      },
+      "segment": {
+        "ru": "Учкудук II",
+        "en": "",
+        "kk": ""
+      },
+      "location": {
+        "ru": "Учкудук II",
+        "en": "",
+        "kk": ""
+      },
+      "description": {
+        "ru": "",
+        "kk": "",
+        "en": ""
+      },
+      "indicators": [],
+      "images": [],
+      "additional": null,
+      "x": 9678.2,
+      "y": 16545.3,
+      "fontSize": 40
+    },
+    {
+      "id": "obj-kyzylkuduk-mrn4eiix",
+      "type": "label",
+      "color": "#ffc107",
+      "zIndex": 0,
+      "region": "astana",
+      "status": "completed",
+      "year": 2026,
+      "name": {
+        "ru": "Кызылкудук",
+        "en": "",
+        "kk": ""
+      },
+      "segment": {
+        "ru": "Кызылкудук",
+        "en": "",
+        "kk": ""
+      },
+      "location": {
+        "ru": "Кызылкудук",
+        "en": "",
+        "kk": ""
+      },
+      "description": {
+        "ru": "",
+        "kk": "",
+        "en": ""
+      },
+      "indicators": [],
+      "images": [],
+      "additional": null,
+      "fontSize": 40,
+      "labelDx": -273.7,
+      "labelDy": -52.7,
+      "x": 9768.8,
+      "y": 16826.9,
+      "labelRotate": 11
+    },
+    {
+      "id": "obj-muruntau-mrn4fju4",
+      "type": "label",
+      "color": "#ffc107",
+      "zIndex": 0,
+      "region": "astana",
+      "status": "completed",
+      "year": 2026,
+      "name": {
+        "ru": "Мурунтау",
+        "en": "",
+        "kk": ""
+      },
+      "segment": {
+        "ru": "Мурунтау",
+        "en": "",
+        "kk": ""
+      },
+      "location": {
+        "ru": "Мурунтау",
+        "en": "",
+        "kk": ""
+      },
+      "description": {
+        "ru": "",
+        "kk": "",
+        "en": ""
+      },
+      "indicators": [],
+      "images": [],
+      "additional": null,
+      "fontSize": 40,
+      "x": 9935.4,
+      "y": 16773.9
+    },
+    {
+      "id": "obj-karakata-mrn4gf52",
+      "type": "label",
+      "color": "#ffc107",
+      "zIndex": 0,
+      "region": "uzbekistan",
+      "status": "completed",
+      "year": 2026,
+      "name": {
+        "ru": "Караката",
+        "en": "",
+        "kk": ""
+      },
+      "segment": {
+        "ru": "Караката",
+        "en": "",
+        "kk": ""
+      },
+      "location": {
+        "ru": "Караката",
+        "en": "",
+        "kk": ""
+      },
+      "description": {
+        "ru": "",
+        "kk": "",
+        "en": ""
+      },
+      "indicators": [],
+      "images": [],
+      "additional": null,
+      "fontSize": 20,
+      "x": 9880.7,
+      "y": 16973
+    },
+    {
+      "id": "obj-zafarabad-mrn4h7xx",
+      "type": "label",
+      "color": "#ffc107",
+      "zIndex": 0,
+      "region": "uzbekistan",
+      "status": "completed",
+      "year": 2026,
+      "name": {
+        "ru": "Зафарабад",
+        "en": "",
+        "kk": ""
+      },
+      "segment": {
+        "ru": "Зафарабад",
+        "en": "",
+        "kk": ""
+      },
+      "location": {
+        "ru": "Зафарабад",
+        "en": "",
+        "kk": ""
+      },
+      "description": {
+        "ru": "",
+        "kk": "",
+        "en": ""
+      },
+      "indicators": [],
+      "images": [],
+      "additional": null,
+      "fontSize": 20,
+      "x": 10008.7,
+      "y": 17177.5
+    },
+    {
+      "id": "obj-navoi-mrn4j4kb",
+      "type": "label",
+      "color": "#ffc107",
+      "zIndex": 0,
+      "region": "uzbekistan",
+      "status": "completed",
+      "year": 2026,
+      "name": {
+        "ru": "Навои",
+        "en": "",
+        "kk": ""
+      },
+      "segment": {
+        "ru": "Навои",
+        "en": "",
+        "kk": ""
+      },
+      "location": {
+        "ru": "Навои",
+        "en": "",
+        "kk": ""
+      },
+      "description": {
+        "ru": "",
+        "kk": "",
+        "en": ""
+      },
+      "indicators": [],
+      "images": [],
+      "additional": null,
+      "fontSize": 40,
+      "labelRotate": -46,
+      "x": 10170.5,
+      "y": 17325.2
+    },
+    {
+      "id": "obj-katta-kurgan-mrn4jzln",
+      "type": "label",
+      "color": "#ffc107",
+      "zIndex": 0,
+      "region": "uzbekistan",
+      "status": "completed",
+      "year": 2026,
+      "name": {
+        "ru": "Катта Курган",
+        "en": "",
+        "kk": ""
+      },
+      "segment": {
+        "ru": "Катта Курган",
+        "en": "",
+        "kk": ""
+      },
+      "location": {
+        "ru": "Катта Курган",
+        "en": "",
+        "kk": ""
+      },
+      "description": {
+        "ru": "",
+        "kk": "",
+        "en": ""
+      },
+      "indicators": [],
+      "images": [],
+      "additional": null,
+      "fontSize": 20,
+      "labelRotate": -60,
+      "x": 10446.2,
+      "y": 17379.9
+    },
+    {
+      "id": "obj-nurabad-mrn4kpck",
+      "type": "label",
+      "color": "#ffc107",
+      "zIndex": 0,
+      "region": "uzbekistan",
+      "status": "completed",
+      "year": 2026,
+      "name": {
+        "ru": "Нурабад",
+        "en": "",
+        "kk": ""
+      },
+      "segment": {
+        "ru": "Нурабад",
+        "en": "",
+        "kk": ""
+      },
+      "location": {
+        "ru": "Нурабад",
+        "en": "",
+        "kk": ""
+      },
+      "description": {
+        "ru": "",
+        "kk": "",
+        "en": ""
+      },
+      "indicators": [],
+      "images": [],
+      "additional": null,
+      "fontSize": 30,
+      "labelRotate": -35,
+      "labelDx": -93.2,
+      "labelDy": 26.1,
+      "x": 10360.9,
+      "y": 17550.5
+    },
+    {
+      "id": "obj-nurbulak-mrn4lo69",
+      "type": "label",
+      "color": "#ffc107",
+      "zIndex": 0,
+      "region": "uzbekistan",
+      "status": "completed",
+      "year": 2026,
+      "name": {
+        "ru": "Нурбулак",
+        "en": "",
+        "kk": ""
+      },
+      "segment": {
+        "ru": "Нурбулак",
+        "en": "",
+        "kk": ""
+      },
+      "location": {
+        "ru": "Нурбулак",
+        "en": "",
+        "kk": ""
+      },
+      "description": {
+        "ru": "",
+        "kk": "",
+        "en": ""
+      },
+      "indicators": [],
+      "images": [],
+      "additional": null,
+      "fontSize": 30,
+      "labelRotate": -32,
+      "x": 10481.2,
+      "y": 17459.7,
+      "labelDx": -44,
+      "labelDy": 70.9
+    },
+    {
+      "id": "obj-marakand-mrn4n35l",
+      "type": "label",
+      "color": "#ffc107",
+      "zIndex": 0,
+      "region": "uzbekistan",
+      "status": "completed",
+      "year": 2026,
+      "name": {
+        "ru": "Мараканд",
+        "en": "",
+        "kk": ""
+      },
+      "segment": {
+        "ru": "Мараканд",
+        "en": "",
+        "kk": ""
+      },
+      "location": {
+        "ru": "Мараканд",
+        "en": "",
+        "kk": ""
+      },
+      "description": {
+        "ru": "",
+        "kk": "",
+        "en": ""
+      },
+      "indicators": [],
+      "images": [],
+      "additional": null,
+      "fontSize": 30,
+      "labelRotate": -38,
+      "x": 10582.7,
+      "y": 17474.2
+    },
+    {
+      "id": "obj-dzham-mrn4nghf",
+      "type": "label",
+      "color": "#ffc107",
+      "zIndex": 0,
+      "region": "uzbekistan",
+      "status": "completed",
+      "year": 2026,
+      "name": {
+        "ru": "Джам",
+        "en": "",
+        "kk": ""
+      },
+      "segment": {
+        "ru": "Джам",
+        "en": "",
+        "kk": ""
+      },
+      "location": {
+        "ru": "Джам",
+        "en": "",
+        "kk": ""
+      },
+      "description": {
+        "ru": "",
+        "kk": "",
+        "en": ""
+      },
+      "indicators": [],
+      "images": [],
+      "additional": null,
+      "fontSize": 20,
+      "x": 10439.6,
+      "y": 17564.4
+    },
+    {
+      "id": "obj-ayrytam-mrn4nx0e",
+      "type": "label",
+      "color": "#ffc107",
+      "zIndex": 0,
+      "region": "uzbekistan",
+      "status": "completed",
+      "year": 2026,
+      "name": {
+        "ru": "Айрытам",
+        "en": "",
+        "kk": ""
+      },
+      "segment": {
+        "ru": "Айрытам",
+        "en": "",
+        "kk": ""
+      },
+      "location": {
+        "ru": "Айрытам",
+        "en": "",
+        "kk": ""
+      },
+      "description": {
+        "ru": "",
+        "kk": "",
+        "en": ""
+      },
+      "indicators": [],
+      "images": [],
+      "additional": null,
+      "fontSize": 15,
+      "x": 10397.5,
+      "y": 17607.7
+    },
+    {
+      "id": "obj-alatun-mrn4ofgh",
+      "type": "label",
+      "color": "#ffc107",
+      "zIndex": 0,
+      "region": "uzbekistan",
+      "status": "completed",
+      "year": 2026,
+      "name": {
+        "ru": "Алатун",
+        "en": "",
+        "kk": ""
+      },
+      "segment": {
+        "ru": "Алатун",
+        "en": "",
+        "kk": ""
+      },
+      "location": {
+        "ru": "Алатун",
+        "en": "",
+        "kk": ""
+      },
+      "description": {
+        "ru": "",
+        "kk": "",
+        "en": ""
+      },
+      "indicators": [],
+      "images": [],
+      "additional": null,
+      "fontSize": 15,
+      "x": 10361.4,
+      "y": 17657.1
+    },
+    {
+      "id": "obj-nekuz-mrn4org4",
+      "type": "label",
+      "color": "#ffc107",
+      "zIndex": 0,
+      "region": "uzbekistan",
+      "status": "completed",
+      "year": 2026,
+      "name": {
+        "ru": "Некуз",
+        "en": "",
+        "kk": ""
+      },
+      "segment": {
+        "ru": "Некуз",
+        "en": "",
+        "kk": ""
+      },
+      "location": {
+        "ru": "Некуз",
+        "en": "",
+        "kk": ""
+      },
+      "description": {
+        "ru": "",
+        "kk": "",
+        "en": ""
+      },
+      "indicators": [],
+      "images": [],
+      "additional": null,
+      "fontSize": 15,
+      "x": 10331.3,
+      "y": 17692
+    },
+    {
+      "id": "obj-kashkadar-ya-mrn4rj8d",
+      "type": "label",
+      "color": "#ffc107",
+      "zIndex": 0,
+      "region": "uzbekistan",
+      "status": "completed",
+      "year": 2026,
+      "name": {
+        "ru": "Кашкадарья",
+        "en": "",
+        "kk": ""
+      },
+      "segment": {
+        "ru": "Кашкадарья",
+        "en": "",
+        "kk": ""
+      },
+      "location": {
+        "ru": "Кашкадарья",
+        "en": "",
+        "kk": ""
+      },
+      "description": {
+        "ru": "",
+        "kk": "",
+        "en": ""
+      },
+      "indicators": [],
+      "images": [],
+      "additional": null,
+      "fontSize": 30,
+      "x": 10289.2,
+      "y": 17753.3,
+      "labelRotate": -14,
+      "labelDx": -195.3,
+      "labelDy": 62.2
+    },
+    {
+      "id": "obj-sernyy-zavod-mrn4wbvn",
+      "type": "label",
+      "color": "#ffc107",
+      "zIndex": 0,
+      "region": "uzbekistan",
+      "status": "completed",
+      "year": 2026,
+      "name": {
+        "ru": "Серный завод",
+        "en": "",
+        "kk": ""
+      },
+      "segment": {
+        "ru": "Серный завод",
+        "en": "",
+        "kk": ""
+      },
+      "location": {
+        "ru": "Серный завод",
+        "en": "",
+        "kk": ""
+      },
+      "description": {
+        "ru": "",
+        "kk": "",
+        "en": ""
+      },
+      "indicators": [],
+      "images": [],
+      "additional": null,
+      "fontSize": 20,
+      "labelRotate": -25,
+      "labelDx": -150.8,
+      "labelDy": 79,
+      "x": 10154.4,
+      "y": 17660.7
+    },
+    {
+      "id": "obj-mubarek-mrn4wyu7",
+      "type": "label",
+      "color": "#ffc107",
+      "zIndex": 0,
+      "region": "uzbekistan",
+      "status": "completed",
+      "year": 2026,
+      "name": {
+        "ru": "Мубарек",
+        "en": "",
+        "kk": ""
+      },
+      "segment": {
+        "ru": "Мубарек",
+        "en": "",
+        "kk": ""
+      },
+      "location": {
+        "ru": "Мубарек",
+        "en": "",
+        "kk": ""
+      },
+      "description": {
+        "ru": "",
+        "kk": "",
+        "en": ""
+      },
+      "indicators": [],
+      "images": [],
+      "additional": null,
+      "fontSize": 20,
+      "labelRotate": -37,
+      "x": 10069,
+      "y": 17598.1,
+      "labelDx": -82.2,
+      "labelDy": 74.2
+    },
+    {
+      "id": "obj-karaulbazar-mrn4yygc",
+      "type": "label",
+      "color": "#ffc107",
+      "zIndex": 0,
+      "region": "uzbekistan",
+      "status": "completed",
+      "year": 2026,
+      "name": {
+        "ru": "Караулбазар",
+        "en": "",
+        "kk": ""
+      },
+      "segment": {
+        "ru": "Караулбазар",
+        "en": "",
+        "kk": ""
+      },
+      "location": {
+        "ru": "Караулбазар",
+        "en": "",
+        "kk": ""
+      },
+      "description": {
+        "ru": "",
+        "kk": "",
+        "en": ""
+      },
+      "indicators": [],
+      "images": [],
+      "additional": null,
+      "fontSize": 20,
+      "x": 10004,
+      "y": 17554.8,
+      "labelRotate": -19,
+      "labelDx": -134,
+      "labelDy": 50.2
     }
   ]
 }
