@@ -6,7 +6,6 @@ const Markers = (() => {
   let lastPointerOpenAt = 0;
   let displayViewBox = null;
   let currentZoomScale = 1;
-  let scalableRegistry = [];
 
   const SVG_NS = 'http://www.w3.org/2000/svg';
   const LEGACY_VIEWBOX = { x: 0, y: 0, width: 4127.1641, height: 2050.417 };
@@ -19,26 +18,40 @@ const Markers = (() => {
     'planning': '#3a7bd5'
   };
 
+  // Above this zoom-scale (1 = zoomed in past the reference level, growing
+  // toward ~8 at full zoom-out) the text labels overlap into an unreadable
+  // mush anyway, so we drop the whole label layer. This is the big perf win:
+  // when fully zoomed out the entire map is on screen, so *every* label would
+  // otherwise be rasterized on each pan frame. Bypassed while editing.
+  const LABEL_LOD_HIDE_ABOVE_SCALE = 2.2;
+  let layerRef = null;
+
   // Points/lines are drawn in fixed SVG-unit sizes, so at full zoom-out
-  // (viewBox = whole map) they end up tiny on screen. Every element that
-  // should grow when zoomed out registers its base size here; applyZoomScale
-  // then multiplies every registered size by the current scale factor
-  // (computed in svg-viewbox-zoom.js and pushed in via onSizeScaleChange).
+  // (viewBox = whole map) they end up tiny on screen and must grow back.
+  // Instead of rewriting an attribute on every one of the ~2000 scalable
+  // nodes on each zoom frame, each element only stamps its per-element base
+  // size here (once, at creation) via a CSS custom property + marker class;
+  // the CSS then computes `base * var(--marker-scale)`. applyZoomScale then
+  // rescales the entire layer with a SINGLE custom-property write per frame.
   function registerScalable(el, attr, base) {
     if (!el || !Number.isFinite(base)) return;
-    scalableRegistry.push({ el, attr, base });
-    applyScaleToEntry({ el, attr, base }, currentZoomScale);
-  }
-
-  function applyScaleToEntry(entry, scale) {
-    const value = entry.base * scale;
-    if (entry.attr === 'font-size') entry.el.style.fontSize = `${value}px`;
-    else entry.el.setAttribute(entry.attr, value);
+    if (attr === 'font-size') { el.style.setProperty('--fs-base', `${base}px`); el.classList.add('mk-scale-fs'); }
+    else if (attr === 'stroke-width') { el.style.setProperty('--sw-base', base); el.classList.add('mk-scale-sw'); }
+    else { el.style.setProperty('--r-base', base); el.classList.add('mk-scale-r'); }
   }
 
   function applyZoomScale(scale) {
     currentZoomScale = Number.isFinite(scale) && scale > 0 ? scale : 1;
-    scalableRegistry.forEach(entry => applyScaleToEntry(entry, currentZoomScale));
+    if (layerRef) layerRef.style.setProperty('--marker-scale', currentZoomScale);
+    applyLabelLod();
+  }
+
+  function applyLabelLod() {
+    if (!layerRef) return;
+    // Never hide while editing — the operator needs every label visible to place/adjust points.
+    const editing = !!window.MapEditor?.isEnabled?.();
+    const hide = !editing && currentZoomScale > LABEL_LOD_HIDE_ABOVE_SCALE;
+    layerRef.classList.toggle('lod-hide-labels', hide);
   }
 
   function init(svgContainer, onClick) {
@@ -48,6 +61,9 @@ const Markers = (() => {
     displayViewBox = parseViewBox(getSvg(svgContainer)?.getAttribute('viewBox'));
     createObjectLayer(svgContainer);
     createObjects(svgContainer);
+    // Apply the current zoom level immediately so markers start at the right
+    // size (and labels at the right LOD) before the first user gesture.
+    if (window.SvgViewBoxZoom?.getSizeScale) applyZoomScale(window.SvgViewBoxZoom.getSizeScale());
   }
 
   function getSvg(svgContainer) {
@@ -87,12 +103,13 @@ const Markers = (() => {
 
     const oldLayer = svg.querySelector('#interactive-markers-layer');
     if (oldLayer) oldLayer.remove();
-    scalableRegistry = [];
 
     const layer = document.createElementNS(SVG_NS, 'g');
     layer.setAttribute('id', 'interactive-markers-layer');
     layer.setAttribute('data-layer', 'points-and-lines');
+    layer.style.setProperty('--marker-scale', currentZoomScale);
     svg.appendChild(layer);
+    layerRef = layer;
   }
 
   function createObjects(svgContainer) {
@@ -497,5 +514,5 @@ const Markers = (() => {
 
   function getAllMarkers() { return allObjects; }
 
-  return { init, refresh, showAll, showOnly, highlightMarker, getMarkerPosition, getMarkerSvgPoint, getAllMarkers, applyZoomScale };
+  return { init, refresh, showAll, showOnly, highlightMarker, getMarkerPosition, getMarkerSvgPoint, getAllMarkers, applyZoomScale, refreshLod: applyLabelLod };
 })();

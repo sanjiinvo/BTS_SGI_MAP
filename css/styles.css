@@ -355,6 +355,20 @@ select {
   pointer-events: visiblePainted;
 }
 
+/* Zoom-reactive marker sizing.
+   Each scalable node stamps its base size once (--r-base / --sw-base /
+   --fs-base in markers.js); a single --marker-scale on the layer then
+   rescales all of them at once, so a zoom frame is one custom-property
+   write instead of thousands of setAttribute calls. */
+#interactive-markers-layer { --marker-scale: 1; }
+.mk-scale-r  { r: calc(var(--r-base) * var(--marker-scale, 1) * 1px); }
+.mk-scale-sw { stroke-width: calc(var(--sw-base) * var(--marker-scale, 1) * 1px); }
+.mk-scale-fs { font-size: calc(var(--fs-base) * var(--marker-scale, 1)); }
+
+/* LOD: drop the label layer entirely when zoomed out far enough that the
+   labels would just overlap. Toggled from markers.js (applyLabelLod). */
+#interactive-markers-layer.lod-hide-labels .map-label-point { display: none; }
+
 .map-marker-hitarea {
   fill: transparent;
   pointer-events: all;
@@ -434,7 +448,9 @@ select {
 
 .map-label-ring {
   stroke-width: 3;
-  filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.45));
+  /* Was drop-shadow(0 0 5px …): a per-pixel blur on every one of ~600 label
+     rings, rasterized on each pan frame. Dropped — the white fill + colored
+     stroke already separate the dot from the map, at no paint cost. */
 }
 
 .map-label-text,

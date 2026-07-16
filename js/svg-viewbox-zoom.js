@@ -405,6 +405,11 @@ const SvgViewBoxZoom = (() => {
     else setViewBox(target);
   }
 
-  return { init, reset, wasGestureMoved, getCurrentViewBox, clientToSvg, zoomToPoint };
+  function getSizeScale() {
+    if (lastSizeScale != null) return lastSizeScale;
+    return currentViewBox ? computeSizeScale(currentViewBox.width) : 1;
+  }
+
+  return { init, reset, wasGestureMoved, getCurrentViewBox, clientToSvg, zoomToPoint, getSizeScale };
 })();
 window.SvgViewBoxZoom = SvgViewBoxZoom;

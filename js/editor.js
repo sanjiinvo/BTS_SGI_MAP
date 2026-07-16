@@ -450,6 +450,7 @@ const MapEditor = (() => {
     elements.badge.classList.add('on');
     mapContainer.classList.add('editor-active');
     updateModeUI();
+    Markers?.refreshLod?.(); // reveal all labels while editing, regardless of zoom
   }
 
   function disable() {
@@ -461,6 +462,7 @@ const MapEditor = (() => {
     elements.badge.classList.add('off');
     mapContainer.classList.remove('editor-active');
     delete mapContainer.dataset.editorMode;
+    Markers?.refreshLod?.(); // re-apply zoom-based LOD now that editing is off
   }
 
   function closePanel() {
