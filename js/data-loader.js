@@ -26,6 +26,16 @@ const DataLoader = (() => {
     return projects.find(p => p.id === id) || null;
   }
 
+  // "label" entries are place-name / station markers for context, NOT projects.
+  // Real projects are the line and point entries — that is what the counter shows.
+  function isRealProject(p) {
+    return p && p.type !== 'label';
+  }
+
+  function countProjects(list) {
+    return (list || projects).filter(isRealProject).length;
+  }
+
 
   function addProject(project) {
     projects.push(project);
@@ -77,5 +87,5 @@ const DataLoader = (() => {
     });
   }
 
-  return { init, getRegions, getStatuses, getProjects, getProjectById, getFilteredProjects, addProject, updateProject, removeProject, getData, exportJson };
+  return { init, getRegions, getStatuses, getProjects, getProjectById, getFilteredProjects, countProjects, isRealProject, addProject, updateProject, removeProject, getData, exportJson };
 })();

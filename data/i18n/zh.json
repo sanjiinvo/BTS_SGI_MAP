@@ -1,0 +1,28 @@
+{
+  "app": {
+    "title": "项目地图",
+    "subtitle": "已完成和进行中项目的交互式地图",
+    "toggleFilters": "筛选",
+    "language": "语言",
+    "close": "关闭",
+    "filter": "筛选",
+    "clear": "重置",
+    "noResults": "未找到项目",
+    "showingProjects": "显示的项目",
+    "demoMode": "演示模式"
+  },
+  "filter": {
+    "region": "地区",
+    "year": "年份",
+    "status": "状态",
+    "all": "全部"
+  },
+  "project": {
+    "indicators": "主要指标",
+    "additional": "补充信息",
+    "photos": "照片",
+    "location": "位置",
+    "status": "状态",
+    "year": "年份"
+  }
+}

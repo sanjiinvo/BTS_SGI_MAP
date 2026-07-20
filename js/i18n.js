@@ -3,7 +3,7 @@ const I18n = (() => {
   let translations = {};
 
   function getDefaultLang() {
-    const supported = ['ru', 'kk', 'en'];
+    const supported = ['ru', 'kk', 'en', 'de', 'zh'];
     const stored = localStorage.getItem('app-lang');
     if (stored && supported.includes(stored)) return stored;
     const browser = (navigator.language || '').slice(0, 2);

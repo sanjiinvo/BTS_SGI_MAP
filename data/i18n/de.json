@@ -1,0 +1,28 @@
+{
+  "app": {
+    "title": "Projektkarte",
+    "subtitle": "Interaktive Karte abgeschlossener und laufender Projekte",
+    "toggleFilters": "Filter",
+    "language": "Sprache",
+    "close": "Schließen",
+    "filter": "Filter",
+    "clear": "Zurücksetzen",
+    "noResults": "Keine Projekte gefunden",
+    "showingProjects": "Angezeigte Projekte",
+    "demoMode": "Demomodus"
+  },
+  "filter": {
+    "region": "Region",
+    "year": "Jahr",
+    "status": "Status",
+    "all": "Alle"
+  },
+  "project": {
+    "indicators": "Kennzahlen",
+    "additional": "Zusätzliche Informationen",
+    "photos": "Fotos",
+    "location": "Standort",
+    "status": "Status",
+    "year": "Jahr"
+  }
+}

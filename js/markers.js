@@ -25,6 +25,30 @@ const Markers = (() => {
   // otherwise be rasterized on each pan frame. Bypassed while editing.
   const LABEL_LOD_HIDE_ABOVE_SCALE = 2.2;
   let layerRef = null;
+  let countryLayerRef = null;
+
+  // Big country names shown only at (near) full zoom-out and faded out smoothly
+  // as the map is zoomed in — the mirror image of the marker-label LOD. Positions
+  // are country centroids in the map's viewBox coordinate space; names carry all
+  // UI languages (fall back to ru).
+  const COUNTRIES = [
+    { x: 10300, y: 14050, fs: 860, name: { ru: 'КАЗАХСТАН', en: 'KAZAKHSTAN', kk: 'ҚАЗАҚСТАН', de: 'KASACHSTAN', zh: '哈萨克斯坦' } },
+    { x: 18050, y: 16350, fs: 640, name: { ru: 'КИТАЙ', en: 'CHINA', kk: 'ҚЫТАЙ', de: 'CHINA', zh: '中国' } },
+    { x: 17450, y: 14250, fs: 520, name: { ru: 'МОНГОЛИЯ', en: 'MONGOLIA', kk: 'МОҢҒОЛИЯ', de: 'MONGOLEI', zh: '蒙古' } },
+    { x: 9750, y: 16880, fs: 430, name: { ru: 'УЗБЕКИСТАН', en: 'UZBEKISTAN', kk: 'ӨЗБЕКСТАН', de: 'USBEKISTAN', zh: '乌兹别克斯坦' } },
+    { x: 8000, y: 17520, fs: 400, name: { ru: 'ТУРКМЕНИСТАН', en: 'TURKMENISTAN', kk: 'ТҮРІКМЕНСТАН', de: 'TURKMENISTAN', zh: '土库曼斯坦' } },
+    { x: 4050, y: 17020, fs: 300, name: { ru: 'АЗЕРБАЙДЖАН', en: 'AZERBAIJAN', kk: 'ӘЗІРБАЙЖАН', de: 'ASERBAIDSCHAN', zh: '阿塞拜疆' } },
+    { x: 13450, y: 16620, fs: 300, name: { ru: 'КЫРГЫЗСТАН', en: 'KYRGYZSTAN', kk: 'ҚЫРҒЫЗСТАН', de: 'KIRGISISTAN', zh: '吉尔吉斯斯坦' } },
+    { x: 12350, y: 18060, fs: 260, name: { ru: 'ТАДЖИКИСТАН', en: 'TAJIKISTAN', kk: 'ТӘЖІКСТАН', de: 'TADSCHIKISTAN', zh: '塔吉克斯坦' } },
+    { x: 1900, y: 15300, fs: 250, name: { ru: 'ГРУЗИЯ', en: 'GEORGIA', kk: 'ГРУЗИЯ', de: 'GEORGIEN', zh: '格鲁吉亚' } },
+    { x: 2650, y: 17120, fs: 230, name: { ru: 'АРМЕНИЯ', en: 'ARMENIA', kk: 'АРМЕНИЯ', de: 'ARMENIEN', zh: '亚美尼亚' } }
+  ];
+
+  // Opacity vs zoom-scale (1 = zoomed in, ~6 at full zoom-out): fully visible when
+  // well zoomed out, faded to nothing by mid-zoom. CSS transition smooths it.
+  function countryOpacity(scale) {
+    return Math.max(0, Math.min(1, (scale - 2.0) / (4.0 - 2.0)));
+  }
 
   // Points/lines are drawn in fixed SVG-unit sizes, so at full zoom-out
   // (viewBox = whole map) they end up tiny on screen and must grow back.
@@ -43,6 +67,7 @@ const Markers = (() => {
   function applyZoomScale(scale) {
     currentZoomScale = Number.isFinite(scale) && scale > 0 ? scale : 1;
     if (layerRef) layerRef.style.setProperty('--marker-scale', currentZoomScale);
+    if (countryLayerRef) countryLayerRef.style.opacity = countryOpacity(currentZoomScale);
     applyLabelLod();
   }
 
@@ -59,6 +84,7 @@ const Markers = (() => {
     onObjectClickCallback = onClick;
     allObjects = {};
     displayViewBox = parseViewBox(getSvg(svgContainer)?.getAttribute('viewBox'));
+    createCountryLabels(svgContainer);
     createObjectLayer(svgContainer);
     createObjects(svgContainer);
     // Apply the current zoom level immediately so markers start at the right
@@ -507,9 +533,41 @@ const Markers = (() => {
 
   function refresh() {
     if (!svgContainerRef) return;
+    createCountryLabels(svgContainerRef);
     createObjectLayer(svgContainerRef);
     createObjects(svgContainerRef);
     if (activeObjectId) highlightMarker(activeObjectId);
+  }
+
+  // Big fading country names. Placed below the interactive markers layer (created
+  // right after this) so markers stay on top and clickable; itself non-interactive.
+  function createCountryLabels(svgContainer) {
+    const svg = getSvg(svgContainer);
+    if (!svg) return;
+    const old = svg.querySelector('#country-labels-layer');
+    if (old) old.remove();
+
+    const layer = document.createElementNS(SVG_NS, 'g');
+    layer.setAttribute('id', 'country-labels-layer');
+    layer.setAttribute('pointer-events', 'none');
+    layer.style.transition = 'opacity 0.3s ease';
+
+    const lang = (typeof I18n !== 'undefined' && I18n.getLang) ? I18n.getLang() : 'ru';
+    COUNTRIES.forEach(c => {
+      const t = document.createElementNS(SVG_NS, 'text');
+      t.setAttribute('class', 'country-label');
+      t.setAttribute('x', c.x);
+      t.setAttribute('y', c.y);
+      t.setAttribute('text-anchor', 'middle');
+      t.setAttribute('dominant-baseline', 'central');
+      t.style.fontSize = `${c.fs}px`;
+      t.textContent = c.name[lang] || c.name.ru;
+      layer.appendChild(t);
+    });
+
+    svg.appendChild(layer);
+    countryLayerRef = layer;
+    layer.style.opacity = countryOpacity(currentZoomScale);
   }
 
   function getAllMarkers() { return allObjects; }

@@ -114,7 +114,7 @@
     if (window.MapEditor) {
       MapEditor.init(svgEl, document.getElementById('map-container'), {
         onProjectsChanged: () => {
-          FilterManager.updateCount(DataLoader.getProjects().length);
+          FilterManager.updateCount(DataLoader.countProjects());
         }
       });
     }
@@ -233,7 +233,7 @@
     const filtered = DataLoader.getFilteredProjects(filters);
     const ids = filtered.map(p => p.id);
     Markers.showOnly(ids);
-    FilterManager.updateCount(filtered.length);
+    FilterManager.updateCount(DataLoader.countProjects(filtered));
 
     const noResults = document.getElementById('no-results');
     if (filtered.length === 0) {
@@ -278,7 +278,7 @@
     title.textContent = I18n.t('app.title');
     subtitle.textContent = I18n.t('app.subtitle');
     FilterManager.updateLabels();
-    FilterManager.updateCount(DataLoader.getProjects().length);
+    FilterManager.updateCount(DataLoader.countProjects());
   }
 
   function toggleFullscreen() {
