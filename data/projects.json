@@ -350,7 +350,9 @@
     }
    },
    "indicators": [],
-   "images": [],
+   "images": [
+    "p1600786011334.jpg"
+   ],
    "additional": null,
    "segment": {
     "ru": "Берда — Агдам",
@@ -538,7 +540,9 @@
     }
    },
    "indicators": [],
-   "images": [],
+   "images": [
+    "p1600786011334.jpg"
+   ],
    "additional": null,
    "segment": {
     "ru": "Баку — Беюк-Кясик",
@@ -606,7 +610,9 @@
     "kk": "Ереван"
    },
    "indicators": [],
-   "images": [],
+   "images": [
+    "p1682011210841.jpg"
+   ],
    "additional": null,
    "segment": {
     "ru": "Ереван",
@@ -666,7 +672,9 @@
     "zh": "在坎特-雷巴奇耶区段（吉尔吉斯共和国）供应微机联锁（МПЦ）设备，实施勘察设计工作及调试工作。"
    },
    "indicators": [],
-   "images": [],
+   "images": [
+    "p1705010081139.jpg"
+   ],
    "additional": null,
    "points": [
     [
@@ -786,7 +794,9 @@
     "kk": ""
    },
    "indicators": [],
-   "images": [],
+   "images": [
+    "p1540804236945.jpg"
+   ],
    "additional": null,
    "segment": {
     "ru": "Алмалык",
@@ -854,7 +864,9 @@
     "kk": ""
    },
    "indicators": [],
-   "images": [],
+   "images": [
+    "p1619474584117.jpg"
+   ],
    "additional": null,
    "segment": {
     "ru": "Улан-Батор",
@@ -921,7 +933,9 @@
     "kk": ""
    },
    "indicators": [],
-   "images": [],
+   "images": [
+    "p1602900103084.jpg"
+   ],
    "additional": null,
    "segment": {
     "ru": "Улан-Батор",
@@ -982,7 +996,9 @@
     "zh": "克孜勒扎尔-111号会让站区段（含岑特拉利纳亚站）信号与通信部分的设计"
    },
    "indicators": [],
-   "images": [],
+   "images": [
+    "p1671502229938.jpg"
+   ],
    "additional": null,
    "points": [
     [
@@ -1071,7 +1087,9 @@
     "zh": "为“舒巴尔科尔煤炭”股份公司岑特拉利纳亚站的驼峰配备信号、集中控制与闭塞装置的建筑安装工程"
    },
    "indicators": [],
-   "images": [],
+   "images": [
+    "p1671502229938.jpg"
+   ],
    "additional": null,
    "points": [
     [
@@ -1171,7 +1189,9 @@
     "zh": "编制《建设绕行阿拉木图站铁路枢纽环线铁路》的设计概预算文件。修订"
    },
    "indicators": [],
-   "images": [],
+   "images": [
+    "p1700985958100.jpg"
+   ],
    "additional": null,
    "x": 13721.8,
    "y": 15940.2
@@ -1234,7 +1254,9 @@
     "zh": "供应变压器、不间断电源装置、РЩ АВР供电装置的配套与组装模块（1型和2型）"
    },
    "indicators": [],
-   "images": [],
+   "images": [
+    "p1700985958100.jpg"
+   ],
    "additional": null,
    "x": 13743.7,
    "y": 15943.5
@@ -1297,7 +1319,9 @@
     "zh": "供应变压器、不间断电源装置、РЩ АВР供电装置的配套与组装模块（1型和2型）"
    },
    "indicators": [],
-   "images": [],
+   "images": [
+    "p1728463987038.jpg"
+   ],
    "additional": null,
    "points": [
     [
@@ -1514,7 +1538,9 @@
     "zh": "供应变压器、不间断电源装置、РЩ АВР供电装置的配套与组装模块（1型和2型）\n供应Frauscher计轴系统"
    },
    "indicators": [],
-   "images": [],
+   "images": [
+    "p1620506197304.jpg"
+   ],
    "additional": null,
    "points": [
     [
@@ -1659,7 +1685,9 @@
     "zh": "供应信号地面设备"
    },
    "indicators": [],
-   "images": [],
+   "images": [
+    "p1705010081139.jpg"
+   ],
    "additional": null,
    "x": 12312.9,
    "y": 12841.3
@@ -1722,7 +1750,9 @@
     "zh": "为阿克苏-杰格连-扎纳-塞梅区段自动闭塞建设供应信号及微机联锁设备（车站与道口）。"
    },
    "indicators": [],
-   "images": [],
+   "images": [
+    "p1592844002373.jpg"
+   ],
    "additional": null,
    "points": [
     [
@@ -1883,7 +1913,9 @@
     "zh": "为阿尔滕科尔-热特根铁路区段2025年现代化改造供应信号及微机联锁设备（车站与道口）。"
    },
    "indicators": [],
-   "images": [],
+   "images": [
+    "p1693572322416.jpg"
+   ],
    "additional": null,
    "points": [
     [
@@ -1980,7 +2012,9 @@
     "zh": "为坎德阿加什-托博尔区段自动闭塞建设供应信号及微机联锁设备（车站与道口）。"
    },
    "indicators": [],
-   "images": [],
+   "images": [
+    "p1592844002373.jpg"
+   ],
    "additional": null,
    "points": [
     [
@@ -2201,7 +2235,9 @@
     "zh": "为坎德阿加什-托博尔区段自动闭塞建设供应信号及微机联锁设备（车站与道口）。"
    },
    "indicators": [],
-   "images": [],
+   "images": [
+    "p1592844002373.jpg"
+   ],
    "additional": null,
    "points": [
     [
@@ -2422,7 +2458,9 @@
     "zh": "中亚区域经济合作走廊2。布哈拉-米斯金-乌尔根奇-希瓦区段电气化（BX-08）。"
    },
    "indicators": [],
-   "images": [],
+   "images": [
+    "p1671502229938.jpg"
+   ],
    "additional": null,
    "points": [
     [
@@ -2543,7 +2581,9 @@
     "zh": "安格连-帕普-浩罕-安集延区段电气化（AAX-01）。"
    },
    "indicators": [],
-   "images": [],
+   "images": [
+    "p1780189696662.jpg"
+   ],
    "additional": null,
    "points": [
     [
@@ -2688,7 +2728,9 @@
     "zh": "在比什凯克-2 - 雷巴奇耶区段（吉尔吉斯共和国）供应微机联锁（МПЦ）设备，实施勘察设计工作及调试工作。"
    },
    "indicators": [],
-   "images": [],
+   "images": [
+    "p1705010081139.jpg"
+   ],
    "additional": null,
    "points": [
     [
@@ -2777,7 +2819,9 @@
     "zh": "在雷巴奇耶-科奇科尔区段（吉尔吉斯共和国）供应微机联锁（МПЦ）设备并实施调试工作。"
    },
    "indicators": [],
-   "images": [],
+   "images": [
+    "p1693572322416.jpg"
+   ],
    "additional": null,
    "points": [
     [
@@ -2873,7 +2917,9 @@
     "zh": "供应БСБ-ЕР型车载（机车）安全装置设备"
    },
    "indicators": [],
-   "images": [],
+   "images": [
+    "p1619474584117.jpg"
+   ],
    "additional": null,
    "x": 17923.8,
    "y": 14526.4
