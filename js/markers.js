@@ -85,6 +85,7 @@ const Markers = (() => {
     allObjects = {};
     displayViewBox = parseViewBox(getSvg(svgContainer)?.getAttribute('viewBox'));
     createCountryLabels(svgContainer);
+    createCountryFlags(svgContainer);
     createObjectLayer(svgContainer);
     createObjects(svgContainer);
     // Apply the current zoom level immediately so markers start at the right
@@ -534,9 +535,79 @@ const Markers = (() => {
   function refresh() {
     if (!svgContainerRef) return;
     createCountryLabels(svgContainerRef);
+    createCountryFlags(svgContainerRef);
     createObjectLayer(svgContainerRef);
     createObjects(svgContainerRef);
     if (activeObjectId) highlightMarker(activeObjectId);
+  }
+
+  // Clean per-country flag badges (replacing the messy baked-in ones removed from
+  // the SVG). Simplified but recognizable; absolutely positioned near each country.
+  // w:h = 3:2, centered at (x,y).
+  const FLAG_W = 620, FLAG_H = 413;
+  const FLAGS = [
+    { c: 'kz', x: 10300, y: 13150 }, { c: 'cn', x: 18050, y: 16150 },
+    { c: 'mn', x: 17450, y: 14300 }, { c: 'uz', x: 9750, y: 16300 },
+    { c: 'tm', x: 8000, y: 16980 },  { c: 'az', x: 4050, y: 16520 },
+    { c: 'kg', x: 13320, y: 16720 }, { c: 'tj', x: 12300, y: 17950 },
+    { c: 'ge', x: 1900, y: 15330 },  { c: 'am', x: 2650, y: 16680 }
+  ];
+
+  function buildFlag(c, x, y, w, h) {
+    const l = x - w / 2, t = y - h / 2;
+    const R = (rx, ry, rw, rh, f) => `<rect x="${rx}" y="${ry}" width="${rw}" height="${rh}" fill="${f}"/>`;
+    const C = (cx, cy, r, f) => `<circle cx="${cx}" cy="${cy}" r="${r}" fill="${f}"/>`;
+    const LN = (x1, y1, x2, y2, f, sw) => `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="${f}" stroke-width="${sw}"/>`;
+    // sun disc with N radiating rays
+    const sun = (sx, sy, r, f, n = 20) => {
+      let s = '';
+      for (let i = 0; i < n; i++) { const a = i / n * 2 * Math.PI; s += LN(sx + Math.cos(a) * r, sy + Math.sin(a) * r, sx + Math.cos(a) * r * 1.7, sy + Math.sin(a) * r * 1.7, f, r * 0.16); }
+      return s + C(sx, sy, r, f);
+    };
+    const h3 = (a, b, cc) => R(l, t, w, h / 3, a) + R(l, t + h / 3, w, h / 3, b) + R(l, t + 2 * h / 3, w, h - 2 * (h / 3), cc);
+    const cx = l + w / 2, cy = t + h / 2;
+    let g = '';
+    switch (c) {
+      case 'kz': {
+        // cyan field, golden sun with rays, simplified soaring eagle below
+        const sy = t + h * 0.42, sr = h * 0.15;
+        g = R(l, t, w, h, '#00afca') + sun(cx, sy, sr, '#f5d020', 22)
+          + `<path d="M ${cx - sr * 1.6} ${sy + sr * 2.4} Q ${cx - sr * 0.5} ${sy + sr * 1.5} ${cx} ${sy + sr * 2.2} Q ${cx + sr * 0.5} ${sy + sr * 1.5} ${cx + sr * 1.6} ${sy + sr * 2.4}" fill="none" stroke="#f5d020" stroke-width="${sr * 0.22}"/>`;
+        break;
+      }
+      case 'kg': {
+        // red field, golden sun with rays + tunduk (crossed lines in a ring)
+        const sr = h * 0.17;
+        g = R(l, t, w, h, '#e8112d') + sun(cx, cy, sr, '#ffef00', 24)
+          + C(cx, cy, sr * 0.55, '#e8112d')
+          + LN(cx - sr * 0.5, cy, cx + sr * 0.5, cy, '#ffef00', sr * 0.12)
+          + LN(cx, cy - sr * 0.5, cx, cy + sr * 0.5, '#ffef00', sr * 0.12);
+        break;
+      }
+      case 'az': g = h3('#009cbf', '#ed2939', '#3f9c35') + C(cx + w * 0.02, cy, h * 0.16, '#fff') + C(cx + w * 0.07, cy, h * 0.13, '#ed2939'); break;
+      case 'am': g = h3('#d90012', '#0033a0', '#f2a800'); break;
+      case 'ge': g = R(l, t, w, h, '#fff') + R(cx - w * 0.06, t, w * 0.12, h, '#e8112d') + R(l, cy - h * 0.09, w, h * 0.18, '#e8112d'); break;
+      case 'uz': g = R(l, t, w, h / 3, '#0099b5') + R(l, t + h / 3, w, h / 3, '#fff') + R(l, t + 2 * h / 3, w, h / 3, '#1eb53a') + C(l + w * 0.2, t + h * 0.17, h * 0.11, '#fff') + C(l + w * 0.24, t + h * 0.17, h * 0.09, '#0099b5'); break;
+      case 'tm': g = R(l, t, w, h, '#28ae66') + R(l, t, w * 0.22, h, '#b02a30') + C(l + w * 0.42, t + h * 0.22, h * 0.1, '#fff') + C(l + w * 0.46, t + h * 0.22, h * 0.08, '#28ae66'); break;
+      case 'kg': g = R(l, t, w, h, '#e8112d') + C(cx, cy, h * 0.2, '#ffef00'); break;
+      case 'tj': g = R(l, t, w, h * 0.28, '#cc0000') + R(l, t + h * 0.28, w, h * 0.44, '#fff') + R(l, t + h * 0.72, w, h * 0.28, '#006600') + C(cx, cy, h * 0.09, '#f8c300'); break;
+      case 'cn': g = R(l, t, w, h, '#de2910') + C(l + w * 0.17, t + h * 0.28, h * 0.13, '#ffde00') + C(l + w * 0.3, t + h * 0.14, h * 0.045, '#ffde00') + C(l + w * 0.34, t + h * 0.26, h * 0.045, '#ffde00') + C(l + w * 0.34, t + h * 0.42, h * 0.045, '#ffde00') + C(l + w * 0.3, t + h * 0.54, h * 0.045, '#ffde00'); break;
+      case 'mn': g = R(l, t, w / 3, h, '#c4272e') + R(l + w / 3, t, w / 3, h, '#015197') + R(l + 2 * w / 3, t, w / 3, h, '#c4272e') + C(l + w / 6, cy, h * 0.12, '#f9cf02') + R(l + w * 0.14, t + h * 0.2, w * 0.04, h * 0.6, '#f9cf02'); break;
+      default: g = R(l, t, w, h, '#ccc');
+    }
+    return `<g>${g}<rect x="${l}" y="${t}" width="${w}" height="${h}" fill="none" stroke="#ffffff" stroke-width="10"/></g>`;
+  }
+
+  function createCountryFlags(svgContainer) {
+    const svg = getSvg(svgContainer);
+    if (!svg) return;
+    const old = svg.querySelector('#country-flags-layer');
+    if (old) old.remove();
+    const layer = document.createElementNS(SVG_NS, 'g');
+    layer.setAttribute('id', 'country-flags-layer');
+    layer.setAttribute('pointer-events', 'none');
+    layer.innerHTML = FLAGS.map(f => buildFlag(f.c, f.x, f.y, FLAG_W, FLAG_H)).join('');
+    svg.appendChild(layer);
   }
 
   // Big fading country names. Placed below the interactive markers layer (created

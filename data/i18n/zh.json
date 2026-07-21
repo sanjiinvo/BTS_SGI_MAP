@@ -9,7 +9,12 @@
     "clear": "重置",
     "noResults": "未找到项目",
     "showingProjects": "显示的项目",
-    "demoMode": "演示模式"
+    "demoMode": "演示模式",
+    "backToAll": "← 返回所有项目",
+    "allProjects": "所有项目",
+    "projects": "个项目",
+    "noProjectsCountry": "该国家暂无项目",
+    "allCountries": "所有国家"
   },
   "filter": {
     "region": "地区",

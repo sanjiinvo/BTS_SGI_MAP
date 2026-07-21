@@ -9,7 +9,12 @@
     "clear": "Reset",
     "noResults": "No projects found",
     "showingProjects": "Projects shown",
-    "demoMode": "Demo Mode"
+    "demoMode": "Demo Mode",
+    "backToAll": "← back to all projects",
+    "allProjects": "All projects",
+    "projects": "projects",
+    "noProjectsCountry": "No projects for this country",
+    "allCountries": "All countries"
   },
   "filter": {
     "region": "Region",

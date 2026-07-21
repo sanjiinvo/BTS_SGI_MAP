@@ -893,6 +893,56 @@ select {
   text-align: left;
 }
 
+/* Structured "scope of work" block (spans the whole indicators grid). */
+.volume-block {
+  grid-column: 1 / -1;
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  padding: 16px 18px;
+}
+.volume-block .vol-facts {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 9px;
+}
+.volume-block .vol-facts li {
+  position: relative;
+  padding-left: 22px;
+  font-size: 0.9rem;
+  line-height: 1.4;
+  color: var(--text-primary);
+}
+.volume-block .vol-facts li::before {
+  content: "";
+  position: absolute;
+  left: 4px;
+  top: 0.55em;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--accent-secondary);
+}
+.volume-block .vol-facts b {
+  color: var(--accent-secondary);
+  font-weight: 700;
+}
+.volume-block .vol-notes {
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid var(--border-color);
+  display: grid;
+  gap: 8px;
+}
+.volume-block .vol-notes p {
+  margin: 0;
+  font-size: 0.85rem;
+  line-height: 1.5;
+  color: var(--text-secondary);
+}
+
 .card-additional {
   padding: 14px;
   background: rgba(58, 123, 213, 0.08);

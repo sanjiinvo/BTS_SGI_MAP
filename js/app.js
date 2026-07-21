@@ -132,6 +132,7 @@
       updateUI();
       FilterManager.updateLabels();
       Markers.refresh();
+      ProjectCard.refreshLabels();
       applyInitialFilters();
       // Update open card content
       if (ProjectCard.isOpen()) {

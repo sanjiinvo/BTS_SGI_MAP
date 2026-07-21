@@ -9,7 +9,12 @@
     "clear": "Қалпына келтіру",
     "noResults": "Жобалар табылмады",
     "showingProjects": "Көрсетілген жобалар",
-    "demoMode": "Демонстрациялық режим"
+    "demoMode": "Демонстрациялық режим",
+    "backToAll": "← барлық жобаларға оралу",
+    "allProjects": "Барлық жобалар",
+    "projects": "жоба",
+    "noProjectsCountry": "Бұл ел бойынша жобалар жоқ",
+    "allCountries": "Барлық елдер"
   },
   "filter": {
     "region": "Аймақ",

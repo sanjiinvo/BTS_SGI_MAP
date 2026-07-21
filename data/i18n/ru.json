@@ -9,7 +9,12 @@
     "clear": "Сбросить",
     "noResults": "Проекты не найдены",
     "showingProjects": "Показано проектов",
-    "demoMode": "Демонстрационный режим"
+    "demoMode": "Демонстрационный режим",
+    "backToAll": "← вернуться ко всем проектам",
+    "allProjects": "Все проекты",
+    "projects": "проектов",
+    "noProjectsCountry": "Нет проектов для этой страны",
+    "allCountries": "Все страны"
   },
   "filter": {
     "region": "Регион",

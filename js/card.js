@@ -7,6 +7,27 @@ const ProjectCard = (() => {
   let viewMode = 'detail';
   let listCountryFilter = 'all';
 
+  const VOLUME_TITLE = { ru: 'Объём работ', kk: 'Жұмыс көлемі', en: 'Scope of work', de: 'Arbeitsumfang', zh: '工程量' };
+
+  // The "volume" field is a \n-separated blob mixing short facts, bullet lists and
+  // narrative (dates/events). Systematise it: short factual lines become a list with
+  // their numbers highlighted; longer/narrative lines become paragraphs below.
+  function formatVolume(text) {
+    const esc = s => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    const NARR = /год[ауе]?\b|состоял|объявл|заверш|сообщ|введ[её]н|эксплуатаци|президент|открыти|подписа|планир|срок|июл|август|сентябр|октябр|202\d\s*год/i;
+    const facts = [], notes = [];
+    String(text).split('\n').map(s => s.trim()).filter(Boolean).forEach(line => {
+      const l = line.replace(/^[-–•·\s]+/, '');
+      if (l.length >= 70 || NARR.test(l)) notes.push(l);
+      else facts.push(l);
+    });
+    const hi = s => esc(s).replace(/(\d[\d.,]*)/g, '<b>$1</b>');
+    let html = '';
+    if (facts.length) html += '<ul class="vol-facts">' + facts.map(f => `<li>${hi(f)}</li>`).join('') + '</ul>';
+    if (notes.length) html += '<div class="vol-notes">' + notes.map(n => `<p>${esc(n)}</p>`).join('') + '</div>';
+    return html || `<p>${esc(text)}</p>`;
+  }
+
   // Every Kazakhstan oblast region maps to the "kazakhstan" country bucket;
   // the rest of the regions already are countries.
   const REGION_COUNTRY = {
@@ -110,7 +131,7 @@ const ProjectCard = (() => {
     elements.back = document.createElement('button');
     elements.back.className = 'card-back';
     elements.back.type = 'button';
-    elements.back.textContent = '<-- вернуться к всем проектам';
+    elements.back.textContent = I18n.t('app.backToAll');
     elements.back.addEventListener('click', showProjectList);
 
     elements.detailView.appendChild(elements.back);
@@ -121,7 +142,7 @@ const ProjectCard = (() => {
     elements.listView.className = 'card-list-view hidden';
     elements.listView.innerHTML = `
       <div class="card-list-header">
-        <h2>Все проекты</h2>
+        <h2 id="card-list-title">Все проекты</h2>
         <span id="card-list-count"></span>
       </div>
       <div class="card-list-filters" id="card-list-filters"></div>
@@ -160,21 +181,19 @@ const ProjectCard = (() => {
 
     elements.description.textContent = I18n.tr(project.description);
 
-    elements.indicatorsTitle.textContent = volumeText ? 'Объем работ' : I18n.t('project.indicators');
+    elements.indicatorsTitle.textContent = volumeText ? I18n.tr(VOLUME_TITLE) : I18n.t('project.indicators');
     elements.indicatorsGrid.innerHTML = '';
-    const indicators = [];
-    if (volumeText) {
-      indicators.push({
-        label: { ru: 'Объем работ', kk: 'Жұмыс көлемі', en: 'Scope of work' },
-        value: project.volume
-      });
-    }
-    if (project.indicators && project.indicators.length > 0) {
-      indicators.push(...project.indicators);
-    }
 
-    if (indicators.length > 0) {
-      indicators.forEach(ind => {
+    // Structured "scope of work" block spanning the full width.
+    if (volumeText) {
+      const block = document.createElement('div');
+      block.className = 'volume-block';
+      block.innerHTML = formatVolume(volumeText);
+      elements.indicatorsGrid.appendChild(block);
+    }
+    // Any explicit numeric indicators still render as tiles.
+    if (project.indicators && project.indicators.length > 0) {
+      project.indicators.forEach(ind => {
         const item = document.createElement('div');
         item.className = 'indicator-item';
         item.innerHTML = `
@@ -183,7 +202,8 @@ const ProjectCard = (() => {
         `;
         elements.indicatorsGrid.appendChild(item);
       });
-    } else {
+    }
+    if (!volumeText && !(project.indicators && project.indicators.length > 0)) {
       elements.indicatorsGrid.innerHTML = '<div class="indicator-item" style="grid-column:1/-1;color:var(--text-muted);font-size:0.85rem;">—</div>';
     }
 
@@ -263,8 +283,8 @@ const ProjectCard = (() => {
       : allProjects.filter(p => getCountryKey(p) === listCountryFilter);
 
     elements.listCount.textContent = listCountryFilter === 'all'
-      ? `${allProjects.length} проектов`
-      : `${projects.length} из ${allProjects.length}`;
+      ? `${allProjects.length} ${I18n.t('app.projects')}`
+      : `${projects.length} / ${allProjects.length}`;
     elements.list.innerHTML = '';
 
     projects.forEach(project => {
@@ -288,7 +308,7 @@ const ProjectCard = (() => {
     });
 
     if (projects.length === 0) {
-      elements.list.innerHTML = '<div class="card-list-empty">Нет проектов для этой страны</div>';
+      elements.list.innerHTML = `<div class="card-list-empty">${I18n.t('app.noProjectsCountry')}</div>`;
     }
   }
 
@@ -302,7 +322,7 @@ const ProjectCard = (() => {
     });
 
     elements.listFilters.innerHTML = '';
-    elements.listFilters.appendChild(makeFilterChip('all', 'Все страны', '#8899aa', allProjects.length));
+    elements.listFilters.appendChild(makeFilterChip('all', I18n.t('app.allCountries'), '#8899aa', allProjects.length));
     Object.keys(COUNTRY_META)
       .filter(key => counts[key])
       .forEach(key => {
@@ -361,5 +381,14 @@ const ProjectCard = (() => {
     if (project) updateContent(project);
   }
 
-  return { init, open, close, showProjectList, isOpen: isOpenFn, getCurrentProjectId, updateCurrent };
+  // Re-apply static UI text after a language change.
+  function refreshLabels() {
+    if (elements.back) elements.back.textContent = I18n.t('app.backToAll');
+    const title = document.getElementById('card-list-title');
+    if (title) title.textContent = I18n.t('app.allProjects');
+    // If the project list is currently open, re-render it in the new language.
+    if (elements.listView && !elements.listView.classList.contains('hidden')) showProjectList();
+  }
+
+  return { init, open, close, showProjectList, refreshLabels, isOpen: isOpenFn, getCurrentProjectId, updateCurrent };
 })();
