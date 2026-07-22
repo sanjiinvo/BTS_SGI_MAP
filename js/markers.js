@@ -26,6 +26,7 @@ const Markers = (() => {
   const LABEL_LOD_HIDE_ABOVE_SCALE = 2.2;
   let layerRef = null;
   let countryLayerRef = null;
+  let flagsLayerRef = null;
 
   // Big country names shown only at (near) full zoom-out and faded out smoothly
   // as the map is zoomed in — the mirror image of the marker-label LOD. Positions
@@ -68,6 +69,7 @@ const Markers = (() => {
     currentZoomScale = Number.isFinite(scale) && scale > 0 ? scale : 1;
     if (layerRef) layerRef.style.setProperty('--marker-scale', currentZoomScale);
     if (countryLayerRef) countryLayerRef.style.opacity = countryOpacity(currentZoomScale);
+    if (flagsLayerRef) flagsLayerRef.style.opacity = countryOpacity(currentZoomScale);
     applyLabelLod();
   }
 
@@ -146,7 +148,15 @@ const Markers = (() => {
 
     // SVG has no z-index; paint order = DOM order. Sort ascending so a
     // higher zIndex project is appended later and therefore drawn on top.
+    // Railway "…ское отделение" label dots are replaced by the oblast name
+    // labels baked into the map, so skip them here.
+    const isOtdelenie = (p) => {
+      const n = p && p.name;
+      const s = typeof n === 'string' ? n : (n ? Object.values(n).join(' ') : '');
+      return p.type === 'label' && /отделени|division|бөлімшес/i.test(s);
+    };
     const projects = [...DataLoader.getProjects()]
+      .filter(p => !isOtdelenie(p))
       .sort((a, b) => (Number(a.zIndex) || 0) - (Number(b.zIndex) || 0));
 
     projects.forEach(project => {
@@ -544,13 +554,17 @@ const Markers = (() => {
   // Clean per-country flag badges (replacing the messy baked-in ones removed from
   // the SVG). Simplified but recognizable; absolutely positioned near each country.
   // w:h = 3:2, centered at (x,y).
-  const FLAG_W = 620, FLAG_H = 413;
+  const FLAG_W = 620, FLAG_H = 465;
+  // Each flag is centred above its country label with clearance so it never
+  // overlaps the (fading) country name. y = label.y - 0.42*fs - FLAG_H/2 - gap.
+  // Flags centred on each country (same anchor as the country name label);
+  // `w` is per-country width. A flag may lightly touch its own name — that's ok.
   const FLAGS = [
-    { c: 'kz', x: 10300, y: 13150 }, { c: 'cn', x: 18050, y: 16150 },
-    { c: 'mn', x: 17450, y: 14300 }, { c: 'uz', x: 9750, y: 16300 },
-    { c: 'tm', x: 8000, y: 16980 },  { c: 'az', x: 4050, y: 16520 },
-    { c: 'kg', x: 13320, y: 16720 }, { c: 'tj', x: 12300, y: 17950 },
-    { c: 'ge', x: 1900, y: 15330 },  { c: 'am', x: 2650, y: 16680 }
+    { c: 'kz', x: 10300, y: 14050, w: 980 }, { c: 'cn', x: 18050, y: 16350, w: 980 },
+    { c: 'mn', x: 17450, y: 14250, w: 820 }, { c: 'uz', x: 9750, y: 16880, w: 760 },
+    { c: 'tm', x: 8000, y: 17520, w: 760 },  { c: 'az', x: 4050, y: 17020, w: 560 },
+    { c: 'kg', x: 13450, y: 16620, w: 560 }, { c: 'tj', x: 12350, y: 18060, w: 520 },
+    { c: 'ge', x: 1900, y: 15300, w: 540 },  { c: 'am', x: 2650, y: 17120, w: 520 }
   ];
 
   function buildFlag(c, x, y, w, h) {
@@ -606,8 +620,18 @@ const Markers = (() => {
     const layer = document.createElementNS(SVG_NS, 'g');
     layer.setAttribute('id', 'country-flags-layer');
     layer.setAttribute('pointer-events', 'none');
-    layer.innerHTML = FLAGS.map(f => buildFlag(f.c, f.x, f.y, FLAG_W, FLAG_H)).join('');
+    layer.style.transition = 'opacity 0.3s ease';
+    // Real flag artwork (accurate SVGs in assets/flags/) placed as <image>,
+    // with a thin white frame. 4:3 aspect to match the source files.
+    layer.innerHTML = FLAGS.map(f => {
+      const w = f.w || FLAG_W, h = w * 0.75;
+      const l = f.x - w / 2, t = f.y - h / 2;
+      return `<image href="assets/flags/${f.c}.svg" xlink:href="assets/flags/${f.c}.svg" x="${l}" y="${t}" width="${w}" height="${h}" preserveAspectRatio="xMidYMid meet"/>`
+        + `<rect x="${l}" y="${t}" width="${w}" height="${h}" fill="none" stroke="#ffffff" stroke-width="12"/>`;
+    }).join('');
     svg.appendChild(layer);
+    flagsLayerRef = layer;
+    layer.style.opacity = countryOpacity(currentZoomScale);
   }
 
   // Big fading country names. Placed below the interactive markers layer (created

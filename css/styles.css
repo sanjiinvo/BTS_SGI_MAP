@@ -372,13 +372,13 @@ select {
 /* Big country names, shown only near full zoom-out (opacity driven from
    markers.js) and faded out as you zoom in. Non-interactive watermark style. */
 .country-label {
-  fill: #8ea6c4;
-  fill-opacity: 0.5;
+  fill: #c3d3e6;
+  fill-opacity: 0.92;
   font-weight: 800;
   letter-spacing: 0.12em;
   paint-order: stroke;
-  stroke: rgba(6, 18, 31, 0.55);
-  stroke-width: 6;
+  stroke: rgba(6, 18, 31, 0.7);
+  stroke-width: 9;
   text-transform: uppercase;
 }
 
